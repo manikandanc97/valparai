@@ -131,7 +131,7 @@ const BookingForm = () => {
             <Textarea placeholder="Anything else you'd like us to know?" rows={4} className="rounded-md" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
           </label>
 
-          <Button type="submit" disabled={loading} className="mt-2 h-11 rounded-md bg-[#1A3021] hover:bg-[#132619]">
+          <Button type="submit" disabled={loading} className="mt-2 h-11 rounded-md">
             {loading ? (
               <><Loader2 className="h-4 w-4 animate-spin" /> Processing...</>
             ) : success ? (

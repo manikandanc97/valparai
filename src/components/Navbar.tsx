@@ -5,12 +5,15 @@ import { Menu, X, Phone, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 import { brand, navItems } from "@/lib/site-content";
 import SiteLogo from "@/components/shared/site-logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -19,6 +22,34 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    navItems.forEach((item) => {
+      if (item.href.startsWith("#")) {
+        const id = item.href.substring(1);
+        const element = document.getElementById(id);
+        if (element) observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -34,28 +65,42 @@ const Navbar = () => {
         <SiteLogo />
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {navItems.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navItems.map((link) => {
+            const isActive = 
+              (link.href.startsWith("#") && activeSection === link.href.substring(1)) ||
+              (link.href === pathname);
+            
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-foreground relative py-1",
+                  isActive 
+                    ? "text-primary" 
+                    : "text-muted-foreground"
+                )}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary rounded-full" />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground"
+            className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
           <a
             href={brand.phoneHref}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <Phone className="h-4 w-4" />
             {brand.phone}
@@ -88,16 +133,27 @@ const Navbar = () => {
         )}
       >
         <nav className="container-wide flex flex-col gap-4">
-          {navItems.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navItems.map((link) => {
+            const isActive = 
+              (link.href.startsWith("#") && activeSection === link.href.substring(1)) ||
+              (link.href === pathname);
+
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  isActive 
+                    ? "bg-primary/10 text-primary" 
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                )}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <div className="grid grid-cols-2 gap-3 pt-2">
             <Button asChild variant="outline" className="h-10">
               <a href={brand.phoneHref}>Call</a>

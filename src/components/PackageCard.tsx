@@ -13,6 +13,7 @@ import {
 import { budgetPricing, TourPackage } from "@/lib/tour-data";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 interface PackageCardProps {
   pkg: TourPackage;
@@ -34,10 +35,12 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
         )}
       >
         <div className="relative h-56 overflow-hidden">
-          <img
+          <Image
             src={pkg.image}
             alt={pkg.title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            className="object-cover"
           />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
           <Badge className="absolute left-4 top-4 bg-background/90 text-foreground">
@@ -91,7 +94,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
           <Button variant="outline" onClick={() => onViewPlan(pkg)} className="h-10 rounded-md">
             Itinerary
           </Button>
-          <Button onClick={() => onBook(pkg.title)} className="h-10 rounded-md bg-[#1A3021] hover:bg-[#132619]">
+          <Button onClick={() => onBook(pkg.title)} className="h-10 rounded-md">
             Book Tour
           </Button>
         </CardFooter>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Compass, MessageSquare, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { brand, stats } from "@/lib/site-content";
@@ -28,31 +27,23 @@ const Hero = () => {
       className="relative isolate flex min-h-[calc(100vh-4rem)] items-center overflow-hidden"
     >
       <div className="absolute inset-0 -z-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIdx}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <div
-              className="h-full w-full scale-110 bg-cover bg-center bg-no-repeat transition-transform duration-[10000ms]"
-              style={{ backgroundImage: `url(${heroImages[currentIdx]})` }}
-            />
-          </motion.div>
-        </AnimatePresence>
+        {heroImages.map((image, index) => (
+          <div
+            key={image}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: currentIdx === index ? 1 : 0,
+              backgroundImage: `url(${image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ))}
         <div className="absolute inset-0 bg-[#1A3021]/62" />
       </div>
 
       <div className="container-wide relative z-10 py-16 sm:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]"
-        >
+        <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <p className="inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#F9FBE9] backdrop-blur">
               Premium Valparai Tours
@@ -90,16 +81,12 @@ const Hero = () => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 opacity-60"
-      >
+      <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 opacity-60">
         <ChevronDown className="h-6 w-6 text-white" />
-      </motion.div>
+      </div>
     </section>
   );
 };

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, XCircle, MapPin, Info } from "lucide-react";
 import { TourPackage } from "@/lib/tour-data";
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 interface ItineraryModalProps {
   pkg: TourPackage | null;
@@ -25,10 +26,10 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[min(92vw,920px)] overflow-hidden rounded-2xl border p-0 sm:max-w-2xl lg:max-w-4xl">
-        <DialogHeader className="relative flex h-44 flex-col justify-end overflow-hidden p-6 text-left sm:h-48 sm:p-7 lg:h-52 lg:p-8">
+      <DialogContent className="grid max-h-[92vh] w-[min(92vw,920px)] grid-rows-[auto_1fr_auto] gap-0 overflow-hidden rounded-2xl border p-0 sm:max-w-2xl lg:max-w-4xl">
+        <DialogHeader className="relative flex h-44 shrink-0 flex-col justify-end overflow-hidden p-6 text-left sm:h-48 sm:p-7 lg:h-52 lg:p-8">
           <div className="absolute inset-0 z-0">
-            <img src={pkg.image} alt={pkg.title} className="h-full w-full object-cover opacity-30" />
+            <Image src={pkg.image} alt={pkg.title} fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover opacity-30" />
             <div className="absolute inset-0 bg-[#1A3021]/85" />
           </div>
           <div className="relative z-10 space-y-3">
@@ -38,7 +39,7 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
           </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[58vh] p-4 sm:p-6">
+        <div className="thin-scrollbar overflow-y-auto p-4 sm:p-6">
           <div className="space-y-6">
             {(pkg.inclusions || pkg.exclusions) && (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -78,7 +79,7 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
                 )}
               </div>
             )}
-
+ 
             <div className="space-y-4">
               {pkg.itinerary.map((day, idx) => (
                 <div key={idx} className="relative rounded-xl border bg-card p-4 pl-9 sm:p-5 sm:pl-10">
@@ -106,15 +107,15 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
               ))}
             </div>
           </div>
-        </ScrollArea>
+        </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t bg-muted/30 p-4 sm:flex-row sm:p-5">
+        <div className="flex shrink-0 flex-col items-center justify-between gap-4 border-t bg-muted/30 p-4 sm:flex-row sm:p-5">
           <div className="flex items-center gap-2 whitespace-nowrap text-xs text-muted-foreground sm:text-sm">
             <Info className="h-4 w-4" /> Confirm via WhatsApp
           </div>
           <Button
             onClick={() => onBook(pkg.title)}
-            className="h-11 w-full rounded-md bg-[#1A3021] px-7 text-base hover:bg-[#132619] sm:w-auto"
+            className="h-11 w-full rounded-md px-7 text-base sm:w-auto"
           >
             Book This Tour
           </Button>

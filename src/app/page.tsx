@@ -1,36 +1,21 @@
-"use client";
-
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
-import PackageCard from "@/components/PackageCard";
-import ItineraryModal from "@/components/ItineraryModal";
-import BookingForm from "@/components/BookingForm";
-import { tourPackages, reviews, galleryImages, TourPackage } from "@/lib/tour-data";
-import { motion } from "framer-motion";
+import { reviews, galleryImages } from "@/lib/tour-data";
 import { Star, Mail, MessageCircle, Phone, Camera, Users, PlayCircle, MapPin, ChevronRight, CircleHelp, FileText, Shield, PhoneCall } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import SectionHeading from "@/components/shared/section-heading";
 import { brand, contactItems, features, footerQuickLinks, footerSupportLinks } from "@/lib/site-content";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const PackagesSectionClient = dynamic(
+  () => import("@/components/home/packages-section-client"),
+  { loading: () => <section id="packages" className="section-padding container-wide" /> }
+);
+const BookingForm = dynamic(() => import("@/components/BookingForm"));
 
 export default function Home() {
-  const [selectedPkg, setSelectedPkg] = useState<TourPackage | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = (pkg: TourPackage) => {
-    setSelectedPkg(pkg);
-    setIsModalOpen(true);
-  };
-
-  const handleBook = () => {
-    setIsModalOpen(false);
-    const contactSection = document.getElementById("contact-section");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const contactIcons = [Phone, MessageCircle, Mail];
 
   return (
@@ -38,21 +23,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Stats />
+      <PackagesSectionClient />
 
-      <section id="packages" className="section-padding container-wide space-y-12">
-        <SectionHeading
-          eyebrow="Packages"
-          title="Flexible Tour Plans"
-          description="Well-structured plans with clear itinerary details, transparent pricing, and local support."
-        />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {tourPackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} onViewPlan={openModal} onBook={handleBook} />
-          ))}
-        </div>
-      </section>
-
-      <section id="why-us" className="section-padding border-y bg-background">
+      <section id="why-us" className="section-padding border-y bg-muted/50">
         <div className="container-wide space-y-12">
           <SectionHeading
             eyebrow="Why Choose Us"
@@ -61,7 +34,7 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((item) => (
-              <Card key={item.title} className="rounded-xl border-border/70 py-0">
+              <Card key={item.title} className="rounded-xl border-border/70 bg-background py-0 shadow-sm">
                 <CardContent className="space-y-3 p-5">
                   <div className="w-fit rounded-lg bg-primary/10 p-2 text-primary">
                     <item.icon className="h-4 w-4" />
@@ -83,15 +56,7 @@ export default function Home() {
         />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {reviews.map((review, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              viewport={{ once: true }}
-              className="flex flex-col space-y-5 rounded-xl border bg-card p-6"
-            >
+            <div key={i} className="flex flex-col space-y-5 rounded-xl border bg-card p-6 transition-shadow hover:shadow-sm">
               <div className="flex gap-1.5 text-[#D4AF37]">
                 {[...Array(review.rating)].map((_, j) => (
                   <Star key={j} className="h-4 w-4 fill-current" />
@@ -101,13 +66,13 @@ export default function Home() {
                 &ldquo;{review.text}&rdquo;
               </p>
               <div className="flex items-center gap-3 border-t pt-4">
-                <img src={review.avatar} alt={review.name} className="h-10 w-10 rounded-full object-cover" />
+                <Image src={review.avatar} alt={review.name} width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
                 <div>
                   <p className="text-sm font-semibold text-foreground">{review.name}</p>
                   <p className="text-xs text-muted-foreground">{review.package}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -122,36 +87,39 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {galleryImages.map((img, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02 }}
-                className="group relative h-64 overflow-hidden rounded-xl border border-white/10 sm:h-80"
-              >
-                <img src={img.url} alt={img.alt} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div key={i} className="group relative h-64 overflow-hidden rounded-xl border border-white/10 sm:h-80">
+                <Image
+                  src={img.url}
+                  alt={img.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-sm text-white">
                   {img.alt}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact-section" className="section-padding container-wide">
-        <div className="grid items-start gap-8 lg:grid-cols-2">
-          <div className="space-y-6">
-            <SectionHeading
-              eyebrow="Contact"
-              title="Ready to plan your next trip?"
-              description="Reach us directly or submit the form. We respond quickly on WhatsApp."
-              center={false}
-            />
-            <div className="grid gap-3">
-              {contactItems.map((item, idx) => {
-                const Icon = contactIcons[idx];
-                return (
-                  <Card key={item.title} className="rounded-xl border-border/70 py-0">
-                    <CardContent className="flex items-center justify-between gap-4 p-4">
+      <section id="contact-section" className="section-padding border-t bg-muted/40">
+        <div className="container-wide">
+          <div className="grid items-start gap-8 lg:grid-cols-2">
+            <div className="space-y-6">
+              <SectionHeading
+                eyebrow="Contact"
+                title="Ready to plan your next trip?"
+                description="Reach us directly or submit the form. We respond quickly on WhatsApp."
+                center={false}
+              />
+              <div className="grid gap-3">
+                {contactItems.map((item, idx) => {
+                  const Icon = contactIcons[idx];
+                  return (
+                    <Card key={item.title} className="rounded-xl border-border/70 bg-background py-0 shadow-sm">
+                      <CardContent className="flex items-center justify-between gap-4 p-4">
                       <div className="flex items-center gap-3">
                         <div className="rounded-md bg-primary/10 p-2 text-primary">
                           <Icon className="h-4 w-4" />
@@ -169,8 +137,9 @@ export default function Home() {
                 );
               })}
             </div>
+            </div>
+            <BookingForm />
           </div>
-          <BookingForm />
         </div>
       </section>
 
@@ -180,7 +149,7 @@ export default function Home() {
             <div className="space-y-5">
               <div className="flex items-center gap-3">
                 <div className="h-14 w-14 rounded-xl bg-white p-1.5">
-                  <img src={brand.logo} alt={brand.name} className="h-full w-full object-contain" />
+                  <Image src={brand.logo} alt={brand.name} width={56} height={56} className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <p className="text-base font-semibold text-white">{brand.name}</p>
@@ -191,9 +160,15 @@ export default function Home() {
                 Premium local tours exploring Valparai&apos;s untouched natural beauty with expert local guidance.
               </p>
               <div className="flex items-center gap-2">
-                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><Camera className="h-4 w-4" /></a>
-                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><Users className="h-4 w-4" /></a>
-                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><PlayCircle className="h-4 w-4" /></a>
+                <a href="https://www.instagram.com/valparai_wanderer1?igsh=OXZkb3d1MnlwbTN5&utm_source=qr" target="_blank" rel="noreferrer" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:border-primary hover:bg-primary/10 hover:text-primary transition-all" aria-label="Instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1Ct6crP7vG/?mibextid=wwXIfr" target="_blank" rel="noreferrer" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:border-primary hover:bg-primary/10 hover:text-primary transition-all" aria-label="Facebook">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://youtube.com/@valparai_wanderer1?si=gWd7VHn9CTEjeW7o" target="_blank" rel="noreferrer" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:border-primary hover:bg-primary/10 hover:text-primary transition-all" aria-label="YouTube">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+                </a>
               </div>
             </div>
 
@@ -243,13 +218,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      <ItineraryModal
-        pkg={selectedPkg}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onBook={handleBook}
-      />
     </main>
   );
 }
