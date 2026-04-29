@@ -220,8 +220,8 @@ export default function Home() {
 
           <div className="mt-10 border-t border-[#11203b] pt-6">
             <div className="flex flex-col items-center justify-between gap-3 text-xs text-[#7f92b2] sm:flex-row">
-              <p>© 2026 {brand.name}. All rights reserved.</p>
-              <p>Designed for Adventure - Certified Local Operator</p>
+              <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+              <p>Crafting Authentic Valparai Experiences</p>
             </div>
           </div>
         </div>
