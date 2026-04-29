@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, XCircle, MapPin, Info } from "lucide-react";
 import { TourPackage } from "@/lib/tour-data";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ItineraryModalProps {
   pkg: TourPackage | null;
@@ -24,89 +25,78 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-[2.5rem] border-none shadow-2xl bg-card">
-        <DialogHeader className="relative h-48 sm:h-56 p-8 flex flex-col justify-end text-left overflow-hidden">
-          {/* Background Image Overlay */}
+      <DialogContent className="w-[min(92vw,920px)] overflow-hidden rounded-2xl border p-0 sm:max-w-2xl lg:max-w-4xl">
+        <DialogHeader className="relative flex h-44 flex-col justify-end overflow-hidden p-6 text-left sm:h-48 sm:p-7 lg:h-52 lg:p-8">
           <div className="absolute inset-0 z-0">
-            <img
-              src={pkg.image}
-              alt={pkg.title}
-              className="h-full w-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-primary/80" />
+            <img src={pkg.image} alt={pkg.title} className="h-full w-full object-cover opacity-30" />
+            <div className="absolute inset-0 bg-[#1A3021]/85" />
           </div>
-          
-          <div className="relative z-10 space-y-1">
-            <DialogTitle className="text-2xl sm:text-3xl font-black text-white leading-tight">
-              {pkg.title}
-            </DialogTitle>
-            <p className="text-accent font-black uppercase tracking-widest text-[10px] sm:text-xs drop-shadow-md">
-              {pkg.subtitle}
-            </p>
+          <div className="relative z-10 space-y-3">
+            <Badge className="w-fit bg-[#D4AF37] text-[#1A3021]">{pkg.duration}</Badge>
+            <DialogTitle className="text-2xl font-semibold text-white sm:text-3xl">{pkg.title}</DialogTitle>
+            <p className="max-w-2xl text-sm text-white/80 sm:text-base">{pkg.subtitle}</p>
           </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[60vh] p-8">
-          <div className="space-y-8">
-            {/* Inclusions & Exclusions */}
+        <ScrollArea className="max-h-[58vh] p-4 sm:p-6">
+          <div className="space-y-6">
             {(pkg.inclusions || pkg.exclusions) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {pkg.inclusions && (
-                  <div className="bg-primary-subtle p-6 rounded-3xl border border-primary/10">
-                    <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
-                      <CheckCircle2 className="h-5 w-5" /> Inclusions
-                    </h4>
-                    <ul className="space-y-2">
-                      {pkg.inclusions.map((item, i) => (
-                        <li key={i} className="text-slate-600 dark:text-slate-300 text-sm flex items-start gap-2">
-                          <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <Card className="rounded-xl border-primary/20 bg-primary/5 py-0">
+                    <CardContent className="space-y-3 p-4">
+                      <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <CheckCircle2 className="h-5 w-5 text-primary" /> Inclusions
+                      </h4>
+                      <ul className="space-y-2">
+                        {pkg.inclusions.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 )}
                 {pkg.exclusions && (
-                  <div className="bg-destructive/10 p-6 rounded-3xl border border-destructive/20">
-                    <h4 className="font-bold text-destructive mb-4 flex items-center gap-2">
-                      <XCircle className="h-5 w-5" /> Exclusions
-                    </h4>
-                    <ul className="space-y-2">
-                      {pkg.exclusions.map((item, i) => (
-                        <li key={i} className="text-slate-600 dark:text-slate-300 text-sm flex items-start gap-2">
-                          <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-destructive/50" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <Card className="rounded-xl border-destructive/20 bg-destructive/5 py-0">
+                    <CardContent className="space-y-3 p-4">
+                      <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <XCircle className="h-5 w-5 text-destructive" /> Exclusions
+                      </h4>
+                      <ul className="space-y-2">
+                        {pkg.exclusions.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-destructive/60" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 )}
               </div>
             )}
 
-            {/* Timeline Itinerary */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {pkg.itinerary.map((day, idx) => (
-                <div key={idx} className="relative pl-8 pb-8 last:pb-0">
+                <div key={idx} className="relative rounded-xl border bg-card p-4 pl-9 sm:p-5 sm:pl-10">
                   {idx !== pkg.itinerary.length - 1 && (
-                    <div className="absolute left-3 top-3 bottom-0 w-0.5 bg-slate-100 dark:bg-white/5" />
+                    <div className="absolute -bottom-5 left-4 top-10 w-0.5 bg-border sm:-bottom-6 sm:top-11" />
                   )}
-                  <div className="absolute left-0 top-1.5 h-6 w-6 rounded-full border-4 border-white dark:border-card bg-primary shadow-md z-10" />
-                  
+                  <div className="absolute left-2 top-5 z-10 h-4 w-4 rounded-full bg-primary" />
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none font-black text-[10px] uppercase px-2 py-1">
+                      <Badge className="border-none bg-primary/10 text-primary">
                         {day.day}
                       </Badge>
-                      <h4 className="font-extrabold text-slate-900 dark:text-white text-lg leading-tight">
-                        {day.title}
-                      </h4>
+                      <h4 className="text-sm font-semibold text-foreground sm:text-base">{day.title}</h4>
                     </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                       {day.places.map((place, pIdx) => (
-                        <div key={pIdx} className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
-                          <MapPin className="h-3.5 w-3.5 text-primary-light dark:text-accent shrink-0" />
+                        <div key={pIdx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" />
                           {place}
                         </div>
                       ))}
@@ -118,13 +108,13 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
           </div>
         </ScrollArea>
 
-        <div className="p-6 sm:p-8 bg-secondary-subtle dark:bg-primary-subtle border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">
+        <div className="flex flex-col items-center justify-between gap-4 border-t bg-muted/30 p-4 sm:flex-row sm:p-5">
+          <div className="flex items-center gap-2 whitespace-nowrap text-xs text-muted-foreground sm:text-sm">
             <Info className="h-4 w-4" /> Confirm via WhatsApp
           </div>
           <Button
             onClick={() => onBook(pkg.title)}
-            className="w-full sm:w-auto h-14 px-8 rounded-2xl bg-primary hover:bg-primary-dark font-bold text-white shadow-lg text-base"
+            className="h-11 w-full rounded-md bg-[#1A3021] px-7 text-base hover:bg-[#132619] sm:w-auto"
           >
             Book This Tour
           </Button>

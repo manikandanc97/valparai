@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { User, Phone, Map, Users as UsersIcon, Calendar as CalendarIcon, MessageSquare, Send, Loader2, CheckCircle2 } from "lucide-react";
+import {
+  User,
+  Phone,
+  Map,
+  Users as UsersIcon,
+  Calendar as CalendarIcon,
+  Send,
+  Loader2,
+  CheckCircle2,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -14,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import { tourPackages } from "@/lib/tour-data";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const BookingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -54,121 +64,85 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="bg-card rounded-[3rem] p-10 sm:p-16 shadow-premium border border-slate-100 dark:border-white/5 relative overflow-hidden group">
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent via-primary to-accent opacity-50" />
-      <div className="max-w-3xl mx-auto space-y-12">
-        <div className="text-center space-y-5">
-          <Badge className="bg-primary/5 text-primary border-primary/10 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-sm">
-            Reservation
-          </Badge>
-          <h2 className="text-4xl sm:text-5xl font-black text-primary-dark tracking-tighter">Secure Your <span className="text-gradient">Tour</span></h2>
-          <p className="text-slate-500 font-medium text-lg max-w-lg mx-auto leading-relaxed">Fill in the details below and our experts will contact you via WhatsApp to finalize your custom itinerary.</p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="grid gap-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Full Name</label>
-              <div className="relative group/input">
-                <User className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 transition-colors group-focus-within/input:text-primary" />
-                <Input
-                  required
-                  placeholder="Your Name"
-                  className="pl-14 h-16 bg-secondary-subtle border-none rounded-2xl font-bold text-primary focus:ring-2 focus:ring-primary shadow-sm"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
+    <Card className="rounded-2xl border-border/70 py-0 shadow-sm">
+      <CardHeader className="border-b bg-muted/30 px-6 py-6">
+        <Badge className="mb-3 w-fit bg-[#D4AF37] text-[#1A3021]">Reservation</Badge>
+        <CardTitle className="text-2xl font-semibold text-foreground">Book your trip</CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Submit your details and our team will confirm on WhatsApp.
+        </p>
+      </CardHeader>
+      <CardContent className="px-6 py-6">
+        <form onSubmit={handleSubmit} className="grid gap-5">
+          <div className="grid gap-5 md:grid-cols-2">
+            <label className="space-y-2 text-sm">
+              <span className="text-muted-foreground">Full Name</span>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input required placeholder="Your Name" className="h-10 rounded-md pl-9" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
               </div>
-            </div>
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Phone Number</label>
-              <div className="relative group/input">
-                <Phone className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 transition-colors group-focus-within/input:text-primary" />
-                <Input
-                  required
-                  placeholder="+91 Phone"
-                  className="pl-14 h-16 bg-secondary-subtle border-none rounded-2xl font-bold text-primary focus:ring-2 focus:ring-primary shadow-sm"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
+            </label>
+            <label className="space-y-2 text-sm">
+              <span className="text-muted-foreground">Phone Number</span>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input required placeholder="+91 Phone" className="h-10 rounded-md pl-9" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
               </div>
-            </div>
+            </label>
           </div>
 
-          <div className="space-y-3">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Select Adventure</label>
-            <div className="relative group/input">
-              <Map className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 z-10" />
+          <label className="space-y-2 text-sm">
+            <span className="text-muted-foreground">Package</span>
+            <div className="relative">
+              <Map className="absolute left-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Select value={formData.package} onValueChange={(val) => setFormData({ ...formData, package: val || "" })}>
-                <SelectTrigger className="pl-14 h-16 bg-secondary-subtle border-none rounded-2xl font-black text-primary focus:ring-2 focus:ring-primary shadow-sm">
-                  <SelectValue placeholder="Choose your adventure" />
+                <SelectTrigger className="h-10 w-full rounded-md pl-9">
+                  <SelectValue placeholder="Choose package" />
                 </SelectTrigger>
-                <SelectContent className="rounded-2xl border-none shadow-premium p-2">
+                <SelectContent>
                   {tourPackages.map((pkg) => (
-                    <SelectItem key={pkg.id} value={pkg.title} className="font-bold rounded-xl focus:bg-primary/5">{pkg.title}</SelectItem>
+                    <SelectItem key={pkg.id} value={pkg.title}>{pkg.title}</SelectItem>
                   ))}
-                  <SelectItem value="Custom Tour" className="font-bold rounded-xl focus:bg-primary/5">Custom Tailored Tour</SelectItem>
+                  <SelectItem value="Custom Tour">Custom Tailored Tour</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-          </div>
+          </label>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Total Guests</label>
-              <div className="relative group/input">
-                <UsersIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 transition-colors group-focus-within/input:text-primary" />
-                <Input
-                  type="number"
-                  min="1"
-                  placeholder="People"
-                  className="pl-14 h-16 bg-secondary-subtle border-none rounded-2xl font-bold text-primary focus:ring-2 focus:ring-primary shadow-sm"
-                  value={formData.people}
-                  onChange={(e) => setFormData({ ...formData, people: e.target.value })}
-                />
+          <div className="grid gap-5 md:grid-cols-2">
+            <label className="space-y-2 text-sm">
+              <span className="text-muted-foreground">Guests</span>
+              <div className="relative">
+                <UsersIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input type="number" min="1" placeholder="People" className="h-10 rounded-md pl-9" value={formData.people} onChange={(e) => setFormData({ ...formData, people: e.target.value })} />
               </div>
-            </div>
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Travel Date</label>
-              <div className="relative group/input">
-                <CalendarIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 transition-colors group-focus-within/input:text-primary" />
-                <Input
-                  type="date"
-                  className="pl-14 h-16 bg-secondary-subtle border-none rounded-2xl font-bold text-primary focus:ring-2 focus:ring-primary shadow-sm"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                />
+            </label>
+            <label className="space-y-2 text-sm">
+              <span className="text-muted-foreground">Travel Date</span>
+              <div className="relative">
+                <CalendarIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input type="date" className="h-10 rounded-md pl-9" value={formData.date} onChange={(e) => setFormData({ ...formData, date: e.target.value })} />
               </div>
-            </div>
+            </label>
           </div>
 
-          <div className="space-y-3">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Special Requests</label>
-            <Textarea
-              placeholder="Anything else you'd like us to know?"
-              rows={4}
-              className="bg-secondary-subtle p-6 border-none rounded-3xl font-bold text-primary focus:ring-2 focus:ring-primary shadow-sm resize-none"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            />
-          </div>
+          <label className="space-y-2 text-sm">
+            <span className="text-muted-foreground">Special Requests</span>
+            <Textarea placeholder="Anything else you'd like us to know?" rows={4} className="rounded-md" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+          </label>
 
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full h-20 rounded-3xl bg-primary hover:bg-primary-dark font-black text-white text-xl shadow-premium transition-all gap-4 btn-premium"
-          >
+          <Button type="submit" disabled={loading} className="mt-2 h-11 rounded-md bg-[#1A3021] hover:bg-[#132619]">
             {loading ? (
-              <><Loader2 className="h-7 w-7 animate-spin" /> Processing...</>
+              <><Loader2 className="h-4 w-4 animate-spin" /> Processing...</>
             ) : success ? (
-              <><CheckCircle2 className="h-7 w-7 text-accent" /> Request Sent Successfully!</>
+              <><CheckCircle2 className="h-4 w-4" /> Request Sent</>
             ) : (
-              <><Send className="h-7 w-7" /> Confirm Booking Request</>
+              <><Send className="h-4 w-4" /> Confirm Booking</>
             )}
           </Button>
         </form>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

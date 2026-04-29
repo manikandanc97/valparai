@@ -1,20 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Calendar, Sun, Moon } from "lucide-react";
+import { Menu, X, Phone, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { brand, navItems } from "@/lib/site-content";
+import SiteLogo from "@/components/shared/site-logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -22,163 +21,94 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Packages", href: "#packages" },
-    { name: "Why Us", href: "#why-us" },
-    { name: "Reviews", href: "#reviews" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <header
       className={cn(
-        "sticky top-0 left-0 right-0 z-50 transition-all duration-300",
+        "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "glass py-3 shadow-premium border-b border-primary/5"
-          : "bg-white dark:bg-background py-4 border-b border-slate-100 dark:border-white/5"
+          ? "bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+          : "bg-background py-3"
       )}
     >
-      <div className="container-wide flex justify-between items-center">
-        {/* Logo */}
-        <a href="#home" className="group flex items-center gap-3">
-          <div className="relative">
-            <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-sm p-1">
-              <img
-                src="https://images.pexels.com/photos/9766221/pexels-photo-9766221.jpeg"
-                alt="Valparai Wanderer"
-                className="h-full w-full object-cover rounded-xl"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className={cn(
-              "font-black text-xl tracking-tight transition-colors duration-300",
-              "text-primary dark:text-accent"
-            )}>
-              Valparai <span className={cn(scrolled ? "text-accent-dark" : "text-accent-dark dark:text-white")}>Wanderer</span>
-            </span>
-            <span className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.4em] opacity-70",
-              "text-primary-light dark:text-slate-300"
-            )}>
-              Authentic Tours
-            </span>
-          </div>
-        </a>
+      <div className="container-wide flex items-center justify-between">
+        <SiteLogo />
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
+        <nav className="hidden items-center gap-8 lg:flex">
+          {navItems.map((link) => (
             <a
-              key={link.name}
+              key={link.label}
               href={link.href}
-              className={cn(
-                "font-bold text-sm tracking-wide transition-all hover:text-accent-dark relative group",
-                "text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-accent"
-              )}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+              {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-6">
-          {/* Theme Toggle */}
+        <div className="hidden items-center gap-3 lg:flex">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-accent hover:bg-accent/10 transition-colors"
+            className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground"
             aria-label="Toggle theme"
           >
-            {mounted && (theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />)}
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
-
           <a
-            href="tel:917904199605"
-            className={cn(
-              "flex items-center gap-2 font-bold text-sm transition-colors",
-              "text-primary dark:text-slate-300"
-            )}
+            href={brand.phoneHref}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
-            <div className="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center">
-              <Phone className="w-4 h-4 text-accent-dark dark:text-accent" />
-            </div>
-            +91 79041 99605
+            <Phone className="h-4 w-4" />
+            {brand.phone}
           </a>
-          <Button
-            asChild
-            className="bg-primary dark:bg-accent dark:text-primary-dark hover:bg-primary-dark dark:hover:bg-accent-dark rounded-2xl font-bold text-white btn-premium px-8 h-12 shadow-premium"
-          >
-            <a href="#contact">Book Now</a>
+          <Button asChild className="h-10 rounded-md px-5">
+            <a href="#contact-section">Book Tour</a>
           </Button>
         </div>
 
-        {/* Mobile Actions */}
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-accent"
+            className="rounded-md border bg-card p-2 text-muted-foreground"
           >
-            {mounted && (theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />)}
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              "p-2 rounded-xl transition-colors",
-              "text-primary bg-primary/5 dark:text-accent dark:bg-white/5"
-            )}
+            className="rounded-md border bg-card p-2 text-foreground"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={cn(
-          "lg:hidden bg-white/95 backdrop-blur-2xl border-t border-slate-100 overflow-hidden transition-all duration-500",
-          isOpen ? "max-h-[500px] opacity-100 py-10 shadow-2xl" : "max-h-0 opacity-0 py-0"
+          "overflow-hidden border-t bg-background transition-all duration-300 lg:hidden",
+          isOpen ? "max-h-[420px] py-6" : "max-h-0 py-0"
         )}
       >
-        <nav className="flex flex-col gap-8 px-8">
-          {navLinks.map((link) => (
+        <nav className="container-wide flex flex-col gap-4">
+          {navItems.map((link) => (
             <a
-              key={link.name}
+              key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="font-extrabold text-2xl text-primary hover:text-accent transition-colors flex items-center justify-between group"
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
             >
-              {link.name}
-              <div className="h-1 w-0 bg-accent transition-all duration-300 group-hover:w-12 rounded-full" />
+              {link.label}
             </a>
           ))}
-          <div className="grid grid-cols-2 gap-4 pt-8 border-t border-slate-100">
-            <Button
-              asChild
-              variant="outline"
-              className="h-14 rounded-2xl font-bold text-primary border-primary/10 hover:bg-primary/5"
-            >
-              <a href="tel:917904199605">
-                <Phone className="w-5 h-5 mr-2" />
-                Call
-              </a>
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <Button asChild variant="outline" className="h-10">
+              <a href={brand.phoneHref}>Call</a>
             </Button>
-            <Button
-              asChild
-              className="h-14 rounded-2xl font-bold text-white bg-primary shadow-premium"
-            >
-              <a href="#contact" onClick={() => setIsOpen(false)}>
-                Book Now
-              </a>
+            <Button asChild className="h-10">
+              <a href="#contact-section">Book</a>
             </Button>
           </div>
         </nav>
       </div>
     </header>
-
   );
 };
 

@@ -9,44 +9,10 @@ import ItineraryModal from "@/components/ItineraryModal";
 import BookingForm from "@/components/BookingForm";
 import { tourPackages, reviews, galleryImages, TourPackage } from "@/lib/tour-data";
 import { motion } from "framer-motion";
-import { Star, MapPin, Car, Tag, ShieldCheck, Mail, MessageCircle, Phone } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const WhyUsCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    whileHover={{ y: -5 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="bg-card p-10 rounded-[2.5rem] border border-slate-100 dark:border-white/5 shadow-sm card-premium space-y-6"
-  >
-    <div className="flex items-center gap-5">
-      <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-secondary-subtle text-primary shrink-0 shadow-sm">
-        <Icon className="h-8 w-8" />
-      </div>
-      <h3 className="font-black text-primary-dark text-2xl leading-tight">{title}</h3>
-    </div>
-    <p className="text-slate-500 text-base font-medium leading-relaxed">{desc}</p>
-  </motion.div>
-);
-
-const ContactInfoCard = ({ icon: Icon, title, value, href }: { icon: any, title: string, value: string, href: string }) => (
-  <motion.div
-    whileHover={{ y: -5 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="bg-card p-8 rounded-[2rem] border border-slate-100 dark:border-white/5 shadow-sm card-premium space-y-4 group"
-  >
-    <div className="flex items-center gap-5">
-      <div className="flex items-center justify-center h-14 w-14 rounded-2xl bg-primary-subtle text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-        <Icon className="h-7 w-7" />
-      </div>
-      <h3 className="font-black text-primary-dark text-xl">{title}</h3>
-    </div>
-    <a href={href} target="_blank" className="block font-black text-primary hover:text-accent-dark text-xl sm:text-2xl transition-colors tracking-tight">
-      {value}
-    </a>
-  </motion.div>
-);
+import { Star, Mail, MessageCircle, Phone, Camera, Users, PlayCircle, MapPin, ChevronRight, CircleHelp, FileText, Shield, PhoneCall } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import SectionHeading from "@/components/shared/section-heading";
+import { brand, contactItems, features, footerQuickLinks, footerSupportLinks } from "@/lib/site-content";
 
 export default function Home() {
   const [selectedPkg, setSelectedPkg] = useState<TourPackage | null>(null);
@@ -57,7 +23,7 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
-  const handleBook = (title: string) => {
+  const handleBook = () => {
     setIsModalOpen(false);
     const contactSection = document.getElementById("contact-section");
     if (contactSection) {
@@ -65,75 +31,57 @@ export default function Home() {
     }
   };
 
+  const contactIcons = [Phone, MessageCircle, Mail];
+
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
       <Stats />
 
-      {/* Packages Section */}
-      <section id="packages" className="section-padding container-wide">
-        <div className="text-center mb-20 space-y-6">
-          <h2 className="text-4xl lg:text-6xl font-black text-primary-dark tracking-tighter">
-            Valparai <span className="text-gradient-gold">Tour Packages</span>
-          </h2>
-          <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-            Hand-crafted itineraries showcasing Valparai's stunning landscapes, wildlife, and local culture.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <section id="packages" className="section-padding container-wide space-y-12">
+        <SectionHeading
+          eyebrow="Packages"
+          title="Flexible Tour Plans"
+          description="Well-structured plans with clear itinerary details, transparent pricing, and local support."
+        />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {tourPackages.map((pkg) => (
-            <PackageCard
-              key={pkg.id}
-              pkg={pkg}
-              onViewPlan={openModal}
-              onBook={handleBook}
-            />
+            <PackageCard key={pkg.id} pkg={pkg} onViewPlan={openModal} onBook={handleBook} />
           ))}
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section id="why-us" className="section-padding bg-secondary-subtle/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="container-wide relative z-10">
-          <div className="text-center mb-20 space-y-6">
-            <h2 className="text-4xl lg:text-6xl font-black text-primary-dark tracking-tighter">Why Choose <span className="text-primary">Us</span></h2>
-            <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">Dedicated to providing the most authentic experience of Valparai since 2014.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <WhyUsCard
-              icon={MapPin}
-              title="Local Expert Guides"
-              desc="Born and raised in Valparai with 10+ years of deep territory knowledge."
-            />
-            <WhyUsCard
-              icon={Car}
-              title="Comfortable Transport"
-              desc="Well-maintained 4x4 vehicles for safe and comfortable mountain journeys."
-            />
-            <WhyUsCard
-              icon={Tag}
-              title="Best Price Guarantee"
-              desc="Competitive pricing with absolutely no hidden charges or surprise costs."
-            />
-            <WhyUsCard
-              icon={ShieldCheck}
-              title="24/7 Support"
-              desc="Always available to help with bookings, changes, and any travel emergencies."
-            />
+      <section id="why-us" className="section-padding border-y bg-background">
+        <div className="container-wide space-y-12">
+          <SectionHeading
+            eyebrow="Why Choose Us"
+            title="Designed Like a Premium Service"
+            description="Every touchpoint from booking to travel day is streamlined for clarity, trust, and comfort."
+          />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((item) => (
+              <Card key={item.title} className="rounded-xl border-border/70 py-0">
+                <CardContent className="space-y-3 p-5">
+                  <div className="w-fit rounded-lg bg-primary/10 p-2 text-primary">
+                    <item.icon className="h-4 w-4" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section id="reviews" className="section-padding container-wide">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-6xl font-black text-primary-dark tracking-tighter">What <span className="text-gradient-gold">Travelers</span> Say</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <section id="reviews" className="section-padding container-wide space-y-12">
+        <SectionHeading
+          eyebrow="Testimonials"
+          title="What Travelers Say"
+          description="Real experiences from families and couples who explored Valparai with us."
+        />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {reviews.map((review, i) => (
             <motion.div
               key={i}
@@ -142,24 +90,21 @@ export default function Home() {
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               viewport={{ once: true }}
-              className="bg-card p-10 rounded-[2.5rem] border border-slate-100 dark:border-white/5 card-premium space-y-8 flex flex-col"
+              className="flex flex-col space-y-5 rounded-xl border bg-card p-6"
             >
-              <div className="flex gap-1.5 text-accent">
+              <div className="flex gap-1.5 text-[#D4AF37]">
                 {[...Array(review.rating)].map((_, j) => (
-                  <Star key={j} className="h-6 w-6 fill-current" />
+                  <Star key={j} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="text-slate-600 text-lg sm:text-xl font-medium italic leading-relaxed flex-1">
-                "{review.text}"
+              <p className="flex-1 text-sm leading-6 text-muted-foreground sm:text-base">
+                &ldquo;{review.text}&rdquo;
               </p>
-              <div className="flex items-center gap-5 pt-8 border-t border-slate-50">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-primary/10 rounded-full blur-sm" />
-                  <img src={review.avatar} alt={review.name} className="relative h-14 w-14 rounded-full object-cover border-2 border-white shadow-md" />
-                </div>
+              <div className="flex items-center gap-3 border-t pt-4">
+                <img src={review.avatar} alt={review.name} className="h-10 w-10 rounded-full object-cover" />
                 <div>
-                  <p className="font-black text-primary-dark text-lg leading-none mb-1">{review.name}</p>
-                  <p className="font-bold text-accent-dark text-xs uppercase tracking-widest">{review.package}</p>
+                  <p className="text-sm font-semibold text-foreground">{review.name}</p>
+                  <p className="text-xs text-muted-foreground">{review.package}</p>
                 </div>
               </div>
             </motion.div>
@@ -167,122 +112,137 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section id="gallery" className="section-padding bg-primary dark:bg-primary-dark/10 border-y border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent opacity-10" />
-        <div className="container-wide">
-          <div className="text-center mb-20 space-y-6">
-            <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter">Photo <span className="text-accent">Gallery</span></h2>
-            <p className="text-slate-300 text-xl font-medium">Stunning moments captured during our tours</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section id="gallery" className="section-padding bg-[#1A3021]">
+        <div className="container-wide space-y-12">
+          <SectionHeading
+            eyebrow="Gallery"
+            title="Moments from the Route"
+            description="A quick look at the landscapes and highlights from recent trips."
+            inverted
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="h-72 sm:h-96 overflow-hidden rounded-[3rem] shadow-2xl border-8 border-white/5 group relative"
+                whileHover={{ scale: 1.02 }}
+                className="group relative h-64 overflow-hidden rounded-xl border border-white/10 sm:h-80"
               >
-                <img src={img.url} alt={img.alt} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <img src={img.url} alt={img.alt} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-sm text-white">
+                  {img.alt}
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact-section" className="section-padding container-wide">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-12">
-            <div className="space-y-6 text-center lg:text-left">
-              <h2 className="text-5xl lg:text-7xl font-black text-primary-dark leading-[1.1] tracking-tighter">Ready for Your <br /><span className="text-gradient">Next Trip?</span></h2>
-              <p className="text-slate-500 text-xl font-medium max-w-lg mx-auto lg:mx-0">
-                Have questions or want a custom package? Reach out to us through any of these channels.
-              </p>
-            </div>
-            <div className="grid gap-6">
-              <ContactInfoCard
-                icon={Phone}
-                title="Call Us Directly"
-                value="+91 79041 99605"
-                href="tel:917904199605"
-              />
-              <ContactInfoCard
-                icon={MessageCircle}
-                title="WhatsApp Chat"
-                value="+91 79041 99605"
-                href="https://wa.me/917904199605"
-              />
-              <ContactInfoCard
-                icon={Mail}
-                title="Email Inquiry"
-                value="info@valparaitourpackages.com"
-                href="mailto:info@valparaitourpackages.com"
-              />
+        <div className="grid items-start gap-8 lg:grid-cols-2">
+          <div className="space-y-6">
+            <SectionHeading
+              eyebrow="Contact"
+              title="Ready to plan your next trip?"
+              description="Reach us directly or submit the form. We respond quickly on WhatsApp."
+              center={false}
+            />
+            <div className="grid gap-3">
+              {contactItems.map((item, idx) => {
+                const Icon = contactIcons[idx];
+                return (
+                  <Card key={item.title} className="rounded-xl border-border/70 py-0">
+                    <CardContent className="flex items-center justify-between gap-4 p-4">
+                      <div className="flex items-center gap-3">
+                        <div className="rounded-md bg-primary/10 p-2 text-primary">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-foreground">{item.title}</p>
+                          <p className="text-sm text-muted-foreground">{item.value}</p>
+                        </div>
+                      </div>
+                      <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-primary hover:underline">
+                        Open
+                      </a>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-10 bg-primary/5 rounded-[4rem] blur-3xl -z-10" />
-            <BookingForm />
-          </div>
+          <BookingForm />
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary-dark py-24 text-white relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="container-wide relative z-10 space-y-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-            <div className="space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="h-14 w-14 bg-white rounded-2xl flex items-center justify-center p-1.5 shadow-lg">
-                   <img src="https://images.pexels.com/photos/9766221/pexels-photo-9766221.jpeg" className="rounded-xl object-cover h-full w-full" alt="Logo" />
+      <footer className="border-t border-[#11203b] bg-[#020817] text-[#d6deec]">
+        <div className="container-wide py-14">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <div className="space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="h-14 w-14 rounded-xl bg-white p-1.5">
+                  <img src={brand.logo} alt={brand.name} className="h-full w-full object-contain" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-black text-2xl tracking-tight leading-none mb-1">Valparai</span>
-                  <span className="font-bold text-accent text-xs uppercase tracking-[0.4em]">Wanderer</span>
+                <div>
+                  <p className="text-base font-semibold text-white">{brand.name}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#9fb0cb]">{brand.tagline}</p>
                 </div>
               </div>
-              <p className="text-slate-400 text-base font-medium leading-relaxed">
-                Experience the magic of Valparai with authentic, local-led tours that connect you with nature and wildlife.
+              <p className="text-sm leading-6 text-[#9fb0cb]">
+                Premium local tours exploring Valparai&apos;s untouched natural beauty with expert local guidance.
               </p>
+              <div className="flex items-center gap-2">
+                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><Camera className="h-4 w-4" /></a>
+                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><Users className="h-4 w-4" /></a>
+                <a href="#" className="rounded-md border border-[#1f2d45] p-2 text-[#9fb0cb] hover:text-white"><PlayCircle className="h-4 w-4" /></a>
+              </div>
             </div>
+
             <div>
-              <h4 className="font-black text-xl mb-8 tracking-tight">Quick Links</h4>
-              <ul className="space-y-5 text-slate-400 font-bold text-sm">
-                <li><a href="#home" className="hover:text-accent transition-colors">Home</a></li>
-                <li><a href="#packages" className="hover:text-accent transition-colors">Packages</a></li>
-                <li><a href="#gallery" className="hover:text-accent transition-colors">Gallery</a></li>
-                <li><a href="#contact" className="hover:text-accent transition-colors">Contact</a></li>
-              </ul>
+              <p className="mb-4 text-base font-semibold text-white">Quick Links</p>
+              <div className="space-y-3">
+                {footerQuickLinks.map((item) => (
+                  <a key={item.label} href={item.href} className="flex items-center gap-2 text-sm text-[#9fb0cb] hover:text-white">
+                    <ChevronRight className="h-3.5 w-3.5" />
+                    {item.label}
+                  </a>
+                ))}
+              </div>
             </div>
+
             <div>
-              <h4 className="font-black text-xl mb-8 tracking-tight">Our Services</h4>
-              <ul className="space-y-5 text-slate-400 font-bold text-sm">
-                <li className="flex items-center gap-3"><div className="h-1 w-1 rounded-full bg-accent" /> Sightseeing Tours</li>
-                <li className="flex items-center gap-3"><div className="h-1 w-1 rounded-full bg-accent" /> Wildlife Safaris</li>
-                <li className="flex items-center gap-3"><div className="h-1 w-1 rounded-full bg-accent" /> Estate Stays</li>
-                <li className="flex items-center gap-3"><div className="h-1 w-1 rounded-full bg-accent" /> Honeymoon Packages</li>
-              </ul>
+              <p className="mb-4 text-base font-semibold text-white">Support</p>
+              <div className="space-y-3">
+                {footerSupportLinks.map((item, idx) => {
+                  const icons = [CircleHelp, FileText, Shield, PhoneCall];
+                  const Icon = icons[idx];
+                  return (
+                    <a key={item.label} href={item.href} className="flex items-center gap-2 text-sm text-[#9fb0cb] hover:text-white">
+                      <Icon className="h-3.5 w-3.5" />
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
+
             <div>
-              <h4 className="font-black text-xl mb-8 tracking-tight">Business Hours</h4>
-              <ul className="space-y-5 text-slate-400 font-bold text-sm">
-                <li className="flex justify-between items-center pb-4 border-b border-white/5"><span>Mon - Sat</span> <span className="text-white">9:00 AM - 8:00 PM</span></li>
-                <li className="flex justify-between items-center pt-2"><span>Sunday</span> <span className="text-white">10:00 AM - 4:00 PM</span></li>
-              </ul>
+              <p className="mb-4 text-base font-semibold text-white">Contact Us</p>
+              <div className="space-y-3 text-sm text-[#9fb0cb]">
+                <p className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4" /> {brand.address}</p>
+                <a href={brand.phoneHref} className="flex items-center gap-2 hover:text-white"><Phone className="h-4 w-4" /> {brand.phone}</a>
+                <a href={brand.emailHref} className="flex items-center gap-2 hover:text-white"><Mail className="h-4 w-4" /> {brand.email}</a>
+              </div>
             </div>
           </div>
-          <div className="pt-12 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <p className="text-slate-500 text-sm font-bold">© 2024 Valparai Wanderer Tours. All rights reserved.</p>
-            <div className="flex gap-8 text-slate-500 text-sm font-bold">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+
+          <div className="mt-10 border-t border-[#11203b] pt-6">
+            <div className="flex flex-col items-center justify-between gap-3 text-xs text-[#7f92b2] sm:flex-row">
+              <p>© 2026 {brand.name}. All rights reserved.</p>
+              <p>Designed for Adventure - Certified Local Operator</p>
             </div>
           </div>
         </div>
       </footer>
-
 
       <ItineraryModal
         pkg={selectedPkg}
