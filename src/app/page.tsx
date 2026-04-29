@@ -114,29 +114,37 @@ export default function Home() {
                 description="Reach us directly or submit the form. We respond quickly on WhatsApp."
                 center={false}
               />
-              <div className="grid gap-3">
+              <div className="flex flex-col gap-4 sm:gap-5">
                 {contactItems.map((item, idx) => {
                   const Icon = contactIcons[idx];
                   return (
-                    <Card key={item.title} className="rounded-xl border-border/70 bg-background py-0 shadow-sm">
-                      <CardContent className="flex items-center justify-between gap-4 p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="rounded-md bg-primary/10 p-2 text-primary">
-                          <Icon className="h-4 w-4" />
+                    <Card 
+                      key={item.title} 
+                      className="group rounded-2xl border-border/70 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
+                    >
+                      <CardContent className="flex items-center justify-between gap-4 p-5 sm:p-6">
+                        <div className="flex items-center gap-4">
+                          <div className="rounded-xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                            <p className="text-sm text-muted-foreground">{item.value}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-sm font-medium text-foreground">{item.title}</p>
-                          <p className="text-sm text-muted-foreground">{item.value}</p>
-                        </div>
-                      </div>
-                      <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-primary hover:underline">
-                        Open
-                      </a>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+                        <a 
+                          href={item.href} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="flex h-9 items-center justify-center rounded-full bg-muted/50 px-4 text-xs font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                        >
+                          Open
+                        </a>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
             <BookingForm />
           </div>
