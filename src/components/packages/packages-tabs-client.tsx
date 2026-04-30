@@ -36,21 +36,21 @@ export default function PackagesTabsClient() {
         <TabsList className="mx-auto mb-10 flex h-auto w-fit gap-2 rounded-2xl border border-border/60 bg-muted/60 p-1.5 backdrop-blur-sm">
           <TabsTrigger
             value="budget"
-            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
+            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-active:bg-primary data-active:text-primary-foreground data-active:shadow-md"
           >
             <Wallet className="h-4 w-4" />
             Budget
           </TabsTrigger>
           <TabsTrigger
             value="premium"
-            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-[state=active]:bg-[#D4AF37] data-[state=active]:text-[#1A3021] data-[state=active]:shadow-md"
+            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-active:bg-accent data-active:text-accent-foreground data-active:shadow-md"
           >
             <Crown className="h-4 w-4" />
             Premium
           </TabsTrigger>
           <TabsTrigger
             value="luxury"
-            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md"
+            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all data-active:bg-gradient-to-r data-active:from-violet-600 data-active:to-indigo-600 data-active:text-white data-active:shadow-md"
           >
             <Gem className="h-4 w-4" />
             Luxury

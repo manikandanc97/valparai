@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import SectionHeading from "@/components/shared/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { brand, features } from "@/lib/site-content";
+import { User } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -17,21 +18,112 @@ export default function AboutPage() {
             description={`${brand.name} creates polished local trips with trusted support, transparent pricing, and flexible planning for families, couples, and groups.`}
           />
 
+          <div className="w-full overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-md backdrop-blur">
+            <div className="grid items-stretch md:grid-cols-2">
+              {/* Image Skeleton / Placeholder */}
+              <div className="relative flex min-h-[300px] w-full flex-col items-center justify-center bg-muted/60 md:min-h-[400px]">
+                {/* TODO: Add real image here */}
+                <User className="mb-3 h-16 w-16 text-muted-foreground/40" strokeWidth={1.5} />
+                <span className="text-sm font-medium text-muted-foreground/60">Profile Photo Placeholder</span>
+              </div>
+              
+              {/* Content */}
+              <div className="flex flex-col justify-center p-8 sm:p-10 md:p-12">
+                <div className="mb-5 inline-flex w-fit items-center rounded-full bg-primary/10 px-3.5 py-1.5 text-sm font-semibold text-primary">
+                  2+ Years of Experience
+                </div>
+                <h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+                  Your Trusted Guide in Valparai
+                </h2>
+                <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  <p>
+                    For the past two years, we have been crafting unforgettable travel packages that bring the true, untouched beauty of Valparai to life.
+                  </p>
+                  <p>
+                    We believe in keeping things simple, honest, and completely focused on your comfort. Whether you are planning a relaxing family trip or an adventurous weekend with friends, we take care of all the local details so you can simply arrive and enjoy.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center gap-4">
+                  <a href="https://www.instagram.com/valparai_wanderer1?igsh=OXZkb3d1MnlwbTN5&utm_source=qr" target="_blank" rel="noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-muted-foreground transition-all hover:scale-110 hover:bg-[#E1306C] hover:text-white hover:shadow-md" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                  </a>
+                  <a href="https://www.facebook.com/share/1Ct6crP7vG/?mibextid=wwXIfr" target="_blank" rel="noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-muted-foreground transition-all hover:scale-110 hover:bg-[#1877F2] hover:text-white hover:shadow-md" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </a>
+                  <a href="https://youtube.com/@valparai_wanderer1?si=gWd7VHn9CTEjeW7o" target="_blank" rel="noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-muted-foreground transition-all hover:scale-110 hover:bg-[#FF0000] hover:text-white hover:shadow-md" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+                      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((item) => (
-              <Card
-                key={item.title}
-                className="group rounded-2xl border-border/60 bg-background/85 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <CardContent className="space-y-4 p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <item.icon className="h-5 w-5" strokeWidth={2.2} />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {features.map((item, idx) => {
+              const colorPalettes = [
+                {
+                  text: "text-emerald-600 dark:text-emerald-400",
+                  bg: "bg-emerald-100/50 dark:bg-emerald-500/10",
+                  border:
+                    "hover:border-emerald-300/50 dark:hover:border-emerald-500/30",
+                },
+                {
+                  text: "text-blue-600 dark:text-blue-400",
+                  bg: "bg-blue-100/50 dark:bg-blue-500/10",
+                  border:
+                    "hover:border-blue-300/50 dark:hover:border-blue-500/30",
+                },
+                {
+                  text: "text-amber-600 dark:text-amber-400",
+                  bg: "bg-amber-100/50 dark:bg-amber-500/10",
+                  border:
+                    "hover:border-amber-300/50 dark:hover:border-amber-500/30",
+                },
+                {
+                  text: "text-rose-600 dark:text-rose-400",
+                  bg: "bg-rose-100/50 dark:bg-rose-500/10",
+                  border:
+                    "hover:border-rose-300/50 dark:hover:border-rose-500/30",
+                },
+                {
+                  text: "text-violet-600 dark:text-violet-400",
+                  bg: "bg-violet-100/50 dark:bg-violet-500/10",
+                  border:
+                    "hover:border-violet-300/50 dark:hover:border-violet-500/30",
+                },
+                {
+                  text: "text-cyan-600 dark:text-cyan-400",
+                  bg: "bg-cyan-100/50 dark:bg-cyan-500/10",
+                  border:
+                    "hover:border-cyan-300/50 dark:hover:border-cyan-500/30",
+                },
+              ];
+              const palette = colorPalettes[idx % colorPalettes.length];
+
+              return (
+                <Card
+                  key={item.title}
+                  className={`group rounded-2xl border-border/60 bg-background/85 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${palette.border}`}
+                >
+                  <CardContent className="space-y-4 p-6">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${palette.bg} ${palette.text}`}>
+                      <item.icon className="h-5 w-5" strokeWidth={2.2} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
