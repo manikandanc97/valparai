@@ -12,7 +12,6 @@ import SiteLogo from "@/components/shared/site-logo";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
@@ -24,40 +23,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0,
-    };
-
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-    navItems.forEach((item) => {
-      if (item.href.startsWith("#")) {
-        const id = item.href.substring(1);
-        const element = document.getElementById(id);
-        if (element) observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <header
       className={cn(
         "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+          ? "bg-background/90 py-2 backdrop-blur supports-backdrop-filter:bg-background/70"
           : "bg-background py-3"
       )}
     >
@@ -66,9 +37,7 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-8 lg:flex">
           {navItems.map((link) => {
-            const isActive = 
-              (link.href.startsWith("#") && activeSection === link.href.substring(1)) ||
-              (link.href === pathname);
+            const isActive = link.href === pathname;
             
             return (
               <a
@@ -106,7 +75,7 @@ const Navbar = () => {
             {brand.phone}
           </a>
           <Button asChild className="h-10 rounded-md px-5">
-            <a href="#contact-section">Book Tour</a>
+            <a href="/contact">Book Tour</a>
           </Button>
         </div>
 
@@ -134,9 +103,7 @@ const Navbar = () => {
       >
         <nav className="container-wide flex flex-col gap-4">
           {navItems.map((link) => {
-            const isActive = 
-              (link.href.startsWith("#") && activeSection === link.href.substring(1)) ||
-              (link.href === pathname);
+            const isActive = link.href === pathname;
 
             return (
               <a
@@ -159,7 +126,7 @@ const Navbar = () => {
               <a href={brand.phoneHref}>Call</a>
             </Button>
             <Button asChild className="h-10">
-              <a href="#contact-section">Book</a>
+              <a href="/contact">Book</a>
             </Button>
           </div>
         </nav>

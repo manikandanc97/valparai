@@ -38,13 +38,19 @@ const stats = [
 
 const Stats = () => {
   return (
-    <section className="bg-muted/20 py-12 sm:py-16">
-      <div className="container-wide">
+    <section className="relative overflow-hidden bg-muted/30 py-14 sm:py-18">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(34,197,94,0.10),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(59,130,246,0.10),transparent_28%)]" />
+      <div className="container-wide relative">
+        <div className="mb-6 flex items-center justify-center">
+          <p className="rounded-full border border-border/60 bg-background/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
+            Trusted by Travelers
+          </p>
+        </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {stats.map((stat, idx) => (
             <Card 
               key={idx} 
-              className={`group overflow-hidden rounded-2xl border-border/50 bg-background py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${stat.borderColor}`}
+              className={`group overflow-hidden rounded-2xl border-border/60 bg-background/85 py-0 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${stat.borderColor}`}
             >
               <CardContent className="flex items-center gap-4 p-5 sm:p-6">
                 <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${stat.bgColor} ${stat.color}`}>

@@ -1,4 +1,12 @@
-import { Car, Clock3, MapPinned, ShieldCheck, Tag, Trees, type LucideIcon } from "lucide-react";
+import {
+  Car,
+  Clock3,
+  MapPinned,
+  ShieldCheck,
+  Tag,
+  Trees,
+  type LucideIcon,
+} from "lucide-react";
 
 export interface NavItem {
   label: string;
@@ -30,7 +38,7 @@ export interface FooterLink {
 export const brand = {
   name: "Valparai Wanderer",
   tagline: "Authentic Tours",
-  logo: "/logo-valparai.png",
+  logo: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545346/logo-valparai_pto3kf.png",
   phone: "+91 79041 99605",
   phoneHref: "tel:917904199605",
   whatsappHref:
@@ -41,12 +49,11 @@ export const brand = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "Packages", href: "#packages" },
-  { label: "Why Us", href: "#why-us" },
-  // { label: "Reviews", href: "#reviews" }, // Temporarily hidden
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact-section" },
+  { label: "Home", href: "/" },
+  { label: "Packages", href: "/packages" },
+  { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const stats: StatItem[] = [
@@ -59,32 +66,38 @@ export const stats: StatItem[] = [
 export const features: FeatureItem[] = [
   {
     title: "Local Expert Guides",
-    description: "Native guides with deep terrain knowledge and safe route planning.",
+    description:
+      "Native guides with deep terrain knowledge and safe route planning.",
     icon: MapPinned,
   },
   {
     title: "Comfort Transport",
-    description: "Clean, maintained vehicles optimized for mountain roads and weather.",
+    description:
+      "Clean, maintained vehicles optimized for mountain roads and weather.",
     icon: Car,
   },
   {
     title: "Transparent Pricing",
-    description: "Clear package costs with no hidden add-ons or surprise charges.",
+    description:
+      "Clear package costs with no hidden add-ons or surprise charges.",
     icon: Tag,
   },
   {
     title: "Always-On Support",
-    description: "Fast WhatsApp and phone support from planning to trip completion.",
+    description:
+      "Fast WhatsApp and phone support from planning to trip completion.",
     icon: Clock3,
   },
   {
     title: "Nature-First Planning",
-    description: "Balanced itineraries designed for scenery, wildlife, and comfort.",
+    description:
+      "Balanced itineraries designed for scenery, wildlife, and comfort.",
     icon: Trees,
   },
   {
     title: "Trusted Operations",
-    description: "Reliable coordination and guidance built on consistent guest feedback.",
+    description:
+      "Reliable coordination and guidance built on consistent guest feedback.",
     icon: ShieldCheck,
   },
 ];
@@ -96,10 +109,9 @@ export const contactItems: ContactItem[] = [
 ];
 
 export const footerQuickLinks: FooterLink[] = [
-  { label: "Home", href: "#home" },
-  { label: "Tour Packages", href: "#packages" },
-  { label: "Why Choose Us", href: "#why-us" },
-  // { label: "Traveler Reviews", href: "#reviews" }, // Temporarily hidden
+  { label: "Home", href: "/" },
+  { label: "Tour Packages", href: "/packages" },
+  { label: "About Us", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
-
-

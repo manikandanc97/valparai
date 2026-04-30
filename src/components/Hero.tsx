@@ -6,13 +6,22 @@ import { Button } from "@/components/ui/button";
 import { brand } from "@/lib/site-content";
 
 const heroImages = [
-  "https://images.pexels.com/photos/9766221/pexels-photo-9766221.jpeg",
-  "https://images.pexels.com/photos/34485198/pexels-photo-34485198.jpeg",
-  "https://images.pexels.com/photos/247041/pexels-photo-247041.jpeg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
 ];
 
 const Hero = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
+
+  const handlePackagesJump = () => {
+    const packagesSection = document.getElementById("packages");
+    if (packagesSection) {
+      packagesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    window.location.href = "/packages";
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,7 +64,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-col gap-3 pt-4 sm:flex-row">
             <Button asChild size="lg" className="h-12 rounded-md bg-[#D4AF37] px-8 text-base text-[#1A3021] transition-all hover:scale-105 hover:bg-[#c89f2c]">
-              <a href="#packages">
+              <a href="/packages">
                 <Compass className="mr-2 h-5 w-5" />
                 Explore Packages
               </a>
@@ -70,9 +79,14 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 opacity-60">
-        <ChevronDown className="h-6 w-6 text-white" />
-      </div>
+      <button
+        type="button"
+        onClick={handlePackagesJump}
+        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/25 bg-black/20 p-2 text-white/80 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:text-white animate-bounce"
+        aria-label="Go to packages section"
+      >
+        <ChevronDown className="h-6 w-6" />
+      </button>
     </section>
   );
 };
