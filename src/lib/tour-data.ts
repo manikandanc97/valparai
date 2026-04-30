@@ -174,18 +174,19 @@ export const tourPackages: TourPackage[] = [
 
 
 export const galleryImages = [
-  { url: "/C4DEA17B-5B4C-4432-BBC2-27314F8B3BCD.MOV", alt: "Valparai Video Highlight" },
-  { url: "/IMG_0722.JPG.jpeg", alt: "Valparai Scenic Road" },
-  { url: "/IMG_0723.JPG.jpeg", alt: "Tea Estate Landscape" },
-  { url: "/IMG_0737.JPG.jpeg", alt: "Hill Viewpoint" },
-  { url: "/IMG_2031.JPG.jpeg", alt: "Nature Trail" },
-  { url: "/8845601C-A17F-4768-B345-29F559EA813B.JPG.jpeg", alt: "Valparai Mountain Mist" },
-  { url: "/2C9D2794-EDB5-4AE0-AAE5-B721A88CC4F4.JPG.jpeg", alt: "Waterfall Route" },
-  { url: "/64CAC251-0654-4C28-9621-3A640EEB6C9C.JPG.jpeg", alt: "Valparai Trip" },
-  { url: "/8E14CFCC-CFD1-4105-852E-ECEE2860B2E1.JPG.jpeg", alt: "Lush Greenery" },
-  { url: "/DA39F41C-E456-4192-BDCB-2E368B38E6B1.JPG.jpeg", alt: "Scenic Views" },
-  { url: "/F2B9F06B-BA06-4B5B-94D5-3BCC629C15E1.JPG.jpeg", alt: "Valparai Views" },
-  { url: "/03805462-90D6-41EF-AFAE-82B620AFCF91.HEIC", alt: "Valparai Nature" },
-  { url: "/22755CC5-96C0-4D6A-B36D-B021DD90E278.HEIC", alt: "Mountain Views" },
-  { url: "/AAA3A8EC-1313-4322-84A2-1E39186CED3A.HEIC", alt: "Valparai Scenery" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/video/upload/f_auto,q_auto/v1777545381/C4DEA17B-5B4C-4432-BBC2-27314F8B3BCD_v90ezy.mov", alt: "Valparai Video Highlight" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545487/IMG_0723.JPG_yyamxw.jpg", alt: "Tea Estate Landscape" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545483/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg", alt: "Valparai Mountain Mist" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545470/IMG_7141.JPG_r6zqkm.jpg", alt: "Valparai Nature" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545450/IMG_0737.JPG_bfawec.jpg", alt: "Hill Viewpoint" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_2031.JPG_mcz3us.jpg", alt: "Nature Trail" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545422/IMG_0722.JPG_odxq8j.jpg", alt: "Valparai Scenic Road" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545412/IMG_7134.JPG_qewhvs.jpg", alt: "Valparai Trip" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545386/F2B9F06B-BA06-4B5B-94D5-3BCC629C15E1.JPG_l3qrj3.jpg", alt: "Valparai Views" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/22755CC5-96C0-4D6A-B36D-B021DD90E278_v3l63e.heic", alt: "Mountain Views" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/AAA3A8EC-1313-4322-84A2-1E39186CED3A_wkdg5a.heic", alt: "Valparai Scenery" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/DA39F41C-E456-4192-BDCB-2E368B38E6B1.JPG_fvnoou.jpg", alt: "Scenic Views" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545371/64CAC251-0654-4C28-9621-3A640EEB6C9C.JPG_vpj6kp.jpg", alt: "Lush Greenery" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545346/03805462-90D6-41EF-AFAE-82B620AFCF91_tddyfq.heic", alt: "Waterfall Route" },
+  { url: "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545344/8E14CFCC-CFD1-4105-852E-ECEE2860B2E1.JPG_snk0iq.jpg", alt: "Tea Estate Landscape" }
 ];
