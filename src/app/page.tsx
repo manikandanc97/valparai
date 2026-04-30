@@ -32,22 +32,40 @@ export default function Home() {
             title="Designed Like a Premium Service"
             description="Every touchpoint from booking to travel day is streamlined for clarity, trust, and comfort."
           />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((item) => (
-              <Card key={item.title} className="rounded-xl border-border/70 bg-background py-0 shadow-sm">
-                <CardContent className="space-y-3 p-5">
-                  <div className="w-fit rounded-lg bg-primary/10 p-2 text-primary">
-                    <item.icon className="h-4 w-4" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((item, idx) => {
+              const colorPalettes = [
+                { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-100/50 dark:bg-emerald-500/10", border: "hover:border-emerald-300/50 dark:hover:border-emerald-500/30" },
+                { text: "text-blue-600 dark:text-blue-400", bg: "bg-blue-100/50 dark:bg-blue-500/10", border: "hover:border-blue-300/50 dark:hover:border-blue-500/30" },
+                { text: "text-amber-600 dark:text-amber-400", bg: "bg-amber-100/50 dark:bg-amber-500/10", border: "hover:border-amber-300/50 dark:hover:border-amber-500/30" },
+                { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-100/50 dark:bg-rose-500/10", border: "hover:border-rose-300/50 dark:hover:border-rose-500/30" },
+                { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-100/50 dark:bg-violet-500/10", border: "hover:border-violet-300/50 dark:hover:border-violet-500/30" },
+                { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-100/50 dark:bg-cyan-500/10", border: "hover:border-cyan-300/50 dark:hover:border-cyan-500/30" },
+              ];
+              const palette = colorPalettes[idx % colorPalettes.length];
+
+              return (
+                <Card 
+                  key={item.title} 
+                  className={`group relative overflow-hidden rounded-2xl border-border/50 bg-background p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${palette.border}`}
+                >
+                  <CardContent className="space-y-5 p-0">
+                    <div className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${palette.bg} ${palette.text}`}>
+                      <item.icon className="h-6 w-6" strokeWidth={2.2} />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold tracking-tight text-foreground">{item.title}</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
+      {/* Temporarily hidden until reviews are collected
       <section id="reviews" className="section-padding container-wide space-y-12">
         <SectionHeading
           eyebrow="Testimonials"
@@ -76,6 +94,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      */}
 
       <section id="gallery" className="section-padding bg-[#1A3021]">
         <div className="container-wide space-y-12">
@@ -117,26 +136,33 @@ export default function Home() {
               <div className="flex flex-col gap-4 sm:gap-5">
                 {contactItems.map((item, idx) => {
                   const Icon = contactIcons[idx];
+                  const colorPalettes = [
+                    { text: "text-blue-600 dark:text-blue-400", bg: "bg-blue-100/50 dark:bg-blue-500/10", border: "hover:border-blue-300/50 dark:hover:border-blue-500/30" },
+                    { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-100/50 dark:bg-emerald-500/10", border: "hover:border-emerald-300/50 dark:hover:border-emerald-500/30" },
+                    { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-100/50 dark:bg-rose-500/10", border: "hover:border-rose-300/50 dark:hover:border-rose-500/30" },
+                  ];
+                  const palette = colorPalettes[idx % colorPalettes.length];
+
                   return (
                     <Card 
                       key={item.title} 
-                      className="group rounded-2xl border-border/70 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
+                      className={`group relative overflow-hidden rounded-2xl border-border/50 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${palette.border}`}
                     >
                       <CardContent className="flex items-center justify-between gap-4 p-5 sm:p-6">
-                        <div className="flex items-center gap-4">
-                          <div className="rounded-xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                            <Icon className="h-5 w-5" />
+                        <div className="flex items-center gap-5">
+                          <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 ${palette.bg} ${palette.text}`}>
+                            <Icon className="h-6 w-6" strokeWidth={2.2} />
                           </div>
-                          <div className="space-y-1">
-                            <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                            <p className="text-sm text-muted-foreground">{item.value}</p>
+                          <div className="space-y-1.5">
+                            <p className="text-base font-bold text-foreground">{item.title}</p>
+                            <p className="text-sm font-medium text-muted-foreground">{item.value}</p>
                           </div>
                         </div>
                         <a 
                           href={item.href} 
                           target="_blank" 
                           rel="noreferrer" 
-                          className="flex h-9 items-center justify-center rounded-full bg-muted/50 px-4 text-xs font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                          className="flex h-10 items-center justify-center rounded-full bg-muted/80 px-5 text-sm font-semibold tracking-wide text-foreground transition-all duration-300 hover:scale-105 hover:bg-foreground hover:text-background"
                         >
                           Open
                         </a>

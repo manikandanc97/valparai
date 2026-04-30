@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Compass, MessageSquare, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { brand, stats } from "@/lib/site-content";
+import { brand } from "@/lib/site-content";
 
 const heroImages = [
   "https://images.pexels.com/photos/9766221/pexels-photo-9766221.jpeg",
@@ -42,44 +42,30 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[#1A3021]/62" />
       </div>
 
-      <div className="container-wide relative z-10 py-16 sm:py-24">
-        <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-6">
-            <p className="inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#F9FBE9] backdrop-blur">
-              Premium Valparai Tours
-            </p>
-            <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl">
-              Escape to the misty hills of Valparai.
-            </h1>
-            <p className="max-w-xl text-sm leading-6 text-white/85 sm:text-base">
-              Explore misty viewpoints, tea estates, and waterfalls through polished itineraries designed by local experts.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="h-11 rounded-md bg-[#D4AF37] px-6 text-[#1A3021] hover:bg-[#c89f2c]">
-                <a href="#packages">
-                  <Compass className="mr-2 h-4 w-4" />
-                  Explore Packages
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="h-11 rounded-md border-white/35 bg-white/5 px-6 text-white hover:bg-white/10 hover:text-white">
-                <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  Talk on WhatsApp
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-white/15 bg-black/25 p-6 backdrop-blur-md">
-            <p className="text-sm font-medium text-white/80">Trusted by travelers since 2014</p>
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              {stats.map((item) => (
-                <div key={item.label} className="rounded-lg border border-white/15 bg-white/5 p-4">
-                  <p className="text-2xl font-semibold text-[#D4AF37]">{item.value}</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-white/75">{item.label}</p>
-                </div>
-              ))}
-            </div>
+      <div className="container-wide w-full relative z-10 py-16 sm:py-24">
+        <div className="max-w-2xl space-y-6 pt-10 sm:pt-16">
+          <p className="inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#F9FBE9] backdrop-blur">
+            Premium Valparai Tours
+          </p>
+          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Escape to the misty hills of Valparai.
+          </h1>
+          <p className="text-sm leading-6 text-white/85 sm:text-lg">
+            Explore misty viewpoints, tea estates, and waterfalls through polished itineraries designed by local experts.
+          </p>
+          <div className="flex flex-col gap-3 pt-4 sm:flex-row">
+            <Button asChild size="lg" className="h-12 rounded-md bg-[#D4AF37] px-8 text-base text-[#1A3021] transition-all hover:scale-105 hover:bg-[#c89f2c]">
+              <a href="#packages">
+                <Compass className="mr-2 h-5 w-5" />
+                Explore Packages
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="h-12 rounded-md border-white/35 bg-white/5 px-8 text-base text-white transition-all hover:scale-105 hover:bg-white/10 hover:text-white">
+              <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Talk on WhatsApp
+              </a>
+            </Button>
           </div>
         </div>
       </div>

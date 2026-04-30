@@ -44,7 +44,7 @@ export const navItems: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "Packages", href: "#packages" },
   { label: "Why Us", href: "#why-us" },
-  { label: "Reviews", href: "#reviews" },
+  // { label: "Reviews", href: "#reviews" }, // Temporarily hidden
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact-section" },
 ];
@@ -99,7 +99,7 @@ export const footerQuickLinks: FooterLink[] = [
   { label: "Home", href: "#home" },
   { label: "Tour Packages", href: "#packages" },
   { label: "Why Choose Us", href: "#why-us" },
-  { label: "Traveler Reviews", href: "#reviews" },
+  // { label: "Traveler Reviews", href: "#reviews" }, // Temporarily hidden
 ];
 
 
