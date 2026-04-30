@@ -2,10 +2,10 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import { reviews, galleryImages } from "@/lib/tour-data";
-import { Star, Mail, MessageCircle, Phone, Camera, Users, PlayCircle, MapPin, ChevronRight, CircleHelp, FileText, Shield, PhoneCall } from "lucide-react";
+import { Star, Mail, MessageCircle, Phone, Camera, Users, PlayCircle, MapPin, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import SectionHeading from "@/components/shared/section-heading";
-import { brand, contactItems, features, footerQuickLinks, footerSupportLinks } from "@/lib/site-content";
+import { brand, contactItems, features, footerQuickLinks } from "@/lib/site-content";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -153,7 +153,7 @@ export default function Home() {
 
       <footer className="border-t border-[#11203b] bg-[#020817] text-[#d6deec]">
         <div className="container-wide py-14">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-5">
               <div className="flex items-center gap-3">
                 <div className="h-14 w-14 rounded-xl bg-white p-1.5">
@@ -189,22 +189,6 @@ export default function Home() {
                     {item.label}
                   </a>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="mb-4 text-base font-semibold text-white">Support</p>
-              <div className="space-y-3">
-                {footerSupportLinks.map((item, idx) => {
-                  const icons = [CircleHelp, FileText, Shield, PhoneCall];
-                  const Icon = icons[idx];
-                  return (
-                    <a key={item.label} href={item.href} className="flex items-center gap-2 text-sm text-[#9fb0cb] hover:text-white">
-                      <Icon className="h-3.5 w-3.5" />
-                      {item.label}
-                    </a>
-                  );
-                })}
               </div>
             </div>
 

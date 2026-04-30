@@ -102,10 +102,4 @@ export const footerQuickLinks: FooterLink[] = [
   { label: "Traveler Reviews", href: "#reviews" },
 ];
 
-export const footerSupportLinks: FooterLink[] = [
-  { label: "FAQs", href: "#" },
-  { label: "Booking Policy", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Contact Support", href: "#contact-section" },
-];
 

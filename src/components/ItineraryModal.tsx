@@ -44,15 +44,18 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
             {(pkg.inclusions || pkg.exclusions) && (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {pkg.inclusions && (
-                  <Card className="rounded-xl border-primary/20 bg-primary/5 py-0">
-                    <CardContent className="space-y-3 p-4">
-                      <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-foreground">
-                        <CheckCircle2 className="h-5 w-5 text-primary" /> Inclusions
+                  <Card className="overflow-hidden rounded-xl border border-emerald-500/20 bg-emerald-50/50 py-0 shadow-sm transition-all hover:border-emerald-500/30 hover:shadow-md dark:bg-emerald-500/10">
+                    <CardContent className="space-y-4 p-5">
+                      <h4 className="flex items-center gap-2.5 text-base font-semibold text-emerald-700 dark:text-emerald-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20">
+                          <CheckCircle2 className="h-5 w-5" />
+                        </div>
+                        Inclusions
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {pkg.inclusions.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <li key={i} className="flex items-start gap-3 text-sm font-medium text-emerald-900/80 dark:text-emerald-100/70">
+                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/70" />
                             {item}
                           </li>
                         ))}
@@ -61,15 +64,18 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
                   </Card>
                 )}
                 {pkg.exclusions && (
-                  <Card className="rounded-xl border-destructive/20 bg-destructive/5 py-0">
-                    <CardContent className="space-y-3 p-4">
-                      <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-foreground">
-                        <XCircle className="h-5 w-5 text-destructive" /> Exclusions
+                  <Card className="overflow-hidden rounded-xl border border-rose-500/20 bg-rose-50/50 py-0 shadow-sm transition-all hover:border-rose-500/30 hover:shadow-md dark:bg-rose-500/10">
+                    <CardContent className="space-y-4 p-5">
+                      <h4 className="flex items-center gap-2.5 text-base font-semibold text-rose-700 dark:text-rose-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-500/20">
+                          <XCircle className="h-5 w-5" />
+                        </div>
+                        Exclusions
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {pkg.exclusions.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-destructive/60" />
+                          <li key={i} className="flex items-start gap-3 text-sm font-medium text-rose-900/80 dark:text-rose-100/70">
+                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500/70" />
                             {item}
                           </li>
                         ))}
@@ -82,22 +88,24 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
  
             <div className="space-y-4">
               {pkg.itinerary.map((day, idx) => (
-                <div key={idx} className="relative rounded-xl border bg-card p-4 pl-9 sm:p-5 sm:pl-10">
+                <div key={idx} className="group relative rounded-xl border bg-card p-5 pl-10 transition-all hover:border-primary/40 hover:shadow-sm sm:p-6 sm:pl-12">
                   {idx !== pkg.itinerary.length - 1 && (
-                    <div className="absolute -bottom-5 left-4 top-10 w-0.5 bg-border sm:-bottom-6 sm:top-11" />
+                    <div className="absolute -bottom-6 left-[22px] top-12 w-0.5 bg-border transition-colors group-hover:bg-primary/30 sm:-bottom-7 sm:left-[26px] sm:top-14" />
                   )}
-                  <div className="absolute left-2 top-5 z-10 h-4 w-4 rounded-full bg-primary" />
+                  <div className="absolute left-4 top-6 z-10 flex h-4 w-4 items-center justify-center rounded-full bg-primary/20 ring-4 ring-background sm:left-5 sm:top-7">
+                     <div className="h-2 w-2 rounded-full bg-primary" />
+                  </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Badge className="border-none bg-primary/10 text-primary">
+                      <Badge variant="outline" className="border-primary/30 bg-primary/5 text-primary">
                         {day.day}
                       </Badge>
-                      <h4 className="text-sm font-semibold text-foreground sm:text-base">{day.title}</h4>
+                      <h4 className="text-base font-semibold text-foreground sm:text-lg">{day.title}</h4>
                     </div>
-                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       {day.places.map((place, pIdx) => (
-                        <div key={pIdx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" />
+                        <div key={pIdx} className="flex items-center gap-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                          <MapPin className="h-4 w-4 shrink-0 text-primary/70" />
                           {place}
                         </div>
                       ))}

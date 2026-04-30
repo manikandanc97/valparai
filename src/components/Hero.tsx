@@ -49,7 +49,7 @@ const Hero = () => {
               Premium Valparai Tours
             </p>
             <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl">
-              Curated hill station journeys with a modern local travel experience.
+              Escape to the misty hills of Valparai.
             </h1>
             <p className="max-w-xl text-sm leading-6 text-white/85 sm:text-base">
               Explore misty viewpoints, tea estates, and waterfalls through polished itineraries designed by local experts.
