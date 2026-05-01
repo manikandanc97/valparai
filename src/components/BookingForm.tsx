@@ -133,7 +133,7 @@ const BookingForm = () => {
           Book your trip
         </CardTitle>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-          Submit your details and our team will confirm on WhatsApp. test
+          Submit your details and our team will confirm on WhatsApp.
         </p>
       </CardHeader>
       <CardContent className="px-8 py-6">
