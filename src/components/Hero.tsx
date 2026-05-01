@@ -63,13 +63,13 @@ const Hero = () => {
             From misty roads to hidden waterfalls — experience Valparai with locals who know it best.
           </p>
           <div className="flex flex-col gap-3 pt-4 sm:flex-row">
-            <Button asChild size="lg" className="h-12 rounded-md bg-[#D4AF37] px-8 text-base text-[#1A3021] transition-all hover:scale-105 hover:bg-[#c89f2c]">
+            <Button asChild size="lg" className="h-12 rounded-md bg-[#D4AF37] px-8 text-base text-[#1A3021] hover:bg-[#c89f2c]">
               <a href="/packages">
                 <Compass className="mr-2 h-5 w-5" />
                 Plan My Valparai Trip
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 rounded-md border-white/35 bg-white/5 px-8 text-base text-white transition-all hover:scale-105 hover:bg-white/10 hover:text-white">
+            <Button asChild variant="outline" size="lg" className="h-12 rounded-md border-white/35 bg-white/5 px-8 text-base text-white hover:bg-white/10 hover:text-white">
               <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Chat With Us
@@ -82,7 +82,7 @@ const Hero = () => {
       <button
         type="button"
         onClick={handlePackagesJump}
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/25 bg-black/20 p-2 text-white/80 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:text-white animate-bounce"
+        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/25 bg-black/20 p-2 text-white/80 backdrop-blur-sm transition-all duration-300 hover:text-white animate-bounce"
         aria-label="Go to packages section"
       >
         <ChevronDown className="h-6 w-6" />

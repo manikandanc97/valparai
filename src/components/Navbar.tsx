@@ -102,7 +102,7 @@ const TopBar = () => {
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group relative flex h-7 w-7 items-center justify-center rounded-lg bg-[#1e3328] transition-all duration-300 hover:bg-[#d4af37] hover:text-[#0a1210] hover:scale-110"
+                  className="group relative flex h-7 w-7 items-center justify-center rounded-lg bg-[#1e3328] transition-all duration-300 hover:bg-[#d4af37] hover:text-[#0a1210] hover:-translate-y-0.5 active:scale-95"
                   aria-label={social.name}
                 >
                   {Icon && <Icon className="h-3.5 w-3.5 transition-colors group-hover:text-[#0a1210]" />}
@@ -186,7 +186,7 @@ const Navbar = () => {
           <Button 
             asChild 
             variant="outline" 
-            className="h-10 border-[#d4af37]/30 bg-[#d4af37]/5 text-[#d4af37] hover:bg-[#d4af37] hover:text-[#0a1210] hover:border-[#d4af37] transition-all duration-300"
+            className="h-10 border-[#d4af37]/30 bg-[#d4af37]/5 text-[#d4af37] hover:bg-[#d4af37] hover:text-[#0a1210] hover:border-[#d4af37]"
           >
             <a href={brand.phoneHref} className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
@@ -274,7 +274,7 @@ const Navbar = () => {
                       href={social.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5 active:scale-95"
                       aria-label={social.name}
                     >
                       {Icon && <Icon className="h-4 w-4" />}

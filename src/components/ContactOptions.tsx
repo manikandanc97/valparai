@@ -53,7 +53,7 @@ export default function ContactOptions() {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 items-center justify-center rounded-xl bg-muted/60 px-5 text-xs font-bold text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+                className="flex h-9 items-center justify-center rounded-xl bg-muted/60 px-5 text-xs font-bold text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:-translate-y-0.5 active:scale-95"
               >
                 Open
               </a>

@@ -37,7 +37,7 @@ export default function CTASection() {
           <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
             <Button
               onClick={handlePlanNow}
-              className="h-12 w-full rounded-xl bg-[#D4AF37] px-8 text-sm font-bold text-[#1A3021] transition-all hover:bg-[#b8952b] sm:h-14 sm:w-auto sm:text-base"
+              className="h-12 w-full rounded-xl bg-[#D4AF37] px-8 text-sm font-bold text-[#1A3021] hover:bg-[#b8952b] sm:h-14 sm:w-auto sm:text-base"
             >
               Plan My Trip Now
               <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
@@ -45,7 +45,7 @@ export default function CTASection() {
             <Button
               asChild
               variant="outline"
-              className="h-12 w-full rounded-xl border-white/20 bg-white/5 px-8 text-sm font-bold text-white transition-all hover:bg-white/10 sm:h-14 sm:w-auto sm:text-base"
+              className="h-12 w-full rounded-xl border-white/20 bg-white/5 px-8 text-sm font-bold text-white hover:bg-white/10 sm:h-14 sm:w-auto sm:text-base"
             >
               <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
                 <MessageCircle className="mr-2 h-4 w-4 text-emerald-400 sm:h-5 sm:w-5" />

@@ -110,7 +110,7 @@ export default function HomeContactSection() {
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:shadow-sm ${card.color}`}
                     >
                       <card.icon className="h-5 w-5" strokeWidth={2.2} />
                     </div>
@@ -127,7 +127,7 @@ export default function HomeContactSection() {
                     href={card.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-9 items-center justify-center rounded-xl bg-muted/60 px-5 text-xs font-bold text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+                    className="flex h-9 items-center justify-center rounded-xl bg-muted/60 px-5 text-xs font-bold text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:-translate-y-0.5 active:scale-95"
                   >
                     {card.action}
                   </a>
@@ -142,7 +142,7 @@ export default function HomeContactSection() {
                 >
                   <div className="flex flex-col gap-3">
                     <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${feature.color}`}
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5 ${feature.color}`}
                     >
                       <feature.icon className="h-5 w-5" strokeWidth={2.2} />
                     </div>

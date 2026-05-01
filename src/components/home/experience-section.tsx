@@ -57,7 +57,7 @@ export default function ExperienceSection() {
             )}
           >
             <CardContent className="flex flex-col items-center justify-center p-5 text-center sm:p-8">
-              <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 sm:mb-6 sm:h-16 sm:w-16 sm:text-2xl ${exp.color}`}>
+              <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl transition-all duration-500 group-hover:-translate-y-1 group-hover:rotate-3 sm:mb-6 sm:h-16 sm:w-16 sm:text-2xl ${exp.color}`}>
                 <exp.icon className="h-6 w-6 sm:h-8 sm:w-8" />
               </div>
               <h3 className="text-[11px] font-bold leading-tight tracking-tight text-foreground sm:text-sm">

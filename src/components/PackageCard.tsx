@@ -178,14 +178,14 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
           <Button
             variant="outline"
             onClick={() => onViewPlan(pkg)}
-            className="group h-12 rounded-xl border-border/80 bg-background font-semibold transition-all hover:-translate-y-0.5 hover:bg-muted/40"
+            className="group h-12 rounded-xl border-border/80 bg-background font-semibold hover:bg-muted/40"
           >
             <Map className="mr-2 h-4 w-4 text-muted-foreground transition-transform group-hover:-rotate-6 group-hover:scale-110" />
             Itinerary
           </Button>
           <Button
             onClick={() => onBook(pkg.title)}
-            className="group h-12 rounded-xl bg-linear-to-r from-primary to-primary/85 font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:from-primary/95 hover:to-primary"
+            className="group h-12 rounded-xl bg-linear-to-r from-primary to-primary/85 font-semibold text-primary-foreground hover:from-primary/95 hover:to-primary"
           >
             Book Tour
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
