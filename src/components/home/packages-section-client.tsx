@@ -52,7 +52,7 @@ export default function PackagesSectionClient() {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         variants={staggerContainer(0.15, 0)}
-        className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+        className="relative grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
       >
         {tourPackages.map((pkg) => (
           <motion.div key={pkg.id} variants={fadeInUp}>

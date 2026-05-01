@@ -50,7 +50,7 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer(0.1, 0.2)}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {media.slice(0, 5).map((item, i) => (
             <motion.div

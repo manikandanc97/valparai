@@ -57,6 +57,7 @@ const Hero = () => {
                 alt="Valparai Landscape"
                 fill
                 priority
+                loading="eager"
                 className="object-cover object-center scale-110"
                 sizes="100vw"
               />

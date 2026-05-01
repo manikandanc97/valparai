@@ -90,7 +90,7 @@ const Stats = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer(0.1, 0)}
-          className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6"
+          className="relative grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6"
         >
           {stats.map((stat, idx) => (
             <motion.div key={idx} variants={fadeInUp}>

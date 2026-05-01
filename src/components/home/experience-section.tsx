@@ -55,7 +55,7 @@ export default function ExperienceSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer(0.1, 0.2)}
-          className="mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 lg:grid-cols-5"
+          className="relative mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 lg:grid-cols-5"
         >
           {experiences.map((exp, idx) => (
             <motion.div
