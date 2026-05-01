@@ -72,13 +72,24 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
               >
                 {i === 0 ? (
                   <ParallaxImage className="h-full w-full" offset={30}>
-                    <Image
-                      src={item.url}
-                      alt={item.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                      className="object-cover scale-110"
-                    />
+                    {item.type === "video" ? (
+                      <video
+                        src={item.url}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover scale-110"
+                      />
+                    ) : (
+                      <Image
+                        src={item.url}
+                        alt={item.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                        className="object-cover scale-110"
+                      />
+                    )}
                   </ParallaxImage>
                 ) : item.type === "video" ? (
                   <video
