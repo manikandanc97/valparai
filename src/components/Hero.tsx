@@ -33,7 +33,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-[calc(100vh-4rem)] items-center overflow-hidden"
+      className="relative isolate flex min-h-[calc(100vh-5rem)] items-center overflow-hidden lg:min-h-[calc(100vh-8rem)]"
     >
       <div className="absolute inset-0 -z-20">
         {heroImages.map((image, index) => (

@@ -11,8 +11,8 @@ export default function CTASection() {
   };
 
   return (
-    <section className="section-padding container-wide">
-      <div className="relative overflow-hidden rounded-[2rem] bg-[#1A3021] p-8 sm:p-12 lg:p-16">
+    <section className="relative overflow-hidden bg-[#1A3021] py-16 sm:py-24">
+      <div className="container-wide relative z-10">
         {/* Background Decorative Elements */}
         <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-emerald-500/5 blur-3xl" />

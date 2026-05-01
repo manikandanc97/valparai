@@ -120,10 +120,12 @@ const TopBar = () => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -132,15 +134,16 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70 border-b shadow-sm"
-          : "bg-background border-b",
-      )}
-    >
-      {!scrolled && <TopBar />}
+    <div className="relative z-50 w-full">
+      <TopBar />
+      <header
+        className={cn(
+          "sticky top-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/70 border-b shadow-sm"
+            : "bg-background border-b",
+        )}
+      >
       <div className={cn(
         "container-wide flex items-center justify-between transition-all duration-300",
         scrolled ? "py-2" : "py-4"
@@ -173,17 +176,19 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </button>
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
+          )}
           <Button 
             asChild 
             variant="outline" 
@@ -200,16 +205,18 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-md border bg-card p-2 text-muted-foreground"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </button>
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-md border bg-card p-2 text-muted-foreground"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
+          )}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-md border bg-card p-2 text-foreground"
@@ -288,6 +295,7 @@ const Navbar = () => {
         </nav>
       </div>
     </header>
+  </div>
   );
 };
 
