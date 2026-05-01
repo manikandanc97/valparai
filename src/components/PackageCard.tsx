@@ -55,8 +55,8 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
       <Card
         className={cn(
           "group relative flex h-full flex-col gap-0 overflow-hidden rounded-3xl border-border/60 bg-background py-0 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl",
-          isDynamicPricing &&
-            "ring-2 ring-[#D4AF37]/30 ring-offset-2 ring-offset-background dark:ring-[#D4AF37]/20",
+          pkg.featured &&
+            "ring-2 ring-[#D4AF37]/50 ring-offset-4 ring-offset-background dark:ring-[#D4AF37]/30 shadow-2xl shadow-[#D4AF37]/10",
         )}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-linear-to-b from-white/10 to-transparent dark:from-white/5" />
@@ -106,12 +106,14 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
             <div
               className={cn(
                 "relative mt-5 flex h-[108px] flex-col justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300",
-                isDynamicPricing
-                  ? "border-[#D4AF37]/50 bg-gradient-to-br from-[#1A3021]/10 via-[#1A3021]/5 to-[#D4AF37]/15 shadow-sm hover:shadow-md dark:border-[#D4AF37]/30 dark:from-[#1A3021]/40 dark:via-[#1A3021]/20 dark:to-[#D4AF37]/20"
-                  : "border-primary/15 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover:from-primary/15"
+                pkg.featured
+                  ? "border-[#D4AF37]/50 bg-gradient-to-br from-[#1A3021]/15 via-[#1A3021]/5 to-[#D4AF37]/25 shadow-md dark:border-[#D4AF37]/40 dark:from-[#1A3021]/50 dark:via-[#1A3021]/30 dark:to-[#D4AF37]/30"
+                  : isDynamicPricing
+                    ? "border-primary/10 bg-primary/5"
+                    : "border-primary/10 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"
               )}
             >
-              {isDynamicPricing && (
+              {pkg.featured && (
                 <div className="pointer-events-none absolute -right-6 -top-6 z-0 h-24 w-24 rounded-full bg-[#D4AF37]/20 blur-2xl dark:bg-[#D4AF37]/10" />
               )}
 
@@ -130,7 +132,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
                         : "text-primary/70"
                     )}
                   >
-                    {isDynamicPricing ? "Group Size" : "Starting from"}
+                    {isDynamicPricing ? "Group Size" : pkg.featured ? "Recommended" : "Starting from"}
                   </p>
                 </div>
 

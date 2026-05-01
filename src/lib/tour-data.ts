@@ -73,6 +73,7 @@ export interface TourPackage {
   duration: string;
   priceText: string;
   badge?: string;
+  featured?: boolean;
   inclusions?: string[];
   exclusions?: string[];
   itinerary: ItineraryDay[];
@@ -86,6 +87,7 @@ export const tourPackages: TourPackage[] = [
     duration: "3 Days / 2 Nights",
     priceText: "₹4,500/person",
     badge: "Most Booked",
+    featured: true,
     image:
       "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
     itinerary: [
