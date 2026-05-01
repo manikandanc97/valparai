@@ -6,7 +6,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import PillBadge from "@/components/shared/pill-badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, XCircle, MapPin, Info } from "lucide-react";

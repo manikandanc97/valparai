@@ -1,12 +1,8 @@
 import {
-  Car,
-  Clock3,
   MapPinned,
   ShieldCheck,
   Tag,
   Trees,
-  Users,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 

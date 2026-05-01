@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { brand } from "@/lib/site-content";
 
 export default function SiteLogo() {
   return (
-    <a href="/" className="flex items-center">
+    <Link href="/" className="flex items-center">
       <div className="h-16 w-16 md:h-20 md:w-20">
         <Image 
           src={brand.logo} 
@@ -16,7 +17,7 @@ export default function SiteLogo() {
           priority
         />
       </div>
-    </a>
+    </Link>
   );
 }
 

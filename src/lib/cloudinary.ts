@@ -114,16 +114,30 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
 export async function getMergedGalleryMedia(): Promise<GalleryMedia[]> {
   const cloudinaryMedia = await getGalleryMedia();
   
+  let allMedia: GalleryMedia[] = [];
   if (cloudinaryMedia.length > 0) {
-    return cloudinaryMedia;
+    allMedia = cloudinaryMedia;
+  } else {
+    allMedia = galleryImages.map((img) => ({
+      url: img.url,
+      alt: img.alt,
+      type: (img.url.endsWith(".mov") || img.url.endsWith(".mp4")
+        ? "video"
+        : "image") as "image" | "video",
+      publicId: img.url,
+    }));
   }
 
-  return galleryImages.map((img) => ({
-    url: img.url,
-    alt: img.alt,
-    type: (img.url.endsWith(".mov") || img.url.endsWith(".mp4")
-      ? "video"
-      : "image") as "image" | "video",
-    publicId: img.url,
-  }));
+  // Deduplicate by publicId (or url if publicId is same as url)
+  const uniqueMedia: GalleryMedia[] = [];
+  const seen = new Set<string>();
+  
+  for (const item of allMedia) {
+    if (!seen.has(item.publicId)) {
+      seen.add(item.publicId);
+      uniqueMedia.push(item);
+    }
+  }
+
+  return uniqueMedia;
 }

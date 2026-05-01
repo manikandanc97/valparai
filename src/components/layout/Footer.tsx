@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
 import { brand, footerQuickLinks } from "@/lib/site-content";
+import Link from "next/link";
 
 const InstagramIcon = ({ size = 24 }: { size?: number }) => (
   <svg
@@ -113,14 +114,14 @@ export default function Footer() {
             </p>
             <div className="grid grid-cols-1 gap-y-3">
               {footerQuickLinks.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   className="group flex items-center gap-2 text-sm text-[#8fa698] transition-colors hover:text-[#d4af37]"
                 >
                   <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

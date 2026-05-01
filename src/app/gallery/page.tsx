@@ -1,7 +1,7 @@
 import { getMergedGalleryMedia } from "@/lib/cloudinary";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import GalleryGrid from "@/components/gallery/gallery-grid";
 
 export const revalidate = 3600; // Re-fetch Cloudinary data every 1 hour
 
@@ -10,48 +10,30 @@ export default async function GalleryPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <section className="container-wide section-padding space-y-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Gallery</p>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">All Valparai Moments</h1>
-            <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
-              Full collection of travel highlights from routes, waterfalls, tea estates, and viewpoints.
+      <section className="container-wide section-padding space-y-12">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-3">
+            <p className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Gallery
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              All Valparai <span className="text-primary">Moments</span>
+            </h1>
+            <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed sm:text-base">
+              Explore our full collection of travel highlights—from mist-covered hairpin bends 
+              to hidden waterfalls and lush tea estates.
             </p>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+            className="group inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-6 py-3 text-sm font-bold text-foreground transition-all hover:bg-muted hover:-translate-x-1"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Back to Home
           </Link>
         </div>
 
-        <div className="columns-1 gap-4 space-y-4 sm:columns-2 lg:columns-3">
-          {media.map((item, i) => (
-            <div key={i} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border bg-card">
-              {item.type === "video" ? (
-                <video
-                  src={item.url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              ) : (
-                <Image
-                  src={item.url}
-                  alt={item.alt}
-                  width={1200}
-                  height={900}
-                  className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        <GalleryGrid initialMedia={media} />
       </section>
     </main>
   );

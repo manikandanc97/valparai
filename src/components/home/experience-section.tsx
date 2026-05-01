@@ -70,7 +70,7 @@ export default function ExperienceSection() {
 
       <div className="mt-12 text-center">
         <p className="text-lg font-medium italic text-muted-foreground">
-          "Every trip is different. Every trip is memorable."
+          &quot;Every trip is different. Every trip is memorable.&quot;
         </p>
       </div>
     </section>

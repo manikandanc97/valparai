@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { brand, navItems } from "@/lib/site-content";
 import SiteLogo from "@/components/shared/site-logo";
+import Link from "next/link";
 
 const InstagramIcon = ({ className }: { className?: string }) => (
   <svg
@@ -151,7 +152,7 @@ const Navbar = () => {
             const isActive = link.href === pathname;
 
             return (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className={cn(
@@ -166,7 +167,7 @@ const Navbar = () => {
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   )} 
                 />
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -194,7 +195,7 @@ const Navbar = () => {
             </a>
           </Button>
           <Button asChild className="h-10 rounded-md px-5 bg-[#1e3328] hover:bg-[#2a4538] text-white">
-            <a href="/contact">Book Tour</a>
+            <Link href="/contact">Book Tour</Link>
           </Button>
         </div>
 
@@ -229,7 +230,7 @@ const Navbar = () => {
             const isActive = link.href === pathname;
 
             return (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
@@ -241,7 +242,7 @@ const Navbar = () => {
                 )}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
           <div className="grid grid-cols-2 gap-3 pt-2">
@@ -249,7 +250,7 @@ const Navbar = () => {
               <a href={brand.phoneHref}>Call Now</a>
             </Button>
             <Button asChild className="h-10 bg-[#1e3328] text-white">
-              <a href="/contact">Book Now</a>
+              <Link href="/contact">Book Now</Link>
             </Button>
           </div>
           <div className="mt-6 border-t pt-6">

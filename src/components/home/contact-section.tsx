@@ -8,7 +8,6 @@ import {
   Star,
   Phone,
   Mail,
-  ExternalLink,
   Trees,
 } from "lucide-react";
 import { brand } from "@/lib/site-content";
