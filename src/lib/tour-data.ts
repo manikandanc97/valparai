@@ -1,3 +1,4 @@
+// Exact per-person price for each group size
 export const budgetPricing: Record<number, number> = {
   2: 4500,
   3: 3200,
@@ -13,6 +14,11 @@ export const budgetPricing: Record<number, number> = {
   13: 1800,
   14: 1700,
   15: 1500,
+  16: 1500,
+  17: 1500,
+  18: 1500,
+  19: 1500,
+  20: 1500,
 };
 
 export const package3DayPricing: Record<number, number> = {
@@ -58,6 +64,18 @@ export const package2DayAthirapalliPricing: Record<number, number> = {
   19: 1700,
   20: 1700,
 };
+
+/** Look up price per person for a given count, falling back to the last key */
+export function getPricePerPersonExact(
+  map: Record<number, number>,
+  count: number,
+): number {
+  if (map[count] !== undefined) return map[count];
+  const keys = Object.keys(map)
+    .map(Number)
+    .sort((a, b) => a - b);
+  return map[keys[keys.length - 1]] ?? 0;
+}
 
 export interface ItineraryDay {
   day: string;

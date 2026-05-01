@@ -11,7 +11,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Car, MapPinned, Users, Tag, Map, ArrowRight } from "lucide-react";
-import { budgetPricing, package3DayPricing, package2DayAthirapalliPricing, TourPackage } from "@/lib/tour-data";
+import {
+  budgetPricing,
+  package3DayPricing,
+  package2DayAthirapalliPricing,
+  type TourPackage,
+} from "@/lib/tour-data";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -34,20 +39,19 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
   const is3DayPkg = pkg.id === "package-3day";
   const is2DayAthirapalliPkg = pkg.id === "package-2day-athirapalli";
   const isDynamicPricing = isBudgetPkg || is3DayPkg || is2DayAthirapalliPkg;
-  
+
+  const pricingMap = isBudgetPkg
+    ? budgetPricing
+    : is3DayPkg
+      ? package3DayPricing
+      : is2DayAthirapalliPkg
+        ? package2DayAthirapalliPricing
+        : null;
+
   // Extract base price from priceText (e.g. "₹3,500/person" -> 3500)
   const basePrice = parseInt(pkg.priceText.replace(/[^\d]/g, ""), 10) || 4500;
-  
-  const pricingMap = isBudgetPkg 
-    ? budgetPricing 
-    : is3DayPkg 
-      ? package3DayPricing 
-      : is2DayAthirapalliPkg 
-        ? package2DayAthirapalliPricing 
-        : null;
-        
   const currentPrice = pricingMap
-    ? pricingMap[parseInt(members)] || basePrice
+    ? (pricingMap[parseInt(members)] ?? basePrice)
     : basePrice;
 
   return (
@@ -139,20 +143,18 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
                     value={members}
                     onValueChange={(val) => setMembers(val || "4")}
                   >
-                    <SelectTrigger className="h-7 w-auto min-w-[90px] rounded-full border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
+                    <SelectTrigger className="h-7 w-auto min-w-[108px] rounded-full border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
                       <SelectValue placeholder="Members" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl border-[#D4AF37]/20 bg-background/95 shadow-xl backdrop-blur-xl">
-                      {Object.keys(pricingMap).sort((a, b) => parseInt(a) - parseInt(b)).map((num) => (
-                        <SelectItem key={num} value={num} className="cursor-pointer rounded-lg text-xs font-bold">
-                          {num} People
-                        </SelectItem>
-                      ))}
-                      {parseInt(members) > 20 && (
-                         <SelectItem value={members} className="cursor-pointer rounded-lg text-xs font-bold">
-                           {members} People
-                         </SelectItem>
-                      )}
+                      {Object.keys(pricingMap)
+                        .map(Number)
+                        .sort((a, b) => a - b)
+                        .map((num) => (
+                          <SelectItem key={num} value={String(num)} className="cursor-pointer rounded-lg text-xs font-bold">
+                            {num} {num === 1 ? "Person" : "People"}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                 )}

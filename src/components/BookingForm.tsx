@@ -45,37 +45,40 @@ const BookingForm = () => {
     name: "",
     phone: "",
     package: "",
-    adults: "2",
+    adults: "4",
     kids: "0",
     date: undefined as Date | undefined,
     message: "",
   });
 
-  // Calculate estimated price
+  // Exact pricing lookup
   const selectedPkg = tourPackages.find((p) => p.title === formData.package);
   const adultsCount = parseInt(formData.adults) || 0;
-  const kidsCount = parseInt(formData.kids) || 0;
+  const kidsCount  = parseInt(formData.kids)   || 0;
   const totalPeople = adultsCount + kidsCount;
 
+  const pricingMap =
+    selectedPkg?.id === "package-2day-budget"
+      ? budgetPricing
+      : selectedPkg?.id === "package-3day"
+        ? package3DayPricing
+        : selectedPkg?.id === "package-2day-athirapalli"
+          ? package2DayAthirapalliPricing
+          : null;
+
   let pricePerPerson = 0;
-  if (selectedPkg) {
-    if (selectedPkg.id === "package-2day-budget") {
-      pricePerPerson = budgetPricing[totalPeople] || budgetPricing[15] || 1500;
-    } else if (selectedPkg.id === "package-3day") {
-      pricePerPerson =
-        package3DayPricing[totalPeople] || package3DayPricing[20] || 2400;
-    } else if (selectedPkg.id === "package-2day-athirapalli") {
-      pricePerPerson =
-        package2DayAthirapalliPricing[totalPeople] ||
-        package2DayAthirapalliPricing[20] ||
-        1700;
-    } else {
-      pricePerPerson =
-        parseInt(selectedPkg.priceText.replace(/[^\d]/g, ""), 10) || 0;
-    }
+  if (selectedPkg && pricingMap) {
+    pricePerPerson = pricingMap[totalPeople] ?? pricingMap[Object.keys(pricingMap).map(Number).sort((a,b)=>a-b).at(-1)!] ?? 0;
+  } else if (selectedPkg) {
+    pricePerPerson = parseInt(selectedPkg.priceText.replace(/[^\d]/g, ""), 10) || 0;
   }
 
   const totalPrice = pricePerPerson * totalPeople;
+
+  // Available person counts for the selected package
+  const personOptions = pricingMap
+    ? Object.keys(pricingMap).map(Number).sort((a, b) => a - b)
+    : [];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,8 +107,8 @@ const BookingForm = () => {
         name: "",
         phone: "",
         package: "",
-        adults: "",
-        kids: "",
+        adults: "4",
+        kids: "0",
         date: undefined,
         message: "",
       });
@@ -203,17 +206,37 @@ const BookingForm = () => {
                 Adults <span className="text-red-500 ml-0.5">*</span>
               </span>
               <div className="relative">
-                <UsersIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  type="number"
-                  min="1"
-                  placeholder="Adults"
-                  className="h-10 rounded-md pl-9"
+                <UsersIcon className="absolute left-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Select
                   value={formData.adults}
-                  onChange={(e) =>
-                    setFormData({ ...formData, adults: e.target.value })
+                  onValueChange={(val) =>
+                    setFormData({ ...formData, adults: val || "4" })
                   }
-                />
+                >
+                  <SelectTrigger className="h-10 w-full rounded-md pl-9">
+                    <SelectValue
+                      placeholder={
+                        personOptions.length === 0
+                          ? "Select a package first"
+                          : "Select adults"
+                      }
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {personOptions.length > 0
+                      ? personOptions.map((num) => (
+                          <SelectItem key={num} value={String(num)}>
+                            {num} {num === 1 ? "Person" : "People"}
+                          </SelectItem>
+                        ))
+                      : // Fallback: 1–20 when no package is selected
+                        Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+                          <SelectItem key={num} value={String(num)}>
+                            {num} {num === 1 ? "Person" : "People"}
+                          </SelectItem>
+                        ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="space-y-2 text-sm flex flex-col">
@@ -269,7 +292,7 @@ const BookingForm = () => {
             </div>
           </div>
 
-          {selectedPkg && pricePerPerson > 0 && (
+          {selectedPkg && pricePerPerson > 0 && totalPeople > 0 && (
             <div className="rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/5 p-4 transition-all duration-300">
               <div className="flex items-center justify-between">
                 <div>
