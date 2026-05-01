@@ -27,9 +27,9 @@ export default function BlogsPage() {
         </h1>
 
         <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground">
-          We&apos;re busy writing stories about the mist-covered mountains, tea estates, 
-          and hidden waterfalls of Valparai. Stay tuned for travel guides, tips, 
-          and authentic local experiences.
+          We&apos;re busy writing stories about the mist-covered mountains, tea
+          estates, and hidden waterfalls of Valparai. Stay tuned for travel
+          guides, tips, and authentic local experiences.
         </p>
 
         <div className="flex flex-col gap-4 sm:flex-row">
@@ -39,10 +39,13 @@ export default function BlogsPage() {
               Back to Home
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-8">
-            <Link href="/packages">
-              Explore Packages
-            </Link>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="h-12 rounded-xl px-8"
+          >
+            <Link href="/packages">Explore Packages</Link>
           </Button>
         </div>
 
@@ -52,12 +55,14 @@ export default function BlogsPage() {
             { title: "Local Stories", icon: "📖" },
             { title: "Photography", icon: "📸" },
           ].map((item, idx) => (
-            <div 
+            <div
               key={idx}
               className="flex items-center gap-4 rounded-2xl border bg-card/50 p-6 backdrop-blur-sm"
             >
               <span className="text-2xl">{item.icon}</span>
-              <span className="font-semibold text-foreground">{item.title}</span>
+              <span className="font-semibold text-foreground">
+                {item.title}
+              </span>
             </div>
           ))}
         </div>

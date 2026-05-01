@@ -67,42 +67,52 @@ const Hero = () => {
       </div>
 
       <div className="container-wide w-full relative z-10 py-16 sm:py-24">
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer(0.15, 0.4)}
           className="max-w-2xl space-y-6 pt-10 sm:pt-16"
         >
-          <motion.p 
+          <motion.p
             variants={fadeInUp}
             className="inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#F9FBE9] backdrop-blur"
           >
             Explore Valparai Like a Local
           </motion.p>
-          
-          <RevealText 
-            text="Feel the Real Valparai."
+
+          <RevealText
+            text="Feel the Real Valparai"
             className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
             delay={0.6}
           />
 
-          <motion.p 
+          <motion.p
             variants={fadeInUp}
             className="text-sm leading-6 text-white/85 sm:text-lg"
           >
-            From misty roads to hidden waterfalls — experience Valparai with locals who know it best.
+            From misty roads to hidden waterfalls — experience Valparai with
+            locals who know it best.
           </motion.p>
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="flex flex-col gap-3 pt-4 sm:flex-row"
           >
-            <Button asChild size="lg" className="h-12 rounded-xl bg-[#D4AF37] px-8 text-base text-[#1A3021] hover:bg-[#c89f2c]">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-xl bg-[#D4AF37] px-8 text-base text-[#1A3021] hover:bg-[#c89f2c]"
+            >
               <a href="/packages">
                 <Compass className="mr-2 h-5 w-5" />
                 Plan My Valparai Trip
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 rounded-xl border-white/35 bg-white/5 px-8 text-base text-white hover:bg-white/10 hover:text-white">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="h-12 rounded-xl border-white/35 bg-white/5 px-8 text-base text-white hover:bg-white/10 hover:text-white"
+            >
               <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Chat With Us
@@ -114,13 +124,13 @@ const Hero = () => {
 
       <motion.button
         initial={{ opacity: 0, y: 10 }}
-        animate={{ 
-          opacity: 1, 
+        animate={{
+          opacity: 1,
           y: [0, 10, 0],
         }}
-        transition={{ 
+        transition={{
           opacity: { delay: 1.5, duration: 0.8 },
-          y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+          y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
         }}
         type="button"
         onClick={handlePackagesJump}
