@@ -32,16 +32,14 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
             <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
-          {media.slice(0, 6).map((item, i) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {media.slice(0, 5).map((item, i) => (
             <div
               key={i}
-              className={`group relative overflow-hidden rounded-2xl border border-white/15 ${
+              className={`group relative overflow-hidden rounded-2xl border border-white/15 transition-all duration-300 ${
                 i === 0
-                  ? "h-80 sm:col-span-2 lg:col-span-7 lg:row-span-2 lg:h-128"
-                  : i === 1 || i === 2
-                    ? "h-64 lg:col-span-5 lg:h-62"
-                    : "h-56 sm:h-64 lg:col-span-4"
+                  ? "h-72 sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:h-[400px]"
+                  : "h-48 lg:h-[192px]"
               }`}
             >
               {item.type === "video" ? (
