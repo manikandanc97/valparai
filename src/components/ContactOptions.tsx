@@ -6,38 +6,37 @@ export default function ContactOptions() {
   const contactIcons = [Phone, MessageCircle, Mail];
 
   return (
-    <div className="flex flex-1 flex-col gap-3 sm:gap-4">
+    <div className="grid grid-cols-1 gap-4">
       {contactItems.map((item, idx) => {
         const Icon = contactIcons[idx];
-        const colorPalettes = [
+        const palettes = [
           {
-            text: "text-blue-600 dark:text-blue-400",
-            bg: "bg-blue-100/50 dark:bg-blue-500/10",
-            border: "hover:border-blue-300/50 dark:hover:border-blue-500/30",
+            text: "text-indigo-600 dark:text-indigo-400",
+            bg: "bg-indigo-100 dark:bg-indigo-500/10",
+            border: "hover:border-indigo-500/20",
           },
           {
             text: "text-emerald-600 dark:text-emerald-400",
-            bg: "bg-emerald-100/50 dark:bg-emerald-500/10",
-            border:
-              "hover:border-emerald-300/50 dark:hover:border-emerald-500/30",
+            bg: "bg-emerald-100 dark:bg-emerald-500/10",
+            border: "hover:border-emerald-500/20",
           },
           {
-            text: "text-rose-600 dark:text-rose-400",
-            bg: "bg-rose-100/50 dark:bg-rose-500/10",
-            border: "hover:border-rose-300/50 dark:hover:border-rose-500/30",
+            text: "text-amber-600 dark:text-amber-400",
+            bg: "bg-amber-100 dark:bg-amber-500/10",
+            border: "hover:border-amber-500/20",
           },
         ];
-        const palette = colorPalettes[idx % colorPalettes.length];
+        const palette = palettes[idx % palettes.length];
 
         return (
           <Card
             key={item.title}
-            className={`group relative flex-1 overflow-hidden rounded-2xl border-border/50 bg-background shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${palette.border}`}
+            className={`group overflow-hidden rounded-2xl border-border/50 bg-background/50 shadow-sm transition-all duration-300 hover:shadow-md ${palette.border}`}
           >
-            <CardContent className="flex h-full items-center justify-between gap-4 p-4 sm:p-5">
+            <CardContent className="flex items-center justify-between p-4 sm:p-5">
               <div className="flex items-center gap-4">
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 ${palette.bg} ${palette.text}`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105 ${palette.bg} ${palette.text}`}
                 >
                   <Icon className="h-5 w-5" strokeWidth={2.2} />
                 </div>
@@ -45,7 +44,7 @@ export default function ContactOptions() {
                   <p className="text-sm font-bold text-foreground">
                     {item.title}
                   </p>
-                  <p className="text-xs font-medium text-muted-foreground sm:text-sm">
+                  <p className="text-xs font-medium text-muted-foreground">
                     {item.value}
                   </p>
                 </div>
@@ -54,7 +53,7 @@ export default function ContactOptions() {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 items-center justify-center rounded-full bg-muted/80 px-4 text-xs font-semibold tracking-wide text-foreground transition-all duration-300 hover:scale-105 hover:bg-foreground hover:text-background sm:text-sm"
+                className="flex h-9 items-center justify-center rounded-xl bg-muted/60 px-5 text-xs font-bold text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
               >
                 Open
               </a>

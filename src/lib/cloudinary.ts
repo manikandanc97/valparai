@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
+import { galleryImages } from "./tour-data";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -104,4 +105,25 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
     console.error("[Cloudinary] Failed to fetch gallery media:", err);
     return [];
   }
+}
+
+/**
+ * Returns Cloudinary media if available, otherwise falls back to static gallery images.
+ * This ensures consistency across components that display gallery media.
+ */
+export async function getMergedGalleryMedia(): Promise<GalleryMedia[]> {
+  const cloudinaryMedia = await getGalleryMedia();
+  
+  if (cloudinaryMedia.length > 0) {
+    return cloudinaryMedia;
+  }
+
+  return galleryImages.map((img) => ({
+    url: img.url,
+    alt: img.alt,
+    type: (img.url.endsWith(".mov") || img.url.endsWith(".mp4")
+      ? "video"
+      : "image") as "image" | "video",
+    publicId: img.url,
+  }));
 }

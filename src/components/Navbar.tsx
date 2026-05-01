@@ -29,7 +29,7 @@ const Navbar = () => {
         "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
           ? "bg-background/90 py-2 backdrop-blur supports-backdrop-filter:bg-background/70"
-          : "bg-background py-3"
+          : "bg-background py-3",
       )}
     >
       <div className="container-wide flex items-center justify-between">
@@ -38,16 +38,14 @@ const Navbar = () => {
         <nav className="hidden items-center gap-8 lg:flex">
           {navItems.map((link) => {
             const isActive = link.href === pathname;
-            
+
             return (
               <a
                 key={link.label}
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-foreground relative py-1",
-                  isActive 
-                    ? "text-primary" 
-                    : "text-muted-foreground"
+                  isActive ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {link.label}
@@ -65,7 +63,11 @@ const Navbar = () => {
             className="rounded-md border bg-card p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle theme"
           >
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </button>
           <a
             href={brand.phoneHref}
@@ -84,7 +86,11 @@ const Navbar = () => {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="rounded-md border bg-card p-2 text-muted-foreground"
           >
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -97,8 +103,8 @@ const Navbar = () => {
 
       <div
         className={cn(
-          "overflow-hidden border-t bg-background transition-all duration-300 lg:hidden",
-          isOpen ? "max-h-[420px] py-6" : "max-h-0 py-0"
+          "overflow-hidden bg-background transition-all duration-300 lg:hidden",
+          isOpen ? "max-h-[420px] py-6" : "max-h-0 py-0",
         )}
       >
         <nav className="container-wide flex flex-col gap-4">
@@ -112,9 +118,9 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className={cn(
                   "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  isActive 
-                    ? "bg-primary/10 text-primary" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  isActive
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
                 )}
               >
                 {link.label}

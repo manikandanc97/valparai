@@ -5,6 +5,8 @@ import {
   ShieldCheck,
   Tag,
   Trees,
+  Users,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
@@ -43,8 +45,8 @@ export const brand = {
   phoneHref: "tel:917904199605",
   whatsappHref:
     "https://wa.me/917904199605?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package.",
-  email: "info@valparaitourpackages.com",
-  emailHref: "mailto:info@valparaitourpackages.com",
+  email: "valparaiwanderer@gmail.com",
+  emailHref: "mailto:valparaiwanderer@gmail.com",
   address: "Valparai, Coimbatore District, Tamil Nadu",
 };
 
@@ -65,39 +67,23 @@ export const stats: StatItem[] = [
 
 export const features: FeatureItem[] = [
   {
-    title: "Local Expert Guides",
-    description:
-      "Native guides with deep terrain knowledge and safe route planning.",
+    title: "Local Experts",
+    description: "We know every hidden spot, not just tourist places.",
     icon: MapPinned,
   },
   {
-    title: "Comfort Transport",
-    description:
-      "Clean, maintained vehicles optimized for mountain roads and weather.",
-    icon: Car,
-  },
-  {
-    title: "Transparent Pricing",
-    description:
-      "Clear package costs with no hidden add-ons or surprise charges.",
-    icon: Tag,
-  },
-  {
-    title: "Always-On Support",
-    description:
-      "Fast WhatsApp and phone support from planning to trip completion.",
-    icon: Clock3,
-  },
-  {
-    title: "Nature-First Planning",
-    description:
-      "Balanced itineraries designed for scenery, wildlife, and comfort.",
+    title: "Real Experiences",
+    description: "No rush. No crowd. Just pure Valparai vibes.",
     icon: Trees,
   },
   {
-    title: "Trusted Operations",
-    description:
-      "Reliable coordination and guidance built on consistent guest feedback.",
+    title: "Flexible Plans",
+    description: "Trips designed based on your time & budget.",
+    icon: Tag,
+  },
+  {
+    title: "Trusted by Travelers",
+    description: "Hundreds of happy guests & repeat visitors.",
     icon: ShieldCheck,
   },
 ];

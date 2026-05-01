@@ -29,9 +29,14 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { tourPackages } from "@/lib/tour-data";
-import { Badge } from "@/components/ui/badge";
+import {
+  tourPackages,
+  budgetPricing,
+  package3DayPricing,
+  package2DayAthirapalliPricing,
+} from "@/lib/tour-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import PillBadge from "@/components/shared/pill-badge";
 
 const BookingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -40,11 +45,37 @@ const BookingForm = () => {
     name: "",
     phone: "",
     package: "",
-    adults: "",
-    kids: "",
+    adults: "2",
+    kids: "0",
     date: undefined as Date | undefined,
     message: "",
   });
+
+  // Calculate estimated price
+  const selectedPkg = tourPackages.find((p) => p.title === formData.package);
+  const adultsCount = parseInt(formData.adults) || 0;
+  const kidsCount = parseInt(formData.kids) || 0;
+  const totalPeople = adultsCount + kidsCount;
+
+  let pricePerPerson = 0;
+  if (selectedPkg) {
+    if (selectedPkg.id === "package-2day-budget") {
+      pricePerPerson = budgetPricing[totalPeople] || budgetPricing[15] || 1500;
+    } else if (selectedPkg.id === "package-3day") {
+      pricePerPerson =
+        package3DayPricing[totalPeople] || package3DayPricing[20] || 2400;
+    } else if (selectedPkg.id === "package-2day-athirapalli") {
+      pricePerPerson =
+        package2DayAthirapalliPricing[totalPeople] ||
+        package2DayAthirapalliPricing[20] ||
+        1700;
+    } else {
+      pricePerPerson =
+        parseInt(selectedPkg.priceText.replace(/[^\d]/g, ""), 10) || 0;
+    }
+  }
+
+  const totalPrice = pricePerPerson * totalPeople;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,23 +114,28 @@ const BookingForm = () => {
   };
 
   return (
-    <Card className="rounded-2xl border-border/70 py-0 shadow-sm">
-      <CardHeader className="border-b bg-muted/30 px-6 py-6">
-        <Badge className="mb-3 w-fit bg-[#D4AF37] text-[#1A3021]">
-          Reservation
-        </Badge>
-        <CardTitle className="text-2xl font-semibold text-foreground">
+    <Card
+      id="booking-form"
+      className="overflow-hidden rounded-3xl border-border/60 shadow-lg"
+    >
+      <CardHeader className="bg-muted/10 px-8 py-6 border-b">
+        <div className="mb-4">
+          <PillBadge color="gold">Reservation</PillBadge>
+        </div>
+        <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
           Book your trip
         </CardTitle>
-        <p className="text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           Submit your details and our team will confirm on WhatsApp.
         </p>
       </CardHeader>
-      <CardContent className="px-6 py-6">
-        <form onSubmit={handleSubmit} className="grid gap-5">
-          <div className="grid gap-5 md:grid-cols-2">
-            <label className="space-y-2 text-sm">
-              <span className="text-muted-foreground">Full Name</span>
+      <CardContent className="px-8 py-6">
+        <form onSubmit={handleSubmit} className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2 text-sm flex flex-col">
+              <span className="text-muted-foreground font-medium">
+                Full Name <span className="text-red-500 ml-0.5">*</span>
+              </span>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -112,9 +148,11 @@ const BookingForm = () => {
                   }
                 />
               </div>
-            </label>
-            <label className="space-y-2 text-sm">
-              <span className="text-muted-foreground">Phone Number</span>
+            </div>
+            <div className="space-y-2 text-sm flex flex-col">
+              <span className="text-muted-foreground font-medium">
+                Phone Number <span className="text-red-500 ml-0.5">*</span>
+              </span>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -127,11 +165,13 @@ const BookingForm = () => {
                   }
                 />
               </div>
-            </label>
+            </div>
           </div>
 
-          <label className="space-y-2 text-sm">
-            <span className="text-muted-foreground">Package</span>
+          <div className="space-y-2 text-sm flex flex-col">
+            <span className="text-muted-foreground font-medium">
+              Package <span className="text-red-500 ml-0.5">*</span>
+            </span>
             <div className="relative">
               <Map className="absolute left-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Select
@@ -155,11 +195,13 @@ const BookingForm = () => {
                 </SelectContent>
               </Select>
             </div>
-          </label>
+          </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            <label className="space-y-2 text-sm">
-              <span className="text-muted-foreground">Adults</span>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="space-y-2 text-sm flex flex-col">
+              <span className="text-muted-foreground font-medium">
+                Adults <span className="text-red-500 ml-0.5">*</span>
+              </span>
               <div className="relative">
                 <UsersIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -173,9 +215,11 @@ const BookingForm = () => {
                   }
                 />
               </div>
-            </label>
-            <label className="space-y-2 text-sm">
-              <span className="text-muted-foreground">Kids</span>
+            </div>
+            <div className="space-y-2 text-sm flex flex-col">
+              <span className="text-muted-foreground font-medium">
+                Kids <span className="text-red-500 ml-0.5">*</span>
+              </span>
               <div className="relative">
                 <UsersIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -189,15 +233,15 @@ const BookingForm = () => {
                   }
                 />
               </div>
-            </label>
+            </div>
             <div className="space-y-2 text-sm flex flex-col">
               <span className="text-muted-foreground font-medium">
-                Travel Date
+                Travel Date <span className="text-red-500 ml-0.5">*</span>
               </span>
               <Popover>
                 <PopoverTrigger
                   className={cn(
-                    "inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 h-10 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground w-full justify-start text-left font-normal px-4 py-2 pl-9 relative",
+                    "flex h-10 w-full items-center rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-9 relative text-left font-normal",
                     !formData.date && "text-muted-foreground",
                   )}
                 >
@@ -225,8 +269,33 @@ const BookingForm = () => {
             </div>
           </div>
 
-          <label className="space-y-2 text-sm">
-            <span className="text-muted-foreground">Special Requests</span>
+          {selectedPkg && pricePerPerson > 0 && (
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/5 p-4 transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">
+                    Estimated Price
+                  </p>
+                  <p className="text-2xl font-black text-foreground">
+                    ₹{totalPrice.toLocaleString()}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    ₹{pricePerPerson.toLocaleString()} / person
+                  </p>
+                  <p className="text-xs font-medium text-muted-foreground">
+                    For {totalPeople} {totalPeople === 1 ? "Person" : "People"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-2 text-sm flex flex-col">
+            <span className="text-muted-foreground font-medium">
+              Special Requests
+            </span>
             <Textarea
               placeholder="Anything else you'd like us to know?"
               rows={4}
@@ -236,7 +305,7 @@ const BookingForm = () => {
                 setFormData({ ...formData, message: e.target.value })
               }
             />
-          </label>
+          </div>
 
           <Button
             type="submit"

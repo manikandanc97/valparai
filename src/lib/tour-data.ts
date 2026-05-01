@@ -15,6 +15,50 @@ export const budgetPricing: Record<number, number> = {
   15: 1500,
 };
 
+export const package3DayPricing: Record<number, number> = {
+  2: 7000,
+  3: 5300,
+  4: 4000,
+  5: 4000,
+  6: 4000,
+  7: 3500,
+  8: 3500,
+  9: 3200,
+  10: 3000,
+  11: 3000,
+  12: 2800,
+  13: 2600,
+  14: 2500,
+  15: 2700,
+  16: 2500,
+  17: 2500,
+  18: 2500,
+  19: 2500,
+  20: 2400,
+};
+
+export const package2DayAthirapalliPricing: Record<number, number> = {
+  2: 5250,
+  3: 3700,
+  4: 3000,
+  5: 2800,
+  6: 2700,
+  7: 2400,
+  8: 2500,
+  9: 2250,
+  10: 2000,
+  11: 2000,
+  12: 1800,
+  13: 1700,
+  14: 1700,
+  15: 1900,
+  16: 1700,
+  17: 1700,
+  18: 1700,
+  19: 1700,
+  20: 1700,
+};
+
 export interface ItineraryDay {
   day: string;
   title: string;
@@ -167,6 +211,44 @@ export const tourPackages: TourPackage[] = [
           "Hanging bridge",
           "Drop at Pollachi Station",
         ],
+      },
+    ],
+  },
+  {
+    id: "package-1day",
+    title: "1 Day Valparai Explorer",
+    subtitle: "Quick Sightseeing Tour",
+    duration: "1 Day",
+    priceText: "₹1,500/person",
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545470/IMG_7141.JPG_r6zqkm.jpg",
+    itinerary: [
+      {
+        day: "Day 1",
+        title: "Full Day Sightseeing",
+        places: [
+          "Aliyar Dam",
+          "Monkey Falls",
+          "Loam’s View Point",
+          "Tea Estate Walk",
+          "Koolangal River",
+          "Balaji Temple",
+        ],
+      },
+    ],
+  },
+  {
+    id: "package-custom",
+    title: "Custom Private Tours",
+    subtitle: "Tailored to your needs",
+    duration: "Flexible",
+    priceText: "Contact for Pricing",
+    badge: "Personalized",
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545422/IMG_0722.JPG_odxq8j.jpg",
+    itinerary: [
+      {
+        day: "Custom",
+        title: "Your Choice",
+        places: ["Pick your places", "Set your budget", "Choose your dates"],
       },
     ],
   },

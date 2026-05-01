@@ -32,13 +32,13 @@ export default function PackagesSectionClient() {
       <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
         <SectionHeading
           eyebrow="Packages"
-          title="Flexible Tour Plans"
-          description="Well-structured plans with clear itinerary details, transparent pricing, and local support."
+          title="Choose Your Valparai Trip"
+          description="Whether it’s a quick escape or a relaxed getaway, we’ve got the perfect plan for you."
           center={false}
         />
         <Link
           href="/packages"
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          className="hidden sm:inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
         >
           View All Packages
           <ChevronRight className="h-4 w-4" />
@@ -48,6 +48,16 @@ export default function PackagesSectionClient() {
         {tourPackages.map((pkg) => (
           <PackageCard key={pkg.id} pkg={pkg} onViewPlan={openModal} onBook={handleBook} />
         ))}
+      </div>
+
+      <div className="flex sm:hidden justify-center mt-4">
+        <Link
+          href="/packages"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-8 py-3 text-sm font-semibold text-foreground shadow-sm transition-all active:scale-95"
+        >
+          View All Packages
+          <ChevronRight className="h-4 w-4" />
+        </Link>
       </div>
 
       <ItineraryModal

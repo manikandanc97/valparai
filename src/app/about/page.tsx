@@ -1,14 +1,11 @@
-import Navbar from "@/components/Navbar";
 import SectionHeading from "@/components/shared/section-heading";
-import { Card, CardContent } from "@/components/ui/card";
-import { brand, features } from "@/lib/site-content";
+import { brand } from "@/lib/site-content";
 import { User } from "lucide-react";
+import FeaturesSection from "@/components/shared/features-section";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
-
       <section className="section-padding relative overflow-hidden border-b bg-muted/40">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.12),transparent_32%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.12),transparent_36%)]" />
         <div className="container-wide relative space-y-12">
@@ -67,64 +64,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((item, idx) => {
-              const colorPalettes = [
-                {
-                  text: "text-emerald-600 dark:text-emerald-400",
-                  bg: "bg-emerald-100/50 dark:bg-emerald-500/10",
-                  border:
-                    "hover:border-emerald-300/50 dark:hover:border-emerald-500/30",
-                },
-                {
-                  text: "text-blue-600 dark:text-blue-400",
-                  bg: "bg-blue-100/50 dark:bg-blue-500/10",
-                  border:
-                    "hover:border-blue-300/50 dark:hover:border-blue-500/30",
-                },
-                {
-                  text: "text-amber-600 dark:text-amber-400",
-                  bg: "bg-amber-100/50 dark:bg-amber-500/10",
-                  border:
-                    "hover:border-amber-300/50 dark:hover:border-amber-500/30",
-                },
-                {
-                  text: "text-rose-600 dark:text-rose-400",
-                  bg: "bg-rose-100/50 dark:bg-rose-500/10",
-                  border:
-                    "hover:border-rose-300/50 dark:hover:border-rose-500/30",
-                },
-                {
-                  text: "text-violet-600 dark:text-violet-400",
-                  bg: "bg-violet-100/50 dark:bg-violet-500/10",
-                  border:
-                    "hover:border-violet-300/50 dark:hover:border-violet-500/30",
-                },
-                {
-                  text: "text-cyan-600 dark:text-cyan-400",
-                  bg: "bg-cyan-100/50 dark:bg-cyan-500/10",
-                  border:
-                    "hover:border-cyan-300/50 dark:hover:border-cyan-500/30",
-                },
-              ];
-              const palette = colorPalettes[idx % colorPalettes.length];
-
-              return (
-                <Card
-                  key={item.title}
-                  className={`group rounded-2xl border-border/60 bg-background/85 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${palette.border}`}
-                >
-                  <CardContent className="space-y-4 p-6">
-                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${palette.bg} ${palette.text}`}>
-                      <item.icon className="h-5 w-5" strokeWidth={2.2} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          <FeaturesSection showHeading={false} className="py-0" />
         </div>
       </section>
     </main>

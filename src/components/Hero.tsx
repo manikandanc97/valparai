@@ -54,25 +54,25 @@ const Hero = () => {
       <div className="container-wide w-full relative z-10 py-16 sm:py-24">
         <div className="max-w-2xl space-y-6 pt-10 sm:pt-16">
           <p className="inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#F9FBE9] backdrop-blur">
-            Premium Valparai Tours
+            Explore Valparai Like a Local
           </p>
           <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Escape to the misty hills of Valparai.
+            Feel the Real Valparai.
           </h1>
           <p className="text-sm leading-6 text-white/85 sm:text-lg">
-            Explore misty viewpoints, tea estates, and waterfalls through polished itineraries designed by local experts.
+            From misty roads to hidden waterfalls — experience Valparai with locals who know it best.
           </p>
           <div className="flex flex-col gap-3 pt-4 sm:flex-row">
             <Button asChild size="lg" className="h-12 rounded-md bg-[#D4AF37] px-8 text-base text-[#1A3021] transition-all hover:scale-105 hover:bg-[#c89f2c]">
               <a href="/packages">
                 <Compass className="mr-2 h-5 w-5" />
-                Explore Packages
+                Plan My Valparai Trip
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="h-12 rounded-md border-white/35 bg-white/5 px-8 text-base text-white transition-all hover:scale-105 hover:bg-white/10 hover:text-white">
               <a href={brand.whatsappHref} target="_blank" rel="noreferrer">
                 <MessageSquare className="mr-2 h-5 w-5" />
-                Talk on WhatsApp
+                Chat With Us
               </a>
             </Button>
           </div>

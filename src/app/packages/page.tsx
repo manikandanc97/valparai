@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import SectionHeading from "@/components/shared/section-heading";
 import dynamic from "next/dynamic";
 
@@ -10,7 +9,6 @@ const PackagesTabsClient = dynamic(
 export default function PackagesPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <section className="section-padding container-wide space-y-10">
         <SectionHeading
           eyebrow="Our Packages"

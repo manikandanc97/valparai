@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
+import PillBadge from "@/components/shared/pill-badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, XCircle, MapPin, Info } from "lucide-react";
 import { TourPackage } from "@/lib/tour-data";
@@ -33,7 +33,7 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
             <div className="absolute inset-0 bg-[#1A3021]/85" />
           </div>
           <div className="relative z-10 space-y-3">
-            <Badge className="w-fit bg-[#D4AF37] text-[#1A3021]">{pkg.duration}</Badge>
+            <PillBadge color="gold">{pkg.duration}</PillBadge>
             <DialogTitle className="text-2xl font-semibold text-white sm:text-3xl">{pkg.title}</DialogTitle>
             <p className="max-w-2xl text-sm text-white/80 sm:text-base">{pkg.subtitle}</p>
           </div>
@@ -97,9 +97,9 @@ const ItineraryModal = ({ pkg, isOpen, onClose, onBook }: ItineraryModalProps) =
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Badge variant="outline" className="border-primary/30 bg-primary/5 text-primary">
+                      <PillBadge color="indigo">
                         {day.day}
-                      </Badge>
+                      </PillBadge>
                       <h4 className="text-base font-semibold text-foreground sm:text-lg">{day.title}</h4>
                     </div>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

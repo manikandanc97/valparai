@@ -6,6 +6,8 @@ import { brand } from "@/lib/site-content";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -58,7 +60,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

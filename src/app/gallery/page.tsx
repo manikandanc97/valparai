@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar";
-import { getGalleryMedia } from "@/lib/cloudinary";
-import { galleryImages } from "@/lib/tour-data";
+import { getMergedGalleryMedia } from "@/lib/cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
@@ -8,25 +6,10 @@ import { ChevronLeft } from "lucide-react";
 export const revalidate = 3600; // Re-fetch Cloudinary data every 1 hour
 
 export default async function GalleryPage() {
-  const cloudinaryMedia = await getGalleryMedia();
-
-  // Use Cloudinary media if available, otherwise fall back to static list
-  const media =
-    cloudinaryMedia.length > 0
-      ? cloudinaryMedia
-      : galleryImages.map((img) => ({
-          url: img.url,
-          alt: img.alt,
-          type: (img.url.endsWith(".mov") || img.url.endsWith(".mp4")
-            ? "video"
-            : "image") as "image" | "video",
-          publicId: img.url,
-        }));
+  const media = await getMergedGalleryMedia();
 
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
-
       <section className="container-wide section-padding space-y-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-2">
