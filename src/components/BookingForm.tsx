@@ -317,7 +317,7 @@ const BookingForm = () => {
           <Button
             type="submit"
             disabled={loading}
-            className="mt-2 h-11 rounded-md"
+            className="mt-2 h-11 rounded-xl"
           >
             {loading ? (
               <>

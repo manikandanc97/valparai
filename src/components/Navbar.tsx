@@ -199,7 +199,7 @@ const Navbar = () => {
               {brand.phone}
             </a>
           </Button>
-          <Button asChild className="h-10 rounded-md px-5 bg-[#1e3328] hover:bg-[#2a4538] text-white">
+          <Button asChild className="h-10 rounded-xl px-5 bg-[#1e3328] hover:bg-[#2a4538] text-white">
             <Link href="/contact">Book Tour</Link>
           </Button>
         </div>

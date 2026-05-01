@@ -143,7 +143,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
                     value={members}
                     onValueChange={(val) => setMembers(val || "4")}
                   >
-                    <SelectTrigger className="h-7 w-auto min-w-[108px] rounded-full border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
+                    <SelectTrigger className="h-7 w-auto min-w-[108px] rounded-xl border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
                       <SelectValue placeholder="Members" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl border-[#D4AF37]/20 bg-background/95 shadow-xl backdrop-blur-xl">

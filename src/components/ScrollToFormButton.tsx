@@ -7,7 +7,7 @@ export default function ScrollToFormButton() {
   return (
     <Button
       variant="outline"
-      className="group rounded-full border-border/60 bg-background/50 px-6 py-6 text-sm font-bold shadow-sm backdrop-blur hover:bg-foreground hover:text-background"
+      className="group rounded-xl border-border/60 bg-background/50 px-6 py-6 text-sm font-bold shadow-sm backdrop-blur hover:bg-foreground hover:text-background"
       onClick={() =>
         document.getElementById("booking-form")?.scrollIntoView({ behavior: "smooth" })
       }

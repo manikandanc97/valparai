@@ -26,7 +26,7 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
           />
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5 active:scale-95"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5 active:scale-95"
           >
             View All
             <ChevronRight className="h-4 w-4" />
