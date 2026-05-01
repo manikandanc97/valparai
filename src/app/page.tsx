@@ -28,7 +28,7 @@ export default async function Home() {
       <Stats />
       <PackagesSectionClient />
       <ExperienceSection />
-      <section id="why-us" className="section-padding container-wide">
+      <section id="why-us" className="relative section-padding container-wide">
         <FeaturesSection />
       </section>
       <GalleryPreview media={galleryMedia} />

@@ -62,10 +62,10 @@ const Counter = ({ value, suffix, decimals = 0 }: { value: number; suffix: strin
   }, [isInView, value]);
 
   return (
-    <span ref={ref}>
+    <motion.span ref={ref} style={{ position: "relative", display: "inline-block" }}>
       {count.toFixed(decimals)}
       {suffix}
-    </span>
+    </motion.span>
   );
 };
 

@@ -63,7 +63,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
       viewport={{ once: true, margin: "-50px" }}
       variants={fadeInUp}
       whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
-      className="h-full"
+      className="relative h-full"
     >
       <Card
         className={cn(

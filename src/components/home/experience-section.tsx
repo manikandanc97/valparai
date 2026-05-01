@@ -43,7 +43,7 @@ const experiences = [
 export default function ExperienceSection() {
   return (
     <section className="relative bg-[#f1f3f1] section-padding overflow-hidden">
-      <div className="container-wide">
+      <div className="container-wide relative">
         <SectionHeading
           eyebrow="The Experience"
           title="What You’ll Experience"

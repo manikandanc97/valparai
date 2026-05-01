@@ -20,7 +20,7 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
       className="section-padding relative overflow-hidden bg-[#1A3021]"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.16),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(134,239,172,0.12),transparent_30%)]" />
-      <div className="container-wide space-y-12">
+      <div className="container-wide relative space-y-12">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
             eyebrow="Gallery"
