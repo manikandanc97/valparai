@@ -48,6 +48,20 @@ export const brand = {
   email: "valparaiwanderer@gmail.com",
   emailHref: "mailto:valparaiwanderer@gmail.com",
   address: "Valparai, Coimbatore District, Tamil Nadu",
+  socials: [
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/valparai_wanderer1?igsh=OXZkb3d1MnlwbTN5&utm_source=qr",
+    },
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/share/1Ct6crP7vG/?mibextid=wwXIfr",
+    },
+    {
+      name: "YouTube",
+      href: "https://youtube.com/@valparai_wanderer1?si=gWd7VHn9CTEjeW7o",
+    },
+  ],
 };
 
 export const navItems: NavItem[] = [
