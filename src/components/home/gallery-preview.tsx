@@ -1,8 +1,13 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import SectionHeading from "@/components/shared/section-heading";
 import { GalleryMedia } from "@/lib/cloudinary";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import ParallaxImage from "@/components/shared/parallax-image";
 
 interface GalleryPreviewProps {
   media: GalleryMedia[];
@@ -24,46 +29,80 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
             inverted
             center={false}
           />
-          <Link
-            href="/gallery"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5 active:scale-95"
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
           >
-            View All
-            <ChevronRight className="h-4 w-4" />
-          </Link>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5 active:scale-95"
+            >
+              View All
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer(0.1, 0.2)}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {media.slice(0, 5).map((item, i) => (
-            <div
+            <motion.div
               key={i}
-              className={`group relative overflow-hidden rounded-2xl border border-white/15 transition-all duration-300 ${
+              variants={fadeInUp}
+              whileHover="hover"
+              className={`group relative overflow-hidden rounded-2xl border border-white/15 ${
                 i === 0
                   ? "h-72 sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:h-[400px]"
                   : "h-48 lg:h-[192px]"
               }`}
             >
-              {item.type === "video" ? (
-                <video
-                  src={item.url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              ) : (
-                <Image
-                  src={item.url}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
-              <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-            </div>
+              <motion.div
+                variants={{
+                  hover: { scale: 1.1 }
+                }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="absolute inset-0"
+              >
+                {i === 0 ? (
+                  <ParallaxImage className="h-full w-full" offset={30}>
+                    <Image
+                      src={item.url}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                      className="object-cover scale-110"
+                    />
+                  </ParallaxImage>
+                ) : item.type === "video" ? (
+                  <video
+                    src={item.url}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={item.url}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                    className="object-cover"
+                  />
+                )}
+              </motion.div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

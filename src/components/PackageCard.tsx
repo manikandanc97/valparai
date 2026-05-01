@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useState } from "react";
 import PillBadge from "@/components/shared/pill-badge";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { fadeInUp } from "@/lib/animations";
 
 interface PackageCardProps {
   pkg: TourPackage;
@@ -55,12 +57,19 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
     : basePrice;
 
   return (
-    <div className="h-full">
+    <motion.div 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={fadeInUp}
+      whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+      className="h-full"
+    >
       <Card
         className={cn(
-          "group relative flex h-full flex-col gap-0 overflow-hidden rounded-3xl border-border/60 bg-background py-0 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl",
+          "group relative flex h-full flex-col gap-0 overflow-hidden rounded-3xl border-border/60 bg-background py-0 shadow-sm transition-all duration-500 hover:border-primary/40 hover:shadow-2xl",
           pkg.featured &&
-            "ring-2 ring-[#D4AF37]/50 ring-offset-4 ring-offset-background dark:ring-[#D4AF37]/30 shadow-2xl shadow-[#D4AF37]/10",
+            "ring-2 ring-[#D4AF37]/40 ring-offset-4 ring-offset-background dark:ring-[#D4AF37]/20 shadow-xl shadow-[#D4AF37]/5",
         )}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-linear-to-b from-white/10 to-transparent dark:from-white/5" />
@@ -194,7 +203,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
           </Button>
         </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

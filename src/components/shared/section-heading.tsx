@@ -1,4 +1,10 @@
+"use client";
+
+import { motion } from "framer-motion";
 import PillBadge, { BadgeColor } from "@/components/shared/pill-badge";
+import { fadeInUp } from "@/lib/animations";
+import RevealText from "@/components/shared/reveal-text";
+import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -28,28 +34,44 @@ export default function SectionHeading({
   const color = eyebrow ? getBadgeColor(eyebrow) : "cyan";
 
   return (
-    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div className={cn("relative", center ? "mx-auto max-w-2xl text-center" : "max-w-2xl")}>
       {eyebrow ? (
-        <div className={`mb-4 ${center ? "flex justify-center" : ""}`}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", damping: 15 }}
+          className={`mb-4 ${center ? "flex justify-center" : ""}`}
+        >
           <PillBadge color={color} className={inverted ? "bg-white/10 text-white/90 shadow-none" : ""}>
             {eyebrow}
           </PillBadge>
-        </div>
+        </motion.div>
       ) : null}
-      <h2
-        className={`text-3xl font-semibold tracking-tight sm:text-4xl ${inverted ? "text-white" : "text-foreground"}`}
-      >
-        {title}
-      </h2>
+      
+      <RevealText 
+        text={title}
+        className={`text-3xl font-semibold tracking-tight sm:text-4xl ${center ? "justify-center" : ""} ${inverted ? "text-white" : "text-foreground"}`}
+      />
+
       {description ? (
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           className={`mt-3 text-sm leading-6 sm:text-base ${inverted ? "text-white/80" : "text-muted-foreground"}`}
         >
           {description}
-        </p>
+        </motion.p>
       ) : null}
-      <div
-        className={`mt-5 h-1 w-20 rounded-full ${center ? "mx-auto" : ""} ${inverted ? "bg-white/30" : "bg-primary/40"}`}
+      
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: 80 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.8, ease: "circOut" }}
+        className={`mt-5 h-1 rounded-full ${center ? "mx-auto" : ""} ${inverted ? "bg-white/30" : "bg-primary/40"}`}
       />
     </div>
   );

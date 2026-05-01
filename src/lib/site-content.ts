@@ -65,6 +65,7 @@ export const navItems: NavItem[] = [
   { label: "Packages", href: "/packages" },
   { label: "About", href: "/about" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -109,5 +110,6 @@ export const footerQuickLinks: FooterLink[] = [
   { label: "Tour Packages", href: "/packages" },
   { label: "About Us", href: "/about" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];
