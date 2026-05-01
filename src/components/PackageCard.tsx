@@ -108,9 +108,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
                 "relative mt-5 flex h-[108px] flex-col justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300",
                 pkg.featured
                   ? "border-[#D4AF37]/50 bg-gradient-to-br from-[#1A3021]/15 via-[#1A3021]/5 to-[#D4AF37]/25 shadow-md dark:border-[#D4AF37]/40 dark:from-[#1A3021]/50 dark:via-[#1A3021]/30 dark:to-[#D4AF37]/30"
-                  : isDynamicPricing
-                    ? "border-primary/10 bg-primary/5"
-                    : "border-primary/10 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"
+                  : "border-border/40 bg-muted/20"
               )}
             >
               {pkg.featured && (
