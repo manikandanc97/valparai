@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import PillBadge, { BadgeColor } from "@/components/shared/pill-badge";
-import { fadeInUp } from "@/lib/animations";
 import RevealText from "@/components/shared/reveal-text";
 import { cn } from "@/lib/utils";
 

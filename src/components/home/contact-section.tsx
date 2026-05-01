@@ -1,3 +1,5 @@
+"use client";
+
 import SectionHeading from "@/components/shared/section-heading";
 import dynamic from "next/dynamic";
 import {
@@ -10,6 +12,8 @@ import {
   Mail,
 } from "lucide-react";
 import { brand } from "@/lib/site-content";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 const BookingForm = dynamic(() => import("@/components/BookingForm"));
 
@@ -149,9 +153,9 @@ export default function HomeContactSection() {
   return (
     <section
       id="contact-section"
-      className="section-padding border-t bg-muted/40"
+      className="section-padding relative border-t bg-muted/40 overflow-hidden"
     >
-      <div className="container-wide space-y-8">
+      <div className="container-wide space-y-8 relative z-10">
         <SectionHeading
           eyebrow="Contact"
           title="Ready to plan your next trip?"
@@ -161,11 +165,18 @@ export default function HomeContactSection() {
 
         <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
           {/* Left Side: Cards Grid (Appears second on mobile) */}
-          <div className="order-2 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1 lg:gap-6">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer(0.1, 0.2)}
+            className="order-2 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1 lg:gap-6"
+          >
             {/* Contact & Social Cards */}
             {contactCards.map((card, idx) => (
-              <a
+              <motion.a
                 key={`contact-${idx}`}
+                variants={fadeInUp}
                 href={card.href}
                 target="_blank"
                 rel="noreferrer"
@@ -184,13 +195,14 @@ export default function HomeContactSection() {
                     {card.value}
                   </p>
                 </div>
-              </a>
+              </motion.a>
             ))}
 
             {/* Info & Trust Cards */}
             {infoCards.map((card, idx) => (
-              <div
+              <motion.div
                 key={`info-${idx}`}
+                variants={fadeInUp}
                 className="group relative flex items-center gap-4 rounded-3xl border border-border/50 bg-background/50 p-4 shadow-sm transition-all duration-300 hover:shadow-md"
               >
                 <div
@@ -206,17 +218,23 @@ export default function HomeContactSection() {
                     {card.value}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Right Side: Booking Form (Appears first on mobile) */}
-          <div className="order-1 relative lg:order-2">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="order-1 relative lg:order-2"
+          >
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/5 to-accent/5 blur-2xl" />
             <div className="relative">
               <BookingForm />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
