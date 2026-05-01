@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Compass, MessageSquare, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { brand } from "@/lib/site-content";
+import { cn } from "@/lib/utils";
 
 const heroImages = [
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545450/IMG_0737.JPG_bfawec.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
 ];
 
 const Hero = () => {
@@ -39,16 +41,22 @@ const Hero = () => {
         {heroImages.map((image, index) => (
           <div
             key={image}
-            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-            style={{
-              opacity: currentIdx === index ? 1 : 0,
-              backgroundImage: `url(${image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
+            className={cn(
+              "absolute inset-0 transition-opacity duration-1000 ease-in-out",
+              currentIdx === index ? "opacity-100" : "opacity-0"
+            )}
+          >
+            <Image
+              src={image}
+              alt="Valparai Landscape"
+              fill
+              priority={index === 0}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
         ))}
-        <div className="absolute inset-0 bg-[#1A3021]/62" />
+        <div className="absolute inset-0 z-10 bg-[#1A3021]/62" />
       </div>
 
       <div className="container-wide w-full relative z-10 py-16 sm:py-24">

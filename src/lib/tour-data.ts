@@ -107,7 +107,7 @@ export const tourPackages: TourPackage[] = [
     badge: "Most Booked",
     featured: true,
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_0722.JPG_odxq8j.jpg",
     itinerary: [
       {
         day: "Day 1",
@@ -158,7 +158,7 @@ export const tourPackages: TourPackage[] = [
     priceText: "₹2,500/person",
     badge: "Best Value",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545450/IMG_0737.JPG_bfawec.jpg",
     inclusions: [
       "2 Days Sightseeing",
       "1 Night Stay",
@@ -205,7 +205,7 @@ export const tourPackages: TourPackage[] = [
     duration: "2 Days / 1 Night",
     priceText: "₹3,500/person",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
     itinerary: [
       {
         day: "Day 1",
@@ -244,7 +244,7 @@ export const tourPackages: TourPackage[] = [
     duration: "1 Day",
     priceText: "₹1,500/person",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545470/IMG_7141.JPG_r6zqkm.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545470/IMG_7141.JPG_r6zqkm.jpg",
     itinerary: [
       {
         day: "Day 1",
@@ -268,7 +268,7 @@ export const tourPackages: TourPackage[] = [
     priceText: "Contact for Pricing",
     badge: "Personalized",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545422/IMG_0722.JPG_odxq8j.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545422/IMG_0722.JPG_odxq8j.jpg",
     itinerary: [
       {
         day: "Custom",
