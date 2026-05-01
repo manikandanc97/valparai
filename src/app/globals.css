@@ -103,6 +103,9 @@
   }
   html {
     @apply scroll-smooth;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #2e5c3e transparent;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -114,6 +117,37 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight text-foreground;
+  }
+
+  /* Webkit (Chrome, Safari, Edge) — global thin scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2e5c3e;
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Dark mode scrollbar */
+  .dark ::-webkit-scrollbar-thumb {
+    background: #d4af37;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #e0c56a;
+  }
+  .dark {
+    scrollbar-color: #d4af37 transparent;
   }
 }
 

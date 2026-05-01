@@ -15,9 +15,9 @@ export default function FeaturesSection({ className = "", showHeading = true }: 
       <div className="space-y-12">
         {showHeading && (
           <SectionHeading
-            eyebrow="Why Choose Us"
-            title="Why Choose Valparai Wanderer"
-            description="Every touchpoint from booking to travel day is streamlined for clarity, trust, and comfort."
+            eyebrow="The Experience"
+            title="What Makes Us Different"
+            description="From the moment you book to the final drop-off — every detail is handled with care, trust, and local expertise."
           />
         )}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
