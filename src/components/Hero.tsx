@@ -12,9 +12,9 @@ import RevealText from "@/components/shared/reveal-text";
 import ParallaxImage from "@/components/shared/parallax-image";
 
 const heroImages = [
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_0722.JPG_odxq8j.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545450/IMG_0737.JPG_bfawec.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
+  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
 ];
 
 const Hero = () => {
@@ -56,8 +56,8 @@ const Hero = () => {
                 src={heroImages[currentIdx]}
                 alt="Valparai Landscape"
                 fill
-                priority
-                loading="eager"
+                priority={currentIdx === 0}
+                loading={currentIdx === 0 ? "eager" : "lazy"}
                 className="object-cover object-center scale-110"
                 sizes="100vw"
               />

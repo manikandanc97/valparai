@@ -65,9 +65,8 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
     const isExcluded = (publicId: string) =>
       EXCLUDED_PREFIXES.some((prefix) => publicId.startsWith(prefix));
 
-    // Inject f_auto,q_auto to auto-convert HEIC/AVIF to browser-friendly formats
-    const optimizeUrl = (url: string) =>
-      url.replace("/upload/", "/upload/f_auto,q_auto/");
+    // The global loader handles f_auto, q_auto, and resizing
+    const optimizeUrl = (url: string) => url;
 
     const toAlt = (publicId: string) =>
       publicId

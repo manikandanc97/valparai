@@ -3,10 +3,10 @@ import Stats from "@/components/Stats";
 import { getMergedGalleryMedia } from "@/lib/cloudinary";
 import dynamic from "next/dynamic";
 import FeaturesSection from "@/components/shared/features-section";
-import GalleryPreview from "@/components/home/gallery-preview";
-import HomeContactSection from "@/components/home/contact-section";
-import ExperienceSection from "@/components/home/experience-section";
-import CTASection from "@/components/home/cta-section";
+const ExperienceSection = dynamic(() => import("@/components/home/experience-section"));
+const GalleryPreview = dynamic(() => import("@/components/home/gallery-preview"));
+const HomeContactSection = dynamic(() => import("@/components/home/contact-section"));
+const CTASection = dynamic(() => import("@/components/home/cta-section"));
 
 const PackagesSectionClient = dynamic(
   () => import("@/components/home/packages-section-client"),
