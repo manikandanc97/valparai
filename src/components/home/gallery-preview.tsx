@@ -86,8 +86,10 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
                         src={item.url}
                         alt={item.alt}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                        className="object-cover scale-110"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                        loading="lazy"
+                        quality={75}
                       />
                     )}
                   </ParallaxImage>
@@ -99,14 +101,17 @@ export default function GalleryPreview({ media }: GalleryPreviewProps) {
                     muted
                     playsInline
                     className="h-full w-full object-cover"
+                    preload="none"
                   />
                 ) : (
                   <Image
                     src={item.url}
                     alt={item.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
+                    loading="lazy"
+                    quality={75}
                   />
                 )}
               </motion.div>

@@ -70,6 +70,8 @@ export default function Footer() {
                   width={56}
                   height={56}
                   className="h-full w-full object-contain"
+                  loading="lazy"
+                  quality={75}
                 />
               </div>
               <div>

@@ -15,6 +15,7 @@ export default function SiteLogo() {
           height={80} 
           className="h-full w-full object-contain" 
           priority
+          quality={75}
         />
       </div>
     </Link>

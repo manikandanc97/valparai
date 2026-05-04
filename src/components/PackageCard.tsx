@@ -80,6 +80,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            quality={75}
           />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-black/70 to-transparent" />
 

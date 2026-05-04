@@ -11,7 +11,7 @@ export default function cloudinaryLoader({
     "f_auto",
     "c_limit",
     `w_${width}`,
-    `q_${quality || "auto"}`,
+    `q_${quality || 75}`,
   ].join(",");
   
   // If it's already a cloudinary URL, replace the default upload part with our params

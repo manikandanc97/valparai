@@ -12,8 +12,9 @@ import Footer from "@/components/layout/Footer";
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   display: 'swap',
+  preload: true,
 });
 
 const inter = Inter({
@@ -21,6 +22,7 @@ const inter = Inter({
   variable: "--font-inter",
   weight: ["400", "500", "600"],
   display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -53,6 +55,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
       <body
         className={`${outfit.variable} ${inter.variable} font-sans antialiased transition-colors duration-300`}
       >

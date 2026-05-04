@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   User,
   Phone,
@@ -52,37 +52,44 @@ const BookingForm = () => {
   });
 
   // Exact pricing lookup
-  const selectedPkg = tourPackages.find((p) => p.title === formData.package);
-  const adultsCount = parseInt(formData.adults) || 0;
-  const kidsCount = parseInt(formData.kids) || 0;
-  const totalPeople = adultsCount + kidsCount;
+  const { pricePerPerson, totalPeople, totalPrice, selectedPkg } = useMemo(() => {
+    const pkg = tourPackages.find((p) => p.title === formData.package);
+    const adultsCount = parseInt(formData.adults) || 0;
+    const kidsCount = parseInt(formData.kids) || 0;
+    const total = adultsCount + kidsCount;
 
-  const pricingMap =
-    selectedPkg?.id === "package-2day-budget"
-      ? budgetPricing
-      : selectedPkg?.id === "package-3day"
-        ? package3DayPricing
-        : selectedPkg?.id === "package-2day-athirapalli"
-          ? package2DayAthirapalliPricing
-          : null;
+    const pricingMap =
+      pkg?.id === "package-2day-budget"
+        ? budgetPricing
+        : pkg?.id === "package-3day"
+          ? package3DayPricing
+          : pkg?.id === "package-2day-athirapalli"
+            ? package2DayAthirapalliPricing
+            : null;
 
-  let pricePerPerson = 0;
-  if (selectedPkg && pricingMap) {
-    pricePerPerson =
-      pricingMap[totalPeople] ??
-      pricingMap[
-        Object.keys(pricingMap)
-          .map(Number)
-          .sort((a, b) => a - b)
-          .at(-1)!
-      ] ??
-      0;
-  } else if (selectedPkg) {
-    pricePerPerson =
-      parseInt(selectedPkg.priceText.replace(/[^\d]/g, ""), 10) || 0;
-  }
+    let perPerson = 0;
+    if (pkg && pricingMap) {
+      perPerson =
+        pricingMap[total] ??
+        pricingMap[
+          Object.keys(pricingMap)
+            .map(Number)
+            .sort((a, b) => a - b)
+            .at(-1)!
+        ] ??
+        0;
+    } else if (pkg) {
+      perPerson =
+        parseInt(pkg.priceText.replace(/[^\d]/g, ""), 10) || 0;
+    }
 
-  const totalPrice = pricePerPerson * totalPeople;
+    return {
+      pricePerPerson: perPerson,
+      totalPeople: total,
+      totalPrice: perPerson * total,
+      selectedPkg: pkg,
+    };
+  }, [formData.package, formData.adults, formData.kids]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -19,6 +19,7 @@ const heroImages = [
 
 const Hero = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   const handlePackagesJump = () => {
     const packagesSection = document.getElementById("packages");
@@ -30,6 +31,7 @@ const Hero = () => {
   };
 
   useEffect(() => {
+    setIsHydrated(true);
     const timer = setInterval(() => {
       setCurrentIdx((prev) => (prev + 1) % heroImages.length);
     }, 9000);
@@ -41,25 +43,30 @@ const Hero = () => {
       id="home"
       className="relative isolate flex min-h-[calc(100vh-5rem)] items-center overflow-hidden lg:min-h-[calc(100vh-8rem)]"
     >
-      <div className="absolute inset-0 -z-20">
+      <div className="absolute inset-0 -z-20 bg-primary/10">
         <AnimatePresence mode="wait">
           <motion.div
-            key={heroImages[currentIdx]}
-            initial={{ opacity: 0 }}
+            key={currentIdx}
+            initial={isHydrated ? { opacity: 0 } : false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="absolute inset-0"
           >
-            <ParallaxImage className="h-full w-full" offset={80}>
+            <ParallaxImage
+              className="h-full w-full"
+              offset={80}
+              disabled={currentIdx === 0}
+            >
               <Image
                 src={heroImages[currentIdx]}
                 alt="Valparai Landscape"
                 fill
                 priority={currentIdx === 0}
                 loading={currentIdx === 0 ? "eager" : "lazy"}
-                className="object-cover object-center scale-110"
+                className="object-cover object-center"
                 sizes="100vw"
+                quality={75}
               />
             </ParallaxImage>
           </motion.div>

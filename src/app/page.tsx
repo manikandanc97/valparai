@@ -1,8 +1,10 @@
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
 import { getMergedGalleryMedia } from "@/lib/cloudinary";
 import dynamic from "next/dynamic";
 import FeaturesSection from "@/components/shared/features-section";
+const Stats = dynamic(() => import("@/components/Stats"), {
+  ssr: true, // Keep SSR for SEO/initial paint but defer execution
+});
 const ExperienceSection = dynamic(() => import("@/components/home/experience-section"));
 const GalleryPreview = dynamic(() => import("@/components/home/gallery-preview"));
 const HomeContactSection = dynamic(() => import("@/components/home/contact-section"));

@@ -62,10 +62,14 @@ const Counter = ({ value, suffix, decimals = 0 }: { value: number; suffix: strin
   }, [isInView, value]);
 
   return (
-    <motion.span ref={ref} style={{ position: "relative", display: "inline-block" }}>
+    <motion.div 
+      ref={ref} 
+      className="relative inline-block" 
+      style={{ position: "relative" }}
+    >
       {count.toFixed(decimals)}
       {suffix}
-    </motion.span>
+    </motion.div>
   );
 };
 
@@ -102,13 +106,13 @@ const Stats = () => {
                     <stat.icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.5} />
                   </div>
                   <div className="space-y-0.5">
-                    <p className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                    <div className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
                       <Counter 
                         value={stat.value} 
                         suffix={stat.suffix} 
                         decimals={stat.value % 1 !== 0 ? 1 : 0} 
                       />
-                    </p>
+                    </div>
                     <p className="text-[10px] font-medium text-muted-foreground sm:text-sm">{stat.label}</p>
                   </div>
                 </CardContent>
