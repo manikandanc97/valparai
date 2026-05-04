@@ -134,11 +134,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="relative z-50 w-full">
+    <>
       <TopBar />
       <header
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300",
+          "sticky top-0 z-50 w-full transition-all duration-300",
           scrolled
             ? "bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/70 border-b shadow-sm"
             : "bg-background border-b",
@@ -295,7 +295,7 @@ const Navbar = () => {
         </nav>
       </div>
     </header>
-  </div>
+    </>
   );
 };
 
