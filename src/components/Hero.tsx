@@ -82,7 +82,7 @@ const Hero = () => {
           </motion.p>
 
           <RevealText
-            text="Feel the Real Valparai"
+            text="Discover Valparai like never before"
             className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
             delay={0.6}
           />

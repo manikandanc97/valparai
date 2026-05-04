@@ -77,7 +77,8 @@ const contactCards = [
     value: brand.phone,
     href: brand.phoneHref,
     icon: Phone,
-    color: "text-blue-600 bg-blue-100/80 dark:bg-blue-500/10 dark:text-blue-400",
+    color:
+      "text-blue-600 bg-blue-100/80 dark:bg-blue-500/10 dark:text-blue-400",
   },
   {
     title: "WhatsApp",
@@ -108,7 +109,8 @@ const contactCards = [
     value: "Valparai Wanderer",
     href: brand.socials[1].href,
     icon: FacebookIcon,
-    color: "text-blue-700 bg-blue-100/80 dark:bg-blue-500/10 dark:text-blue-400",
+    color:
+      "text-blue-700 bg-blue-100/80 dark:bg-blue-500/10 dark:text-blue-400",
   },
   {
     title: "YouTube",
@@ -131,7 +133,8 @@ const infoCards = [
     title: "Office Hours",
     value: "08:00 AM - 08:00 PM",
     icon: Clock,
-    color: "text-rose-600 bg-rose-100/80 dark:bg-rose-500/10 dark:text-rose-400",
+    color:
+      "text-rose-600 bg-rose-100/80 dark:bg-rose-500/10 dark:text-rose-400",
   },
   {
     title: "Safe & Verified",
@@ -165,12 +168,12 @@ export default function HomeContactSection() {
 
         <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
           {/* Left Side: Cards Grid (Appears second on mobile) */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer(0.1, 0.2)}
-            className="order-2 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1 lg:gap-6"
+            className="order-2 grid grid-cols-2 gap-3 sm:gap-4 lg:order-1 lg:gap-6"
           >
             {/* Contact & Social Cards */}
             {contactCards.map((card, idx) => (
@@ -180,18 +183,21 @@ export default function HomeContactSection() {
                 href={card.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative flex items-center gap-4 rounded-3xl border border-border/50 bg-background/50 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+                className="group relative flex flex-col items-center text-center gap-2 rounded-2xl border border-border/50 bg-background/50 p-3 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 sm:flex-row sm:items-center sm:text-left sm:gap-4 sm:rounded-3xl sm:p-5"
               >
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12 sm:rounded-2xl ${card.color}`}
                 >
-                  <card.icon className="h-5 w-5" strokeWidth={2.2} />
+                  <card.icon
+                    className="h-4 w-4 sm:h-5 sm:w-5"
+                    strokeWidth={2.2}
+                  />
                 </div>
-                <div className="space-y-0.5">
-                  <h3 className="text-sm font-bold text-foreground">
+                <div className="space-y-0.5 min-w-0 flex-1 w-full">
+                  <h3 className="text-[11px] font-bold text-foreground leading-tight sm:text-sm">
                     {card.title}
                   </h3>
-                  <p className="text-xs font-medium text-muted-foreground line-clamp-1">
+                  <p className="text-[10px] font-medium text-muted-foreground break-all leading-tight sm:text-xs sm:break-normal">
                     {card.value}
                   </p>
                 </div>
@@ -203,18 +209,21 @@ export default function HomeContactSection() {
               <motion.div
                 key={`info-${idx}`}
                 variants={fadeInUp}
-                className="group relative flex items-center gap-4 rounded-3xl border border-border/50 bg-background/50 p-4 shadow-sm transition-all duration-300 hover:shadow-md"
+                className="group relative flex flex-col items-center text-center gap-2 rounded-2xl border border-border/50 bg-background/50 p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row sm:items-center sm:text-left sm:gap-4 sm:rounded-3xl sm:p-5"
               >
                 <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12 sm:rounded-2xl ${card.color}`}
                 >
-                  <card.icon className="h-5 w-5" strokeWidth={2.2} />
+                  <card.icon
+                    className="h-4 w-4 sm:h-5 sm:w-5"
+                    strokeWidth={2.2}
+                  />
                 </div>
-                <div className="space-y-0.5">
-                  <h3 className="text-sm font-bold text-foreground">
+                <div className="space-y-0.5 min-w-0 flex-1 w-full">
+                  <h3 className="text-[11px] font-bold text-foreground leading-tight sm:text-sm">
                     {card.title}
                   </h3>
-                  <p className="text-xs font-medium text-muted-foreground line-clamp-1">
+                  <p className="text-[10px] font-medium text-muted-foreground break-all leading-tight sm:text-xs sm:break-normal">
                     {card.value}
                   </p>
                 </div>
@@ -223,7 +232,7 @@ export default function HomeContactSection() {
           </motion.div>
 
           {/* Right Side: Booking Form (Appears first on mobile) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
