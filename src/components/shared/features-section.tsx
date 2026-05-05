@@ -33,6 +33,7 @@ export default function FeaturesSection({ className = "", showHeading = true }: 
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

@@ -83,6 +83,7 @@ export default function ExperienceSection() {
                     src={exp.image}
                     alt={exp.title}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover opacity-10 transition-all duration-700 blur-[2px] group-hover:opacity-20 group-hover:scale-110 group-hover:blur-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/95" />
