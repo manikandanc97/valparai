@@ -26,7 +26,7 @@ export default function FeaturesSection({ className = "", showHeading = true }: 
             return (
               <Card
                 key={item.title}
-                className="group relative overflow-hidden rounded-3xl border-border/50 bg-card shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-3xl border-border/50 bg-card p-0 gap-0 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
@@ -40,7 +40,7 @@ export default function FeaturesSection({ className = "", showHeading = true }: 
                     <item.icon className="h-5 w-5" strokeWidth={2.5} />
                   </div>
                 </div>
-                <CardContent className="space-y-2 p-5 sm:p-6">
+                <CardContent className="space-y-2 px-5 pb-5 pt-3 sm:px-6 sm:pb-6 sm:pt-4">
                   <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
                     {item.title}
                   </h3>
