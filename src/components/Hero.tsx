@@ -11,13 +11,11 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import RevealText from "@/components/shared/reveal-text";
 import ParallaxImage from "@/components/shared/parallax-image";
 
-const heroImages = [
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
-  "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
-];
+interface HeroProps {
+  images?: string[];
+}
 
-const Hero = () => {
+const Hero = ({ images = [] }: HeroProps) => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -33,7 +31,9 @@ const Hero = () => {
   useEffect(() => {
     setIsHydrated(true);
     const timer = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % heroImages.length);
+      if (images.length > 0) {
+        setCurrentIdx((prev) => (prev + 1) % images.length);
+      }
     }, 9000);
     return () => clearInterval(timer);
   }, []);
@@ -58,16 +58,18 @@ const Hero = () => {
               offset={80}
               disabled={currentIdx === 0}
             >
-              <Image
-                src={heroImages[currentIdx]}
-                alt="Valparai Landscape"
-                fill
-                priority={currentIdx === 0}
-                loading={currentIdx === 0 ? "eager" : "lazy"}
-                className="object-cover object-center"
-                sizes="100vw"
-                quality={75}
-              />
+              {images.length > 0 && (
+                <Image
+                  src={images[currentIdx]}
+                  alt="Valparai Landscape"
+                  fill
+                  priority={currentIdx === 0}
+                  loading={currentIdx === 0 ? "eager" : "lazy"}
+                  className="object-cover object-center"
+                  sizes="100vw"
+                  quality={75}
+                />
+              )}
             </ParallaxImage>
           </motion.div>
         </AnimatePresence>
@@ -98,7 +100,7 @@ const Hero = () => {
             variants={fadeInUp}
             className="text-sm leading-6 text-white/85 sm:text-lg"
           >
-            From misty roads to hidden waterfalls — experience Valparai with
+            From misty roads to hidden waterfalls, experience Valparai with
             locals who know it best.
           </motion.p>
           <motion.div

@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import { getMergedGalleryMedia } from "@/lib/cloudinary";
+import { getMergedGalleryMedia, getHeroImages } from "@/lib/cloudinary";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import ScrollHandler from "@/components/shared/scroll-handler";
@@ -24,14 +24,17 @@ const PackagesSectionClient = dynamic(
 export const revalidate = 3600; // Re-fetch Cloudinary data every 1 hour
 
 export default async function Home() {
-  const galleryMedia = await getMergedGalleryMedia();
+  const [galleryMedia, heroImages] = await Promise.all([
+    getMergedGalleryMedia(),
+    getHeroImages(),
+  ]);
 
   return (
     <main className="min-h-screen">
       <Suspense fallback={null}>
         <ScrollHandler />
       </Suspense>
-      <Hero />
+      <Hero images={heroImages} />
       <Stats />
       <PackagesSectionClient />
       <ExperienceSection />

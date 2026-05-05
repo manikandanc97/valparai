@@ -14,16 +14,7 @@ export interface GalleryMedia {
   publicId: string;
 }
 
-// Cloudinary sample/default files to exclude from the gallery
-const EXCLUDED_PREFIXES = [
-  "samples/",
-  "sample",
-  "cld-sample",
-  "main-sample",
-  "logo-valparai",
-  "valparai/features/",
-  "valparai/experiences/",
-];
+
 
 // Simple in-memory cache to avoid hammering Cloudinary API
 let cachedMedia: GalleryMedia[] | null = null;
@@ -47,46 +38,42 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
 
   // Ignore placeholder values from .env.local
   const configured =
-    cloudName && !cloudName.startsWith("your_") &&
-    apiKey && !apiKey.startsWith("your_") &&
-    apiSecret && !apiSecret.startsWith("your_");
+    cloudName &&
+    !cloudName.startsWith("your_") &&
+    apiKey &&
+    !apiKey.startsWith("your_") &&
+    apiSecret &&
+    !apiSecret.startsWith("your_");
 
   if (!configured) {
     return [];
   }
 
   try {
-    // Fetch images (from root — no prefix filter)
-    const imageRes = await cloudinary.api.resources({
-      type: "upload",
-      resource_type: "image",
-      max_results: 100,
-    });
+    // Fetch images (only from valparai/gallery)
+    const imageRes = await cloudinary.search
+      .expression('folder="valparai/gallery" AND resource_type="image"')
+      .max_results(100)
+      .execute();
 
-    // Fetch videos
-    const videoRes = await cloudinary.api.resources({
-      type: "upload",
-      resource_type: "video",
-      max_results: 20,
-    });
+    const videoRes = await cloudinary.search
+      .expression('folder="valparai/gallery" AND resource_type="video"')
+      .max_results(20)
+      .execute();
 
-    const isExcluded = (publicId: string) =>
-      EXCLUDED_PREFIXES.some((prefix) => publicId.startsWith(prefix));
-
-    // The global loader handles f_auto, q_auto, and resizing
     const optimizeUrl = (url: string) => url;
 
     const toAlt = (publicId: string) =>
       publicId
-        .replace(/^valparai\//, "")     // strip folder prefix if present
-        .replace(/\.[A-Z]+$/i, "")       // strip file extension like .JPG
-        .replace(/_[a-z0-9]{6}$/i, "")   // strip Cloudinary random suffix
-        .replace(/[-_]/g, " ")           // convert dashes/underscores to spaces
+        .replace(/^valparai\/gallery\//, "") // strip gallery prefix
+        .replace(/^valparai\//, "") // strip folder prefix if present
+        .replace(/\.[A-Z]+$/i, "") // strip file extension like .JPG
+        .replace(/_[a-z0-9]{6}$/i, "") // strip Cloudinary random suffix
+        .replace(/[-_]/g, " ") // convert dashes/underscores to spaces
         .replace(/^[A-F0-9]{8}-.*$/i, "Valparai Gallery") // UUID-style names get a clean label
         .trim() || "Valparai Gallery";
 
     const images: GalleryMedia[] = (imageRes.resources || [])
-      .filter((r: { public_id: string }) => !isExcluded(r.public_id))
       .map((r: { secure_url: string; public_id: string }) => ({
         url: optimizeUrl(r.secure_url),
         alt: toAlt(r.public_id),
@@ -95,7 +82,6 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
       }));
 
     const videos: GalleryMedia[] = (videoRes.resources || [])
-      .filter((r: { public_id: string }) => !isExcluded(r.public_id))
       .map((r: { secure_url: string; public_id: string }) => ({
         url: optimizeUrl(r.secure_url),
         alt: toAlt(r.public_id),
@@ -120,7 +106,7 @@ export async function getGalleryMedia(): Promise<GalleryMedia[]> {
  */
 export async function getMergedGalleryMedia(): Promise<GalleryMedia[]> {
   const cloudinaryMedia = await getGalleryMedia();
-  
+
   let allMedia: GalleryMedia[] = [];
   if (cloudinaryMedia.length > 0) {
     allMedia = cloudinaryMedia;
@@ -138,7 +124,7 @@ export async function getMergedGalleryMedia(): Promise<GalleryMedia[]> {
   // Deduplicate by publicId (or url if publicId is same as url)
   const uniqueMedia: GalleryMedia[] = [];
   const seen = new Set<string>();
-  
+
   for (const item of allMedia) {
     if (!seen.has(item.publicId)) {
       seen.add(item.publicId);
@@ -147,4 +133,56 @@ export async function getMergedGalleryMedia(): Promise<GalleryMedia[]> {
   }
 
   return uniqueMedia;
+}
+
+let cachedHeroImages: string[] | null = null;
+let cacheHeroTimestamp = 0;
+
+export async function getHeroImages(): Promise<string[]> {
+  if (cachedHeroImages && Date.now() - cacheHeroTimestamp < CACHE_TTL) {
+    return cachedHeroImages;
+  }
+
+  const defaultHeroImages = [
+    "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+    "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545450/IMG_0737.JPG_bfawec.jpg",
+    "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+  ];
+
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+  const configured =
+    cloudName &&
+    !cloudName.startsWith("your_") &&
+    apiKey &&
+    !apiKey.startsWith("your_") &&
+    apiSecret &&
+    !apiSecret.startsWith("your_");
+
+  if (!configured) {
+    return defaultHeroImages;
+  }
+
+  try {
+    const searchRes = await cloudinary.search
+      .expression('folder="valparai/hero"')
+      .max_results(10)
+      .execute();
+
+    if (!searchRes.resources || searchRes.resources.length === 0) {
+      return defaultHeroImages;
+    }
+
+    const images = searchRes.resources.map(
+      (r: { secure_url: string }) => r.secure_url,
+    );
+    cachedHeroImages = images;
+    cacheHeroTimestamp = Date.now();
+    return images;
+  } catch (err) {
+    console.error("[Cloudinary] Failed to fetch hero images:", err);
+    return defaultHeroImages;
+  }
 }
