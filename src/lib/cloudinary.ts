@@ -15,7 +15,15 @@ export interface GalleryMedia {
 }
 
 // Cloudinary sample/default files to exclude from the gallery
-const EXCLUDED_PREFIXES = ["samples/", "sample", "cld-sample", "main-sample", "logo-valparai"];
+const EXCLUDED_PREFIXES = [
+  "samples/",
+  "sample",
+  "cld-sample",
+  "main-sample",
+  "logo-valparai",
+  "valparai/features/",
+  "valparai/experiences/",
+];
 
 // Simple in-memory cache to avoid hammering Cloudinary API
 let cachedMedia: GalleryMedia[] | null = null;

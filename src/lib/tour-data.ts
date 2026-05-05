@@ -107,7 +107,20 @@ export const tourPackages: TourPackage[] = [
     badge: "Most Booked",
     featured: true,
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_0722.JPG_odxq8j.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/AAA3A8EC-1313-4322-84A2-1E39186CED3A_wkdg5a.heic",
+    inclusions: [
+      "3 Days Sightseeing",
+      "2 Nights Stay",
+      "Private Vehicle for Entire Trip",
+      "Pick-up & Drop (Pollachi)",
+      "Driver Beta, Toll & Parking",
+    ],
+    exclusions: [
+      "Food (Breakfast, Lunch, Dinner)",
+      "Entry Tickets (Falls, Dams, Parks)",
+      "Forest Checkpost Charges",
+      "Personal Expenses",
+    ],
     itinerary: [
       {
         day: "Day 1",
@@ -158,7 +171,7 @@ export const tourPackages: TourPackage[] = [
     priceText: "₹2,500/person",
     badge: "Best Value",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545450/IMG_0737.JPG_bfawec.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545412/IMG_7134.JPG_qewhvs.jpg",
     inclusions: [
       "2 Days Sightseeing",
       "1 Night Stay",
@@ -205,7 +218,20 @@ export const tourPackages: TourPackage[] = [
     duration: "2 Days / 1 Night",
     priceText: "₹3,500/person",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545488/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545483/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+    inclusions: [
+      "2 Days Sightseeing",
+      "1 Night Stay",
+      "Private Vehicle for Entire Trip",
+      "Pick-up & Drop (Pollachi)",
+      "Driver Beta, Toll & Parking",
+    ],
+    exclusions: [
+      "Food (Breakfast, Lunch, Dinner)",
+      "Entry Tickets (Falls, Dams, Parks)",
+      "Forest Checkpost Charges",
+      "Personal Expenses",
+    ],
     itinerary: [
       {
         day: "Day 1",
@@ -244,7 +270,19 @@ export const tourPackages: TourPackage[] = [
     duration: "1 Day",
     priceText: "₹1,500/person",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545470/IMG_7141.JPG_r6zqkm.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/DA39F41C-E456-4192-BDCB-2E368B38E6B1.JPG_fvnoou.jpg",
+    inclusions: [
+      "1 Day Full Sightseeing",
+      "Private Vehicle",
+      "Pick-up & Drop (Pollachi)",
+      "Driver Beta, Toll & Parking",
+    ],
+    exclusions: [
+      "Food (Breakfast, Lunch, Dinner)",
+      "Entry Tickets (Falls, Dams, Parks)",
+      "Forest Checkpost Charges",
+      "Personal Expenses",
+    ],
     itinerary: [
       {
         day: "Day 1",
@@ -268,7 +306,18 @@ export const tourPackages: TourPackage[] = [
     priceText: "Contact for Pricing",
     badge: "Personalized",
     image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545422/IMG_0722.JPG_odxq8j.jpg",
+      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_2031.JPG_mcz3us.jpg",
+    inclusions: [
+      "Tailored Sightseeing Itinerary",
+      "Choice of Private Vehicle",
+      "Optional Accommodation Booking",
+      "Expert Local Guidance",
+    ],
+    exclusions: [
+      "Food (unless pre-booked)",
+      "Entry Tickets & Forest Fees",
+      "Anything not mentioned in final quote",
+    ],
     itinerary: [
       {
         day: "Custom",
