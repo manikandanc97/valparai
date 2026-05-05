@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import { getMergedGalleryMedia } from "@/lib/cloudinary";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import ScrollHandler from "@/components/shared/scroll-handler";
 import FeaturesSection from "@/components/shared/features-section";
 const Stats = dynamic(() => import("@/components/Stats"), {
   ssr: true, // Keep SSR for SEO/initial paint but defer execution
@@ -26,6 +28,9 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
+      <Suspense fallback={null}>
+        <ScrollHandler />
+      </Suspense>
       <Hero />
       <Stats />
       <PackagesSectionClient />

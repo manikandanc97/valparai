@@ -152,7 +152,10 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-8 lg:flex">
           {navItems.map((link) => {
-            const isActive = link.href === pathname;
+            const isActive = 
+              pathname === link.href || 
+              (link.href !== "/" && pathname?.startsWith(link.href)) ||
+              (pathname === null && link.href === "/");
 
             return (
               <Link
@@ -160,7 +163,7 @@ const Navbar = () => {
                 href={link.href}
                 className={cn(
                   "group relative py-1 text-sm font-medium transition-colors",
-                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {link.label}
@@ -234,7 +237,10 @@ const Navbar = () => {
       >
         <nav className="container-wide flex flex-col gap-4">
           {navItems.map((link) => {
-            const isActive = link.href === pathname;
+            const isActive = 
+              pathname === link.href || 
+              (link.href !== "/" && pathname?.startsWith(link.href)) ||
+              (pathname === null && link.href === "/");
 
             return (
               <Link

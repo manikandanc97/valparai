@@ -20,6 +20,7 @@ export interface FeatureItem {
   title: string;
   description: string;
   icon: LucideIcon;
+  image: string;
 }
 
 export interface ContactItem {
@@ -81,21 +82,25 @@ export const features: FeatureItem[] = [
     title: "Local Experts",
     description: "We know every hidden spot, not just tourist places.",
     icon: MapPinned,
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777967161/valparai/features/local-experts.jpg",
   },
   {
     title: "Real Experiences",
     description: "No rush. No crowd. Just pure Valparai vibes.",
     icon: Trees,
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777967165/valparai/features/real-experiences.jpg",
   },
   {
     title: "Flexible Plans",
     description: "Trips designed based on your time & budget.",
     icon: Tag,
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777967159/valparai/features/flexible-plans.jpg",
   },
   {
     title: "Trusted by Travelers",
     description: "Hundreds of happy guests & repeat visitors.",
     icon: ShieldCheck,
+    image: "https://res.cloudinary.com/dvtpfyaf6/image/upload/v1777967167/valparai/features/trusted.jpg",
   },
 ];
 

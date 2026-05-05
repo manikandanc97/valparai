@@ -233,6 +233,7 @@ export default function HomeContactSection() {
 
           {/* Right Side: Booking Form (Appears first on mobile) */}
           <motion.div
+            id="booking"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

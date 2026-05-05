@@ -26,7 +26,7 @@ export default function PackagesTabsClient() {
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = "/#contact-section";
+      window.location.href = "/?book=true";
     }
   };
 
