@@ -56,66 +56,64 @@ export default function BlogsPage() {
         </div>
 
         {/* Toolbar: Search, Filters, and View Toggle */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between rounded-3xl border border-border/50 bg-card/30 p-4 backdrop-blur-md shadow-sm">
-          {/* Search */}
-          <div className="relative w-full lg:max-w-sm">
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input 
-              placeholder="Search articles..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-11 h-12 rounded-2xl border-primary/20 bg-background/80 shadow-sm focus-visible:ring-primary/30 text-base sm:text-sm"
-            />
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-auto min-w-0 overflow-hidden">
-            {/* Category Filters */}
-            <div className="w-full overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
-              <div className="flex gap-2 w-max px-1">
-                {categories.map(category => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={cn(
-                      "rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300",
-                      selectedCategory === category
-                        ? "bg-primary text-primary-foreground shadow-md"
-                        : "bg-primary/5 text-muted-foreground border border-transparent hover:border-primary/20 hover:bg-primary/10 hover:text-foreground"
-                    )}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            {/* Search */}
+            <div className="relative w-full sm:max-w-md">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Input 
+                placeholder="Search articles..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 h-14 rounded-2xl border-border bg-background shadow-sm focus-visible:ring-primary/30 text-base"
+              />
             </div>
 
             {/* View Toggle */}
-            <div className="hidden md:flex items-center gap-1 rounded-xl border border-border/50 bg-background/50 p-1.5 shadow-inner">
+            <div className="hidden md:flex items-center gap-1 rounded-2xl border border-border bg-background p-1.5 shadow-sm">
               <button
                 onClick={() => setViewMode("grid")}
                 className={cn(
-                  "rounded-lg p-2 transition-all duration-300",
+                  "rounded-xl p-2.5 transition-all duration-300",
                   viewMode === "grid" 
-                    ? "bg-primary/10 text-primary shadow-sm" 
+                    ? "bg-primary text-primary-foreground shadow-md" 
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
                 aria-label="Grid View"
               >
-                <LayoutGrid className="h-4 w-4" />
+                <LayoutGrid className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
                 className={cn(
-                  "rounded-lg p-2 transition-all duration-300",
+                  "rounded-xl p-2.5 transition-all duration-300",
                   viewMode === "list" 
-                    ? "bg-primary/10 text-primary shadow-sm" 
+                    ? "bg-primary text-primary-foreground shadow-md" 
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
                 aria-label="List View"
               >
-                <List className="h-4 w-4" />
+                <List className="h-5 w-5" />
               </button>
             </div>
+          </div>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-300 border",
+                  selectedCategory === category
+                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                    : "bg-background text-muted-foreground border-border hover:border-primary/30 hover:bg-primary/5 hover:text-foreground"
+                )}
+              >
+                {category}
+              </button>
+            ))}
           </div>
         </div>
 
