@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Car, MapPinned, Users, Tag, Map, ArrowRight } from "lucide-react";
+import { Car, MapPinned, Users, Tag, Map, ArrowRight, Bed, Camera } from "lucide-react";
 import {
   budgetPricing,
   package3DayPricing,
@@ -107,15 +107,23 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
         </CardHeader>
 
         <CardContent className="flex flex-1 flex-col px-6 pb-5 pt-4">
-          <div className="flex min-h-7 flex-wrap items-center gap-2">
-            <PillBadge color="emerald" className="px-3">
-              <MapPinned className="mr-1.5 h-3.5 w-3.5" />
-              Local Guide
-            </PillBadge>
-            <PillBadge color="violet" className="px-3">
-              <Car className="mr-1.5 h-3.5 w-3.5" />
+          <div className="grid grid-cols-2 gap-x-2 gap-y-2.5">
+            <div className="flex items-center text-[12px] font-medium text-muted-foreground">
+              <MapPinned className="mr-2 h-4 w-4 text-emerald-500" />
+              Local Expert Guide
+            </div>
+            <div className="flex items-center text-[12px] font-medium text-muted-foreground">
+              <Car className="mr-2 h-4 w-4 text-violet-500" />
               Private Vehicle
-            </PillBadge>
+            </div>
+            <div className="flex items-center text-[12px] font-medium text-muted-foreground">
+              <Camera className="mr-2 h-4 w-4 text-amber-500" />
+              Photo Stops
+            </div>
+            <div className="flex items-center text-[12px] font-medium text-muted-foreground">
+              <Bed className="mr-2 h-4 w-4 text-blue-500" />
+              Comfortable Stay
+            </div>
           </div>
             <div
               className={cn(

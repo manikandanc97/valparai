@@ -26,7 +26,7 @@ export default async function AboutPage() {
                 {profileImageUrl ? (
                   <Image 
                     src={profileImageUrl}
-                    alt="CEO Profile"
+                    alt="Johnson, CEO - Valparai Wanderer"
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -44,15 +44,21 @@ export default async function AboutPage() {
                 <div className="mb-5 inline-flex w-fit items-center rounded-full bg-primary/10 px-3.5 py-1.5 text-sm font-semibold text-primary">
                   2+ Years of Experience
                 </div>
-                <h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-                  Your Trusted Guide in Valparai
+                <h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance">
+                  Experience the Real Valparai, Not Just Visit It
                 </h2>
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                   <p>
-                    For the past two years, we have been crafting unforgettable travel packages that bring the true, untouched beauty of Valparai to life.
+                    At Valparai Wanderer, we don&apos;t just plan trips — we create authentic local experiences that stay with you forever.
                   </p>
                   <p>
-                    We believe in keeping things simple, honest, and completely focused on your comfort. Whether you are planning a relaxing family trip or an adventurous weekend with friends, we take care of all the local details so you can simply arrive and enjoy.
+                    From misty tea estates to hidden waterfalls, every journey is carefully crafted with local expertise, trusted support, and transparent pricing — so you can relax and enjoy every moment.
+                  </p>
+                  <p>
+                    Whether you&apos;re a couple, a family, or a group of friends, we make sure your Valparai trip feels personal, safe, and unforgettable.
+                  </p>
+                  <p className="pt-2 font-semibold text-foreground">
+                    — Johnson, Founder & CEO
                   </p>
                 </div>
                 <div className="mt-8 flex items-center gap-4">
