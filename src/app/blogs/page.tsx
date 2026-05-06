@@ -68,10 +68,10 @@ export default function BlogsPage() {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-auto">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-auto min-w-0 overflow-hidden">
             {/* Category Filters */}
-            <div className="flex -mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0 scrollbar-none max-w-[100vw] sm:max-w-none">
-              <div className="flex gap-2 min-w-max">
+            <div className="w-full overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+              <div className="flex gap-2 w-max px-1">
                 {categories.map(category => (
                   <button
                     key={category}
