@@ -37,7 +37,7 @@ export default function BlogsPage() {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <main className="min-h-screen bg-background pt-32 pb-24">
+    <main className="min-h-screen bg-background pt-24 pb-16">
       {/* Background Elements */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -top-[20%] left-[-10%] h-[50vw] w-[50vw] rounded-full bg-primary/5 blur-[120px]" />
@@ -55,47 +55,17 @@ export default function BlogsPage() {
           />
         </div>
 
-        {/* Toolbar: Search, Filters, and View Toggle */}
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            {/* Search */}
-            <div className="relative w-full sm:max-w-md">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-              <Input 
-                placeholder="Search articles..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-14 rounded-2xl border-border bg-background shadow-sm focus-visible:ring-primary/30 text-base"
-              />
-            </div>
-
-            {/* View Toggle */}
-            <div className="hidden md:flex items-center gap-1 rounded-2xl border border-border bg-background p-1.5 shadow-sm">
-              <button
-                onClick={() => setViewMode("grid")}
-                className={cn(
-                  "rounded-xl p-2.5 transition-all duration-300",
-                  viewMode === "grid" 
-                    ? "bg-primary text-primary-foreground shadow-md" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-                aria-label="Grid View"
-              >
-                <LayoutGrid className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={cn(
-                  "rounded-xl p-2.5 transition-all duration-300",
-                  viewMode === "list" 
-                    ? "bg-primary text-primary-foreground shadow-md" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-                aria-label="List View"
-              >
-                <List className="h-5 w-5" />
-              </button>
-            </div>
+        {/* Toolbar: Search and Filters Centered Hero Style */}
+        <div className="flex flex-col items-center justify-center gap-8 max-w-3xl mx-auto mt-4">
+          {/* Search */}
+          <div className="relative w-full">
+            <Search className="absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <Input 
+              placeholder="Search articles..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-14 h-16 rounded-full border-border bg-card shadow-sm focus-visible:ring-primary/30 text-lg w-full text-center"
+            />
           </div>
 
           {/* Category Filters */}
@@ -114,6 +84,40 @@ export default function BlogsPage() {
                 {category}
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* Results Info & View Toggle */}
+        <div className="flex items-center justify-between mt-8 border-b border-border/50 pb-4">
+          <p className="text-sm font-medium text-muted-foreground">
+            Showing {filteredPosts.length} {filteredPosts.length === 1 ? 'result' : 'results'}
+          </p>
+          
+          <div className="hidden md:flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm">
+            <button
+              onClick={() => setViewMode("grid")}
+              className={cn(
+                "rounded-full p-2 transition-all duration-300",
+                viewMode === "grid" 
+                  ? "bg-primary text-primary-foreground shadow-sm" 
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              )}
+              aria-label="Grid View"
+            >
+              <LayoutGrid className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setViewMode("list")}
+              className={cn(
+                "rounded-full p-2 transition-all duration-300",
+                viewMode === "list" 
+                  ? "bg-primary text-primary-foreground shadow-sm" 
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              )}
+              aria-label="List View"
+            >
+              <List className="h-4 w-4" />
+            </button>
           </div>
         </div>
 

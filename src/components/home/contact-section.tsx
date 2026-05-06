@@ -163,7 +163,6 @@ export default function HomeContactSection() {
           eyebrow="Contact"
           title="Ready to plan your next trip?"
           description="Reach us directly or submit the form. We respond quickly on WhatsApp."
-          center={false}
         />
 
         <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
