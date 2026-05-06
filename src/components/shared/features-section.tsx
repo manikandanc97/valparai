@@ -10,13 +10,16 @@ interface FeaturesSectionProps {
   showHeading?: boolean;
 }
 
-export default function FeaturesSection({ className = "", showHeading = true }: FeaturesSectionProps) {
+export default function FeaturesSection({
+  className = "",
+  showHeading = true,
+}: FeaturesSectionProps) {
   return (
     <div className={`relative ${className}`}>
       <div className="space-y-12">
         {showHeading && (
           <SectionHeading
-            eyebrow="The Difference"
+            eyebrow="Why choose us?"
             title="What Makes Us Different"
             description="From the moment you book to the final drop-off — every detail is handled with care, trust, and local expertise."
           />
