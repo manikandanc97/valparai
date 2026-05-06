@@ -2,8 +2,12 @@ import SectionHeading from "@/components/shared/section-heading";
 import { brand } from "@/lib/site-content";
 import { User } from "lucide-react";
 import FeaturesSection from "@/components/shared/features-section";
+import Image from "next/image";
+import { getProfileImage } from "@/lib/cloudinary";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const profileImageUrl = await getProfileImage();
+
   return (
     <main className="min-h-screen bg-background">
       <section className="section-padding relative overflow-hidden border-b bg-muted/40">
@@ -17,11 +21,22 @@ export default function AboutPage() {
 
           <div className="w-full overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-md backdrop-blur">
             <div className="grid items-stretch md:grid-cols-2">
-              {/* Image Skeleton / Placeholder */}
+              {/* Profile Image */}
               <div className="relative flex min-h-[300px] w-full flex-col items-center justify-center bg-muted/60 md:min-h-[400px]">
-                {/* TODO: Add real image here */}
-                <User className="mb-3 h-16 w-16 text-muted-foreground/40" strokeWidth={1.5} />
-                <span className="text-sm font-medium text-muted-foreground/60">Profile Photo Placeholder</span>
+                {profileImageUrl ? (
+                  <Image 
+                    src={profileImageUrl}
+                    alt="CEO Profile"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <>
+                    <User className="mb-3 h-16 w-16 text-muted-foreground/40" strokeWidth={1.5} />
+                    <span className="text-sm font-medium text-muted-foreground/60">Profile Photo Placeholder</span>
+                  </>
+                )}
               </div>
               
               {/* Content */}

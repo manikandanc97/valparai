@@ -5,7 +5,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import PackageCard from "@/components/PackageCard";
 import SectionHeading from "@/components/shared/section-heading";
-import { tourPackages, TourPackage } from "@/lib/tour-data";
+import { TourPackage } from "@/lib/tour-data";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -14,7 +14,7 @@ const ItineraryModal = dynamic(() => import("@/components/ItineraryModal"), {
   ssr: false,
 });
 
-export default function PackagesSectionClient() {
+export default function PackagesSectionClient({ packages }: { packages: TourPackage[] }) {
   const [selectedPkg, setSelectedPkg] = useState<TourPackage | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -54,7 +54,7 @@ export default function PackagesSectionClient() {
         variants={staggerContainer(0.15, 0)}
         className="relative grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
       >
-        {tourPackages.map((pkg) => (
+        {packages.map((pkg) => (
           <motion.div key={pkg.id} variants={fadeInUp}>
             <PackageCard pkg={pkg} onViewPlan={openModal} onBook={handleBook} />
           </motion.div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import PackageCard from "@/components/PackageCard";
-import { tourPackages, TourPackage } from "@/lib/tour-data";
+import { TourPackage } from "@/lib/tour-data";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Wallet, Crown, Gem, Sparkles } from "lucide-react";
 
@@ -11,7 +11,7 @@ const ItineraryModal = dynamic(() => import("@/components/ItineraryModal"), {
   ssr: false,
 });
 
-export default function PackagesTabsClient() {
+export default function PackagesTabsClient({ packages }: { packages: TourPackage[] }) {
   const [selectedPkg, setSelectedPkg] = useState<TourPackage | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,7 +59,7 @@ export default function PackagesTabsClient() {
 
         <TabsContent value="budget" className="mt-0">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {tourPackages.map((pkg) => (
+            {packages.map((pkg) => (
               <PackageCard
                 key={pkg.id}
                 pkg={pkg}

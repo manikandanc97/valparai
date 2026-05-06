@@ -91,14 +91,14 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
           </div>
 
           {pkg.badge && (
-            <PillBadge color="gold" className="absolute right-3 top-3 z-20 shadow-lg backdrop-blur-md sm:right-4 sm:top-4">
+            <PillBadge color="gold" className="absolute right-3 top-3 z-20 bg-[#D4AF37] text-[#1A3021] font-extrabold border-none shadow-lg backdrop-blur-none dark:bg-[#D4AF37] dark:text-[#1A3021] sm:right-4 sm:top-4">
               {pkg.badge}
             </PillBadge>
           )}
         </div>
 
         <CardHeader className="space-y-2 px-6 pb-0 pt-6">
-          <CardTitle className="line-clamp-1 text-[1.45rem] font-bold leading-tight tracking-tight text-foreground">
+          <CardTitle className="text-[1.45rem] font-bold leading-tight tracking-tight text-foreground text-balance">
             {pkg.title}
           </CardTitle>
           <p className="line-clamp-2 text-sm font-medium text-muted-foreground">

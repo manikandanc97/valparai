@@ -13,7 +13,7 @@ const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   weight: ["400", "500", "600", "700", "800"],
-  display: 'swap',
+  display: "swap",
   preload: true,
 });
 
@@ -21,14 +21,21 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["400", "500", "600"],
-  display: 'swap',
+  display: "swap",
   preload: true,
 });
 
 export const metadata: Metadata = {
   title: "Valparai Wanderer Tours | Authentic Local Tour Packages",
-  description: "Discover authentic Valparai tour packages - Monkey Falls Trek, 1 Day Sightseeing & Tea Estate Safari. Book your adventure today!",
-  keywords: ["Valparai", "Tour Packages", "Monkey Falls", "Athirapalli Waterfalls", "Wildlife Safari"],
+  description:
+    "Discover authentic Valparai tour packages - Monkey Falls Trek, 1 Day Sightseeing & Tea Estate Safari. Book your adventure today!",
+  keywords: [
+    "Valparai",
+    "Tour Packages",
+    "Monkey Falls",
+    "Athirapalli Waterfalls",
+    "Wildlife Safari",
+  ],
   openGraph: {
     title: "Valparai Wanderer Tours",
     description: "Authentic Local Tour Packages in Valparai",
@@ -83,8 +90,14 @@ export default function RootLayout({
           className="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-lg shadow-[#25d366]/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-[#25d366]/40 sm:bottom-7 sm:right-7"
           title="Chat with us on WhatsApp"
         >
-          <span className="absolute inset-0 animate-ping rounded-full bg-[#25d366]/40" style={{ animationDuration: '2s' }} />
-          <span className="absolute inset-[-3px] animate-pulse rounded-full border-2 border-[#25d366]/50" style={{ animationDuration: '2.5s' }} />
+          <span
+            className="absolute inset-0 animate-ping rounded-full bg-[#25d366]/40"
+            style={{ animationDuration: "2s" }}
+          />
+          <span
+            className="absolute inset-[-3px] animate-pulse rounded-full border-2 border-[#25d366]/50"
+            style={{ animationDuration: "2.5s" }}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"

@@ -100,14 +100,13 @@ export interface TourPackage {
 export const tourPackages: TourPackage[] = [
   {
     id: "package-3day",
-    title: "3 Days Valparai & Athirapalli",
-    subtitle: "Complete Nature & Wildlife Experience",
+    title: "Ultimate 3 Days Valparai & Athirapalli Experience",
+    subtitle: "Tea estates • Wildlife • Majestic waterfalls",
     duration: "3 Days / 2 Nights",
     priceText: "₹4,500/person",
     badge: "Most Booked",
     featured: true,
-    image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/AAA3A8EC-1313-4322-84A2-1E39186CED3A_wkdg5a.heic",
+    image: "",
     inclusions: [
       "3 Days Sightseeing",
       "2 Nights Stay",
@@ -165,13 +164,12 @@ export const tourPackages: TourPackage[] = [
   },
   {
     id: "package-2day-budget",
-    title: "2 Days Valparai Budget Trip",
-    subtitle: "Best Value Nature Escape",
+    title: "2 Days Valparai Scenic Escape",
+    subtitle: "Perfect weekend getaway into the hills",
     duration: "2 Days / 1 Night",
     priceText: "₹2,500/person",
     badge: "Best Value",
-    image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545412/IMG_7134.JPG_qewhvs.jpg",
+    image: "",
     inclusions: [
       "2 Days Sightseeing",
       "1 Night Stay",
@@ -213,12 +211,11 @@ export const tourPackages: TourPackage[] = [
   },
   {
     id: "package-2day-athirapalli",
-    title: "2 Days Valparai & Athirapalli",
-    subtitle: "Quick Getaway to the Falls",
+    title: "2 Days Valparai & Athirapalli Waterfall Escape",
+    subtitle: "Hills + Falls in one unforgettable trip",
     duration: "2 Days / 1 Night",
     priceText: "₹3,500/person",
-    image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545483/8845601C-A17F-4768-B345-29F559EA813B.JPG_zodpel.jpg",
+    image: "",
     inclusions: [
       "2 Days Sightseeing",
       "1 Night Stay",
@@ -269,8 +266,7 @@ export const tourPackages: TourPackage[] = [
     subtitle: "Quick Sightseeing Tour",
     duration: "1 Day",
     priceText: "₹1,500/person",
-    image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545372/DA39F41C-E456-4192-BDCB-2E368B38E6B1.JPG_fvnoou.jpg",
+    image: "",
     inclusions: [
       "1 Day Full Sightseeing",
       "Private Vehicle",
@@ -305,8 +301,7 @@ export const tourPackages: TourPackage[] = [
     duration: "Flexible",
     priceText: "Contact for Pricing",
     badge: "Personalized",
-    image:
-      "https://res.cloudinary.com/dvtpfyaf6/image/upload/f_auto,q_auto/v1777545429/IMG_2031.JPG_mcz3us.jpg",
+    image: "",
     inclusions: [
       "Tailored Sightseeing Itinerary",
       "Choice of Private Vehicle",
