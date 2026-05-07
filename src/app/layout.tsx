@@ -26,6 +26,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://valparaiwandertours.com"),
   title: "Valparai Wanderer Tours | Authentic Local Tour Packages",
   description:
     "Discover authentic Valparai tour packages - Monkey Falls Trek, 1 Day Sightseeing & Tea Estate Safari. Book your adventure today!",
@@ -36,10 +37,19 @@ export const metadata: Metadata = {
     "Athirapalli Waterfalls",
     "Wildlife Safari",
   ],
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Valparai Wanderer Tours",
     description: "Authentic Local Tour Packages in Valparai",
-    url: "https://valparaitourpackages.com",
+    url: "https://valparaiwandertours.com",
     siteName: "Valparai Wanderer",
     images: [
       {
