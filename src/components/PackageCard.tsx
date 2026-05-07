@@ -11,7 +11,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Car, MapPinned, Users, Tag, Map, ArrowRight, Bed, Camera } from "lucide-react";
+import {
+  Car,
+  MapPinned,
+  Users,
+  Tag,
+  Map,
+  ArrowRight,
+  Bed,
+  Camera,
+} from "lucide-react";
 import {
   budgetPricing,
   package3DayPricing,
@@ -57,7 +66,7 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
     : basePrice;
 
   return (
-    <motion.div 
+    <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
@@ -91,7 +100,10 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
           </div>
 
           {pkg.badge && (
-            <PillBadge color="gold" className="absolute right-3 top-3 z-20 bg-[#D4AF37] text-[#1A3021] font-extrabold border-none shadow-lg backdrop-blur-none dark:bg-[#D4AF37] dark:text-[#1A3021] sm:right-4 sm:top-4">
+            <PillBadge
+              color="gold"
+              className="absolute right-3 top-3 z-20 bg-[#D4AF37] text-[#1A3021] font-extrabold border-none shadow-lg backdrop-blur-none dark:bg-[#D4AF37] dark:text-[#1A3021] sm:right-4 sm:top-4"
+            >
               {pkg.badge}
             </PillBadge>
           )}
@@ -118,80 +130,90 @@ const PackageCard = ({ pkg, onViewPlan, onBook }: PackageCardProps) => {
             </div>
             <div className="flex items-center text-[12px] font-medium text-muted-foreground">
               <Camera className="mr-2 h-4 w-4 text-amber-500" />
-              Photo Stops
+              Photo Spots Covered
             </div>
             <div className="flex items-center text-[12px] font-medium text-muted-foreground">
               <Bed className="mr-2 h-4 w-4 text-blue-500" />
               Comfortable Stay
             </div>
           </div>
-            <div
-              className={cn(
-                "relative mt-5 flex h-[108px] flex-col justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300",
-                pkg.featured
-                  ? "border-[#D4AF37]/50 bg-gradient-to-br from-[#1A3021]/15 via-[#1A3021]/5 to-[#D4AF37]/25 shadow-md dark:border-[#D4AF37]/40 dark:from-[#1A3021]/50 dark:via-[#1A3021]/30 dark:to-[#D4AF37]/30"
-                  : "border-border/40 bg-muted/20"
-              )}
-            >
-              {pkg.featured && (
-                <div className="pointer-events-none absolute -right-6 -top-6 z-0 h-24 w-24 rounded-full bg-[#D4AF37]/20 blur-2xl dark:bg-[#D4AF37]/10" />
-              )}
+          <div
+            className={cn(
+              "relative mt-5 flex h-[108px] flex-col justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300",
+              pkg.featured
+                ? "border-[#D4AF37]/50 bg-gradient-to-br from-[#1A3021]/15 via-[#1A3021]/5 to-[#D4AF37]/25 shadow-md dark:border-[#D4AF37]/40 dark:from-[#1A3021]/50 dark:via-[#1A3021]/30 dark:to-[#D4AF37]/30"
+                : "border-border/40 bg-muted/20",
+            )}
+          >
+            {pkg.featured && (
+              <div className="pointer-events-none absolute -right-6 -top-6 z-0 h-24 w-24 rounded-full bg-[#D4AF37]/20 blur-2xl dark:bg-[#D4AF37]/10" />
+            )}
 
-              <div className="relative z-10 flex h-8 items-center justify-between">
-                <div className="flex items-center gap-1.5 opacity-90">
-                  {isDynamicPricing ? (
-                    <Users className="h-4 w-4 text-[#1A3021] dark:text-[#D4AF37]" />
-                  ) : (
-                    <Tag className="h-4 w-4 text-primary/70" />
-                  )}
-                  <p
-                    className={cn(
-                      "text-[11px] font-bold uppercase tracking-widest",
-                      isDynamicPricing
-                        ? "text-[#1A3021] dark:text-[#D4AF37]"
-                        : "text-primary/70"
-                    )}
-                  >
-                    {isDynamicPricing ? "Group Size" : pkg.featured ? "Recommended" : "Starting from"}
-                  </p>
-                </div>
-
-                {isDynamicPricing && pricingMap && (
-                  <Select
-                    value={members}
-                    onValueChange={(val) => setMembers(val || "4")}
-                  >
-                    <SelectTrigger className="h-7 w-auto min-w-[108px] rounded-xl border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
-                      <SelectValue placeholder="Members" />
-                    </SelectTrigger>
-                    <SelectContent className="rounded-xl border-[#D4AF37]/20 bg-background/95 shadow-xl backdrop-blur-xl">
-                      {Object.keys(pricingMap)
-                        .map(Number)
-                        .sort((a, b) => a - b)
-                        .map((num) => (
-                          <SelectItem key={num} value={String(num)} className="cursor-pointer rounded-lg text-xs font-bold">
-                            {num} {num === 1 ? "Person" : "People"}
-                          </SelectItem>
-                        ))}
-                    </SelectContent>
-                  </Select>
+            <div className="relative z-10 flex h-8 items-center justify-between">
+              <div className="flex items-center gap-1.5 opacity-90">
+                {isDynamicPricing ? (
+                  <Users className="h-4 w-4 text-[#1A3021] dark:text-[#D4AF37]" />
+                ) : (
+                  <Tag className="h-4 w-4 text-primary/70" />
                 )}
-              </div>
-
-              <div className="relative z-10 flex items-baseline gap-1.5">
                 <p
                   className={cn(
-                    "text-3xl font-black tracking-tight sm:text-4xl",
-                    isDynamicPricing ? "text-[#1A3021] dark:text-white" : "text-foreground"
+                    "text-[11px] font-bold uppercase tracking-widest",
+                    isDynamicPricing
+                      ? "text-[#1A3021] dark:text-[#D4AF37]"
+                      : "text-primary/70",
                   )}
                 >
-                  ₹{currentPrice.toLocaleString()}
+                  {isDynamicPricing
+                    ? "Group Size"
+                    : pkg.featured
+                      ? "Recommended"
+                      : "Starting from"}
                 </p>
-                <span className="text-xs font-semibold tracking-normal text-muted-foreground/80 sm:text-sm">
-                  /person
-                </span>
               </div>
+
+              {isDynamicPricing && pricingMap && (
+                <Select
+                  value={members}
+                  onValueChange={(val) => setMembers(val || "4")}
+                >
+                  <SelectTrigger className="h-7 w-auto min-w-[108px] rounded-xl border-[#D4AF37]/40 bg-white/70 px-2.5 py-0 text-xs font-bold text-[#1A3021] shadow-none backdrop-blur-md transition-all hover:bg-white focus:ring-1 focus:ring-[#D4AF37]/60 dark:border-[#D4AF37]/30 dark:bg-black/40 dark:text-white dark:hover:bg-black/60">
+                    <SelectValue placeholder="Members" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl border-[#D4AF37]/20 bg-background/95 shadow-xl backdrop-blur-xl">
+                    {Object.keys(pricingMap)
+                      .map(Number)
+                      .sort((a, b) => a - b)
+                      .map((num) => (
+                        <SelectItem
+                          key={num}
+                          value={String(num)}
+                          className="cursor-pointer rounded-lg text-xs font-bold"
+                        >
+                          {num} {num === 1 ? "Person" : "People"}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
+
+            <div className="relative z-10 flex items-baseline gap-1.5">
+              <p
+                className={cn(
+                  "text-3xl font-black tracking-tight sm:text-4xl",
+                  isDynamicPricing
+                    ? "text-[#1A3021] dark:text-white"
+                    : "text-foreground",
+                )}
+              >
+                ₹{currentPrice.toLocaleString()}
+              </p>
+              <span className="text-xs font-semibold tracking-normal text-muted-foreground/80 sm:text-sm">
+                /person
+              </span>
+            </div>
+          </div>
         </CardContent>
 
         <CardFooter className="mt-auto grid grid-cols-2 gap-3 border-t border-border/40 bg-transparent px-6 pb-6 pt-4">

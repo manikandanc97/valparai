@@ -161,7 +161,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       {
         type: "paragraph",
-        text: "Make your Valparai trip smooth and memorable with local travel experts offering guided tours, private vehicles, comfortable stays, and the best scenic photo stops across the hills.",
+        text: "Make your Valparai trip smooth and memorable with local travel experts offering guided tours, private vehicles, comfortable stays, and the best scenic photo Spots Covered across the hills.",
       },
 
       {
