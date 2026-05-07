@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,6 +27,8 @@ export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [visibleCount, setVisibleCount] = useState(6);
+
 
   const filteredPosts = useMemo(() => {
     return BLOG_POSTS.filter((post) => {
@@ -35,6 +38,13 @@ export default function BlogsPage() {
       return matchesSearch && matchesCategory;
     });
   }, [searchQuery, selectedCategory]);
+
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [searchQuery, selectedCategory]);
+
+
 
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
@@ -136,7 +146,7 @@ export default function BlogsPage() {
         >
           <AnimatePresence mode="popLayout">
             {filteredPosts.length > 0 ? (
-              filteredPosts.map((post) => (
+              filteredPosts.slice(0, visibleCount).map((post) => (
                 <motion.div
                   key={post.id}
                   layout
@@ -246,8 +256,8 @@ export default function BlogsPage() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Load More Button (Only show if there are posts) */}
-        {filteredPosts.length > 0 && (
+        {/* Load More Button (Only show if there are more posts to load) */}
+        {filteredPosts.length > visibleCount && (
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -255,7 +265,12 @@ export default function BlogsPage() {
             variants={fadeInUp}
             className="mt-16 flex justify-center"
           >
-            <Button variant="outline" size="lg" className="rounded-xl h-14 border-primary/20 px-10 font-semibold hover:bg-primary/5 hover:text-primary transition-all">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="rounded-xl h-14 border-primary/20 px-10 font-semibold hover:bg-primary/5 hover:text-primary transition-all"
+              onClick={() => setVisibleCount(prev => prev + 6)}
+            >
               Load More Articles
             </Button>
           </motion.div>
