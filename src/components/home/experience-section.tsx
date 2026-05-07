@@ -56,7 +56,7 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <section className="relative bg-[#f1f3f1] section-padding overflow-hidden">
+    <section className="relative bg-[#f1f3f1] dark:bg-background section-padding overflow-hidden">
       <div className="container-wide relative">
         <SectionHeading
           eyebrow="The Experience"
@@ -80,7 +80,7 @@ export default function ExperienceSection() {
             >
               <Card
                 className={cn(
-                  "group relative h-full overflow-hidden rounded-3xl border-none bg-background transition-all duration-500 hover:shadow-2xl",
+                  "group relative h-full overflow-hidden rounded-3xl border-none bg-background dark:bg-card transition-all duration-500 hover:shadow-2xl",
                   exp.highlight && "ring-2 ring-primary/20 lg:scale-[1.02]",
                 )}
               >
@@ -93,7 +93,7 @@ export default function ExperienceSection() {
                     sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover opacity-10 transition-all duration-700 blur-[2px] group-hover:opacity-20 group-hover:scale-110 group-hover:blur-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/95" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/95 dark:from-card/80 dark:to-card/95" />
                 </div>
 
                 <CardContent className="relative z-10 flex flex-col items-center justify-center p-5 text-center sm:p-8">
@@ -145,7 +145,7 @@ export default function ExperienceSection() {
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full px-10 h-14 text-base border-2 transition-all hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200"
+              className="rounded-full px-10 h-14 text-base border-2 transition-all hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 dark:hover:bg-emerald-950/30 dark:hover:text-emerald-400 dark:hover:border-emerald-800"
             >
               <Link href={brand.whatsappHref} target="_blank">
                 <MessageCircle className="mr-2 h-5 w-5 text-emerald-500" />
