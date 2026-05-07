@@ -30,7 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Nestled in the heart of the Western Ghats, Valparai is a paradise of misty hills, tea estates, waterfalls, and untouched nature. Whether you’re a weekend traveler or a nature lover, Valparai offers a peaceful escape filled with scenic beauty and hidden gems waiting to be explored.",
       },
 
-      { type: "heading", text: "1. 🌊 Aliyar Dam" },
+      { type: "heading", text: "1. Aliyar Dam" },
 
       {
         type: "paragraph",
@@ -39,10 +39,10 @@ export const BLOG_POSTS: BlogPost[] = [
 
       {
         type: "quote",
-        text: "Why visit: Stunning reservoir views and peaceful vibes — ideal for photos and quick travel breaks.",
+        text: "Why visit: Stunning reservoir views and peaceful vibes, ideal for photos and quick travel breaks.",
       },
 
-      { type: "heading", text: "2. 💧 Monkey Falls" },
+      { type: "heading", text: "2. Monkey Falls" },
 
       {
         type: "paragraph",
@@ -54,7 +54,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Tip: Be cautious of monkeys around the area while enjoying the waterfall experience.",
       },
 
-      { type: "heading", text: "3. 🐦 Hornbill Viewpoint" },
+      { type: "heading", text: "3. Hornbill Viewpoint" },
 
       {
         type: "paragraph",
@@ -66,7 +66,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Best time to visit: Early morning for bird sightings and misty forest views.",
       },
 
-      { type: "heading", text: "4. 🌄 Thalanar Viewpoint" },
+      { type: "heading", text: "4. Thalanar Viewpoint" },
 
       {
         type: "paragraph",
@@ -78,7 +78,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Perfect for relaxing moments, scenic photography, and peaceful travel experiences.",
       },
 
-      { type: "heading", text: "5. 🌊 Koolangal River" },
+      { type: "heading", text: "5. Koolangal River" },
 
       {
         type: "paragraph",
@@ -90,7 +90,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Why visit: Peaceful nature vibes and a perfect spot for slow travel moments.",
       },
 
-      { type: "heading", text: "6. 🌉 Sholayar Dam" },
+      { type: "heading", text: "6. Sholayar Dam" },
 
       {
         type: "paragraph",
@@ -102,7 +102,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Best time to visit is after the monsoon season when the reservoir is full and the surroundings turn vibrant green.",
       },
 
-      { type: "heading", text: "7. 🌧️ Chinnakallar Falls" },
+      { type: "heading", text: "7. Chinnakallar Falls" },
 
       {
         type: "paragraph",
@@ -114,7 +114,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Best for: Monsoon lovers and travelers who enjoy cool rainforest vibes.",
       },
 
-      { type: "heading", text: "8. 🌄 Nallamudi Viewpoint" },
+      { type: "heading", text: "8. Nallamudi Viewpoint" },
 
       {
         type: "paragraph",
@@ -126,7 +126,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "It’s one of the best places in Valparai for photography, sunrise views, and peaceful sunset moments.",
       },
 
-      { type: "heading", text: "9. ⛪ Karumalai Church and Falls" },
+      { type: "heading", text: "9. Karumalai Church and Falls" },
 
       {
         type: "paragraph",
@@ -138,7 +138,7 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Note: Entry permissions may be required depending on estate regulations.",
       },
 
-      { type: "heading", text: "10. 🛕 Balaji Temple (Karumalai)" },
+      { type: "heading", text: "10. Balaji Temple (Karumalai)" },
 
       {
         type: "paragraph",
@@ -150,14 +150,14 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Tip: Follow all entry guidelines and estate rules while visiting.",
       },
 
-      { type: "heading", text: "✨ Final Thoughts" },
+      { type: "heading", text: "Final Thoughts" },
 
       {
         type: "paragraph",
-        text: "Valparai is not just about tourist destinations — it’s about the entire journey through misty roads, endless tea estates, waterfalls, and peaceful silence. Every location in Valparai offers a unique experience that creates unforgettable travel memories.",
+        text: "Valparai is not just about tourist destinations, it’s about the entire journey through misty roads, endless tea estates, waterfalls, and peaceful silence. Every location in Valparai offers a unique experience that creates unforgettable travel memories.",
       },
 
-      { type: "heading", text: "🚗 Plan Your Trip with Valparai Wanderer" },
+      { type: "heading", text: "Plan Your Trip with Valparai Wanderer" },
 
       {
         type: "paragraph",
