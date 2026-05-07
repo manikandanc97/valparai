@@ -19,8 +19,8 @@ export default function CTASection() {
         {/* Background Decorative Elements */}
         <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-emerald-500/5 blur-3xl" />
-        
-        <motion.div 
+
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -28,29 +28,29 @@ export default function CTASection() {
           className="relative z-10 flex flex-col items-center justify-between gap-10 lg:flex-row lg:text-left"
         >
           <div className="max-w-2xl space-y-6 text-center lg:text-left">
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] backdrop-blur-sm sm:text-xs"
             >
               <Sparkles className="h-3.5 w-3.5" />
               Start Your Journey
             </motion.div>
-            
+
             <div className="space-y-3">
-              <RevealText 
+              <RevealText
                 text="Ready to Explore Valparai?"
                 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:justify-start justify-center"
               />
-              <motion.p 
+              <motion.p
                 variants={fadeInUp}
                 className="text-sm leading-relaxed text-white/70 sm:text-base"
               >
-                Let us plan your perfect trip — simple, smooth & memorable.
+                Let us plan your perfect trip simple, smooth & memorable.
               </motion.p>
             </div>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="flex flex-col gap-3 sm:flex-row lg:shrink-0"
           >

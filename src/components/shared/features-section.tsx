@@ -21,7 +21,7 @@ export default function FeaturesSection({
           <SectionHeading
             eyebrow="Why choose us?"
             title="What Makes Us Different"
-            description="From the moment you book to the final drop-off — every detail is handled with care, trust, and local expertise."
+            description="From the moment you book to the final drop-off, every detail is handled with care, trust, and local expertise."
           />
         )}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
